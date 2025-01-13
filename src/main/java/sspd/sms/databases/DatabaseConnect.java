@@ -1,4 +1,4 @@
-package sspd.sms.database;
+package sspd.sms.databases;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

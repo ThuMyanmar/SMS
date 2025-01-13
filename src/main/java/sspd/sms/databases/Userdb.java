@@ -1,4 +1,4 @@
-package sspd.sms.database;
+package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.useroptions.model.User;

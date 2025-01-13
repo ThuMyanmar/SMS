@@ -4,7 +4,7 @@ package sspd.sms.Test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import sspd.sms.database.DatabaseConnect;
+import sspd.sms.databases.DatabaseConnect;
 
 import java.sql.Connection;
 
