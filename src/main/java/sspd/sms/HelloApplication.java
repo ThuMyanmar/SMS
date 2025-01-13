@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sspd.sms.database.DatabaseConnect;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 public class HelloApplication extends Application {
     @Override

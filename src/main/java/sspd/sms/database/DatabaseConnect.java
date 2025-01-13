@@ -53,7 +53,7 @@ public class DatabaseConnect {
 
     }
 
-    public static Connection getConnection(){
+    public  Connection getConnection(){
 
        return con;
 
