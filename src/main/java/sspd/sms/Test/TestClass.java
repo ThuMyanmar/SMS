@@ -35,7 +35,7 @@ public class TestClass {
 
         Date date =  Date.valueOf(datee);
 
-        Student stu = new Student("stu002","Thu Thu Zin",date,"Female","09263189909","mariyanthuthu19@gmail.com","ttt","ttttt");
+        Student stu = new Student("stu003","Thu Thu Zin",date,"Female","09263189909","mariyanthuthu20@gmail.com","ttt","ttttt");
 
         int i = studb.create(stu);
 
