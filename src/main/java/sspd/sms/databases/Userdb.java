@@ -29,5 +29,10 @@ public class Userdb implements DataAccessObject<User> {
         return 0;
     }
 
+    @Override
+    public int delete(String code) {
+        return 0;
+    }
+
 
 }

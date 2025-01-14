@@ -1,6 +1,7 @@
 package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
+import sspd.sms.DAO.DatabaseConnect;
 import sspd.sms.teacheroptions.model.Teacher;
 
 import java.sql.Connection;
@@ -86,6 +87,11 @@ public class Teacherdb implements DataAccessObject<Teacher> {
 
     @Override
     public int delete(Teacher teacher) {
+        return 0;
+    }
+
+    @Override
+    public int delete(String code) {
         return 0;
     }
 }

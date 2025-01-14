@@ -12,6 +12,10 @@ public interface DataAccessObject <T> {
 
     public int delete(T t);
 
+    public int delete(String code);
+
+
+
 
 
 
