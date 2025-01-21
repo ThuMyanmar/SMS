@@ -2,6 +2,7 @@ package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
+import sspd.sms.courseoptions.module.Course;
 import sspd.sms.student.module.Student;
 
 import java.sql.*;
@@ -77,8 +78,35 @@ public class Studentdb implements DataAccessObject<Student> {
     }
 
     @Override
-    public int update(Student student) {
+    public int create(Course course) {
         return 0;
+    }
+
+
+    @Override
+    public int update(Student student) {
+
+       String sql = "UPDATE `student` SET `stu_name`=?,`stu_dob`=?,`gender`=?,`contact`=?,`email`=?,`address`=?,`photo_path`=? WHERE stu_id=?";
+       try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+
+           pst.setString(1, student.getStu_name());
+           pst.setDate(2, (Date) student.getStu_dob());
+           pst.setString(3, student.getGender());
+           pst.setString(4, student.getContact());
+           pst.setString(5, student.getEmail());
+           pst.setString(6, student.getAddress());
+           pst.setString(7, student.getPhoto_path());
+           pst.setString(8, student.getStu_id());
+
+           return pst.executeUpdate();
+
+
+       } catch (SQLException e) {
+           throw new RuntimeException(e);
+       }
+
+
     }
 
     @Override

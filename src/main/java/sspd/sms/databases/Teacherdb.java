@@ -2,6 +2,7 @@ package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
+import sspd.sms.courseoptions.module.Course;
 import sspd.sms.teacheroptions.model.Teacher;
 
 import java.sql.Connection;
@@ -77,21 +78,62 @@ public class Teacherdb implements DataAccessObject<Teacher> {
         }
 
 
+    }
 
+    @Override
+    public int create(Course course) {
+        return 0;
     }
 
     @Override
     public int update(Teacher teacher) {
-        return 0;
+        String sql = "UPDATE `teacher` SET `name`=?, `qualification`=?, `contact`=?, `email`=? WHERE teacher_id=?";
+
+        try (PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, teacher.getName());
+            pst.setString(2, teacher.getQualification());
+            pst.setString(3, teacher.getContact());
+            pst.setString(4, teacher.getEmail());
+            pst.setInt(5, teacher.getTeacher_id());
+
+            return pst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
     }
+
+
+}
 
     @Override
     public int delete(Teacher teacher) {
-        return 0;
+
+      String sql = "DELETE FROM `teacher` WHERE teacher_id=?";
+
+      try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+          pst.setInt(1, teacher.getTeacher_id());
+          return pst.executeUpdate();
+
+      } catch (SQLException e) {
+          throw new RuntimeException(e);
+      }
+
     }
 
     @Override
     public int delete(String code) {
-        return 0;
+
+        String sql = "DELETE FROM `teacher` WHERE teacher_id=?";
+
+        try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, code);
+
+            return pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

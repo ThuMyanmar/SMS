@@ -43,8 +43,9 @@ create table teacher_subjects(
 
 	tsid int Auto_Increment PRIMARY key,
 	teacher_id int not null,
-	subject VARCHAR(100) not null,
-	FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
+    course_id int not null,
+	FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
 	
 );
 

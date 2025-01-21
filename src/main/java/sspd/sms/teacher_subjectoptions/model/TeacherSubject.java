@@ -4,12 +4,23 @@ public class TeacherSubject {
 
     private int tsid;
     private int teacher_id;
-    private int subject;
+    private String subject;
 
-    public TeacherSubject(int tsid, int teacher_id, int subject) {
+
+
+
+    public TeacherSubject(int teacher_id, String subject) {
+        this.teacher_id = teacher_id;
+        this.subject = subject;
+    }
+
+    public TeacherSubject(int tsid, int teacher_id, String subject) {
         this.tsid = tsid;
         this.teacher_id = teacher_id;
         this.subject = subject;
+
+
+
     }
 
     public int getTsid() {
@@ -28,11 +39,11 @@ public class TeacherSubject {
         this.teacher_id = teacher_id;
     }
 
-    public int getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(int subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 }

@@ -2,6 +2,7 @@ package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
+import sspd.sms.courseoptions.module.Course;
 import sspd.sms.teacher_subjectoptions.model.TeacherSubject;
 
 import java.sql.Connection;
@@ -30,7 +31,7 @@ public class TeacherSubjectdb implements DataAccessObject<TeacherSubject> {
               TeacherSubject tsu = new TeacherSubject(
                       rs.getInt("tsid"),
                       rs.getInt("teacher_id"),
-                      rs.getInt("subject")
+                      rs.getString("subject")
 
               );
 
@@ -54,8 +55,9 @@ public class TeacherSubjectdb implements DataAccessObject<TeacherSubject> {
 
         try(PreparedStatement pst = con.prepareStatement(sql)) {
 
-            pst.setInt(1, teacherSubject.getTsid());
-            pst.setInt(2, teacherSubject.getTeacher_id());
+
+          pst.setInt(1, teacherSubject.getTeacher_id());
+          pst.setString(2,teacherSubject.getSubject());
 
             return pst.executeUpdate();
 
@@ -67,17 +69,75 @@ public class TeacherSubjectdb implements DataAccessObject<TeacherSubject> {
     }
 
     @Override
-    public int update(TeacherSubject teacherSubject) {
+    public int create(Course course) {
         return 0;
     }
 
     @Override
+    public int update(TeacherSubject teacherSubject){
+
+      String sql = "UPDATE `teacher_subjects` SET `subject`=? WHERE 'tsid'=?";
+        try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, teacherSubject.getSubject());
+            pst.setInt(2, teacherSubject.getTsid());
+            return pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public int update(int tsid, String subject) {
+
+        String sql = "UPDATE `teacher_subjects` SET `subject`=? WHERE `tsid`=? ";
+
+        try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, subject);
+            pst.setInt(2, tsid);
+            return pst.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    @Override
     public int delete(TeacherSubject teacherSubject) {
-        return 0;
+
+
+        String sql = "DELETE FROM `teacher_subjects` WHERE `tsid`=?";
+
+        try(PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, teacherSubject.getTsid());
+            return pst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
     public int delete(String code) {
-        return 0;
+
+        String sql = "DELETE FROM `teacher_subjects` WHERE `tsid`=?";
+
+        try(PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, code);
+            return pst.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
