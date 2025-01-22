@@ -119,22 +119,22 @@
             </TextField>
          </children>
       </VBox>
-      <Button fx:id="savebtn" layoutX="848.0" layoutY="500.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Save">
+      <Button fx:id="savebtn" focusTraversable="false" layoutX="848.0" layoutY="500.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="teachersubjectbtn" layoutX="1011.0" layoutY="500.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Subjects">
+      <Button fx:id="teachersubjectbtn" focusTraversable="false" layoutX="1011.0" layoutY="500.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Subjects">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="printbtn" layoutX="14.0" layoutY="578.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Print">
+      <Button fx:id="printbtn" focusTraversable="false" layoutX="14.0" layoutY="578.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Print">
          <font>
             <Font name="System Bold" size="10.0" />
          </font>
       </Button>
-      <Label fx:id="totaltlb" layoutX="756.0" layoutY="574.0" prefHeight="25.0" prefWidth="73.0" text="Label" />
+      <Label fx:id="totaltlb" layoutX="744.0" layoutY="574.0" prefHeight="25.0" prefWidth="73.0" text="Label" textFill="RED" />
       <Label layoutX="652.0" layoutY="574.0" prefHeight="25.0" prefWidth="92.0" text="Total Teachers :" />
       <ComboBox layoutX="606.0" layoutY="32.0" prefHeight="32.0" prefWidth="196.0" />
       <ComboBox layoutX="393.0" layoutY="32.0" prefHeight="32.0" prefWidth="196.0" />

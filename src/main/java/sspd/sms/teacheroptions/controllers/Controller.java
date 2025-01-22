@@ -6,13 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -103,7 +99,11 @@ public class Controller implements Initializable {
         getLoadData();
         actionEvent();
         tableIni();
-      initializeSearch();
+        initializeSearch();
+
+        teachertable.setEditable(true);
+
+        rowUpdate();
 
 
 
@@ -122,10 +122,12 @@ public class Controller implements Initializable {
 
     private void actionEvent() {
 
+
+
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
 
         savebtn.setOnAction(event -> {
-            try {
+
                 String name = teachernametxt.getText();
                 String quali = teacherqualificationtxt.getText();
                 String contact = teachercontacttxt.getText();
@@ -137,19 +139,144 @@ public class Controller implements Initializable {
 
                 tdb.insertTask(teacher);
                 getLoadData();
+                setTextnull();
 
-            } catch (DataAccessException e) {
 
-               showErrorDialog("ttt","ttt","ttt");
-            }
 
 
         });
+
+
+
+
+
+    }
+
+    private  void rowUpdate(){
+
+
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setOnEditCommit(event -> {
+
+
+            String value = String.valueOf(event.getNewValue());
+
+            if(null!=value && !value.isEmpty()){
+
+                Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+                event.getRowValue().setName(value);
+
+                teacher.setName(value);
+
+                tdb.updateTask(teacher);
+                getLoadData();
+
+
+            }
+
+
+
+        });
+
+        qualificationCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        qualificationCol.setOnEditCommit(event -> {
+
+
+            String value = String.valueOf(event.getNewValue());
+
+            if(null!=value && !value.isEmpty()){
+
+                Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+                event.getRowValue().setQualification(value);
+
+                teacher.setQualification(value);
+
+                tdb.updateTask(teacher);
+                getLoadData();
+
+
+            }
+
+
+
+        });
+
+        contactCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        contactCol.setOnEditCommit(event -> {
+
+
+            String value = String.valueOf(event.getNewValue());
+
+            if(null!=value && !value.isEmpty()){
+
+                Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+                event.getRowValue().setContact(value);
+
+                teacher.setContact(value);
+
+                tdb.updateTask(teacher);
+
+                getLoadData();
+
+
+
+
+            }
+
+
+
+        });
+
+        emailCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        emailCol.setOnEditCommit(event -> {
+
+
+            String value = String.valueOf(event.getNewValue());
+
+            if(null!=value && !value.isEmpty()){
+
+                Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+                event.getRowValue().setEmail(value);
+
+                teacher.setEmail(value);
+
+                tdb.updateTask(teacher);
+
+
+                getLoadData();
+
+
+
+
+            }
+
+
+
+        });
+
+
+
+
+    }
+
+    private void setTextnull(){
+
+        teachernametxt.setText("");
+        teacherqualificationtxt.setText("");
+        teachercontacttxt.setText("");
+        teacheremailtxt.setText("");
+        suggestnamelb.setText("");
+        suggestqualb.setText("");
+
     }
 
     private void showErrorDialog(String title, String header, String content) {
         javafx.application.Platform.runLater(() -> {
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
@@ -170,7 +297,7 @@ public class Controller implements Initializable {
 
                 suggestnamelb.setText("");
             } else {
-                // Filter the list of names based on the input
+
                 ObservableList<String> suggestions = getNameList()
                         .filtered(name -> name.toLowerCase().contains(newValue.toLowerCase()));
 
@@ -230,16 +357,11 @@ public class Controller implements Initializable {
 
     }
 
-
-
-
-
-
-
     public void getLoadData() {
 
         ObservableList<Teacher> data = FXCollections.observableArrayList(tdb.getAllTask());
 
+        totaltlb.setText(String.valueOf(data.size()));
 
         teachertable.setItems(data);
 
@@ -252,6 +374,7 @@ public class Controller implements Initializable {
                         .collect(Collectors.toList())
         );
     }
+
     public ObservableList<String> getQuaList() {
         return FXCollections.observableArrayList(
                 tdb.getAllTask().stream()

@@ -66,8 +66,10 @@ public class Timpls implements Taskdao<Teacher> {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.persist(task);
+            showInformationDialog("Data Insert Successful","Teacher","Teacher Data Insert Successfully!!!");
             session.getTransaction().commit();
             session.close();
+
 
         }
 
@@ -77,6 +79,32 @@ public class Timpls implements Taskdao<Teacher> {
 
     @Override
     public void updateTask(Teacher task) {
+
+        Set<ConstraintViolation<Teacher>> violations = validator.validate(task);
+
+        String name = null;
+
+        if (!violations.isEmpty()) {
+            StringBuilder errorMessages = new StringBuilder();
+            for (ConstraintViolation<Teacher> violation : violations) {
+                errorMessages.append(violation.getMessage()).append("\n");
+                name = String.valueOf(violation.getPropertyPath());
+            }
+
+            showErrorDialog("Database Error","Data Update Error",errorMessages.toString()+"\n"+name);
+
+        }
+        else {
+
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.merge(task);
+            showInformationDialog("Data Update Successful","Teacher","Teacher Data Update Successfully!!!");
+            session.getTransaction().commit();
+            session.close();
+
+
+        }
 
     }
 
@@ -88,6 +116,15 @@ public class Timpls implements Taskdao<Teacher> {
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        });
+    }
+    private void showInformationDialog(String title, String header, String content) {
+        javafx.application.Platform.runLater(() -> {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
