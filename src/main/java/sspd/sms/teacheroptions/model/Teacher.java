@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Teacher {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE)
         private int teacher_id;
 
         @NotBlank
@@ -43,23 +43,49 @@ public class Teacher {
         @Column(name = "email",length = 100)
         private String email;
 
+    @Column(name = "address",length = 255)
+    private String address;
+
+    @Column(name="photo",length = 255)
+    private String photo;
+
 
 
     public Teacher(){}
 
-    public Teacher( int teacher_id,String name, String qualification, String contact, String email) {
+    public Teacher(int teacher_id, String name, String qualification, String contact, String email, String address, String photo) {
         this.teacher_id = teacher_id;
         this.name = name;
         this.qualification = qualification;
         this.contact = contact;
         this.email = email;
+        this.address = address;
+        this.photo = photo;
     }
 
-    public Teacher(String name, String qualification, String contact, String email) {
+    public Teacher(String name, String qualification, String contact, String email, String address, String photo) {
         this.name = name;
         this.qualification = qualification;
         this.contact = contact;
         this.email = email;
+        this.address = address;
+        this.photo = photo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public int getTeacher_id() {

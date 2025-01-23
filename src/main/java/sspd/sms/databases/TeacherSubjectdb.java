@@ -2,7 +2,7 @@ package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 import sspd.sms.teacher_subjectoptions.model.TeacherSubject;
 
 import java.sql.Connection;

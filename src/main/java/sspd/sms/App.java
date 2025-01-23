@@ -1,9 +1,9 @@
 package sspd.sms;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Repository;
-import sspd.sms.teacheroptions.db.Timpls;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import sspd.sms.config.AppConfig;
+import sspd.sms.courseoptions.db.Courseimpl;
 
 public class App {
 
@@ -14,11 +14,15 @@ public class App {
     public static void main(String[] args) {
 
 
-        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+       ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        Timpls tdb = context.getBean(Timpls.class    );
+       Courseimpl cdb =  context.getBean(Courseimpl.class);
 
-        System.out.println(tdb.getAllTask().size());
+       // Courseimpl cdb = (Courseimpl) context.getBean(Repository.class);
+
+
+
+        System.out.println(cdb.getAllTask().size());
 
 
 

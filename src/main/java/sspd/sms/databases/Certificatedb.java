@@ -3,9 +3,8 @@ package sspd.sms.databases;
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
 import sspd.sms.certificate.model.Certificate;
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 
-import java.io.Serializable;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

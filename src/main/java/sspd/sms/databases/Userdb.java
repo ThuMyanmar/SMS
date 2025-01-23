@@ -1,7 +1,7 @@
 package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 import sspd.sms.useroptions.model.User;
 
 import java.util.List;

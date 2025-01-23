@@ -1,11 +1,34 @@
-package sspd.sms.courseoptions.module;
+package sspd.sms.courseoptions.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "course")
 public class Course {
-    int course_id;
-    String course_name;
-    String description;
-    double duration;
-    int fee;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int course_id;
+
+    @NotBlank(message = "Requierd Course Name.....")
+    @Size(min = 8,max = 80)
+    @Column(name = "course_name",length = 80)
+    private String course_name;
+
+    @Column(name = "description")
+    private String description;
+
+    @NotBlank(message = "Required Duration ....")
+    @Column(name = "duration")
+    private double duration;
+
+    @NotBlank(message = "Required Fee")
+    @Column(name = "fee")
+    private int fee;
+
+    public Course() {}
 
     public Course(String course_name, String description, double duration, int fee) {
         this.course_name = course_name;

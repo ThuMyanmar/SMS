@@ -3,7 +3,7 @@ package sspd.sms.databases;
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
 import sspd.sms.certificate_templatesoptions.module.Certificatetemplates;
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

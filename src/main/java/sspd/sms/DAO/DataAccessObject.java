@@ -1,6 +1,6 @@
 package sspd.sms.DAO;
 
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 
 import java.util.List;
 

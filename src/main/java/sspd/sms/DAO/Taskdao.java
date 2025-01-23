@@ -13,4 +13,6 @@ public interface Taskdao <T>{
     public void insertTask(T task);
     public void updateTask(T task);
     public void deleteTask(T task);
+    public void bactchTask(List<T> list);
+
 }

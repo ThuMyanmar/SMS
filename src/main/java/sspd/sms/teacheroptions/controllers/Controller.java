@@ -1,26 +1,38 @@
 package sspd.sms.teacheroptions.controllers;
 
-import jakarta.validation.ConstraintViolation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.dao.DataAccessException;
+import sspd.sms.config.AppConfig;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.model.Teacher;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller
@@ -79,13 +91,36 @@ public class Controller implements Initializable {
     @FXML
     private Label suggestqualb;
 
+    @FXML
+    private MenuItem exportToExcelbtn;
+
+    @FXML
+    private MenuItem importToDatabtn;
+
+    @FXML
+    private TextArea teacheraddresstxt;
+
+    @FXML
+    private ImageView teacherimg;
+
+    @FXML
+    private Button uploadimgbtn;
+
+
+    @FXML
+    private TableColumn<Teacher, String> addressCol;
+
+    @FXML
+    private Button editbtn;
+
 
 
 
     @FXML
     private Label totaltlb;
 
-    private ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+
 
     private Timpls tdb = context.getBean(Timpls.class    );
 
@@ -100,10 +135,35 @@ public class Controller implements Initializable {
         actionEvent();
         tableIni();
         initializeSearch();
+        teacherimg.getStyleClass().add("/style/imageview.css");
 
         teachertable.setEditable(true);
 
         rowUpdate();
+
+        exportToExcelbtn.setOnAction(event -> {
+
+
+
+            ObservableList<Teacher> data = FXCollections.observableArrayList(tdb.getAllTask());
+
+            totaltlb.setText(String.valueOf(data.size()));
+
+            teachertable.setItems(data);
+
+            exportToExcel(teachertable,new Stage());
+
+
+
+
+
+        });
+
+        importToDatabtn.setOnAction(event -> {
+
+            importFromExcel(new Stage());
+
+        });
 
 
 
@@ -117,6 +177,7 @@ public class Controller implements Initializable {
         qualificationCol.setCellValueFactory(new PropertyValueFactory<>("qualification"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contact"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
 
     }
 
@@ -126,20 +187,189 @@ public class Controller implements Initializable {
 
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
 
+          uploadimgbtn.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+
+
+            FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
+                    "Image Files", "*.png", "*.jpg", "*.jpeg"
+            );
+            fileChooser.getExtensionFilters().add(imageFilter);
+
+
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
+
+            File selectedFile = fileChooser.showOpenDialog(uploadimgbtn.getScene().getWindow());
+
+            if (selectedFile != null) {
+                try {
+
+                    Image image = new Image(selectedFile.toURI().toString());
+                    teacherimg.setImage(image);
+
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            } else {
+
+            }
+        });
+
+
         savebtn.setOnAction(event -> {
 
                 String name = teachernametxt.getText();
                 String quali = teacherqualificationtxt.getText();
                 String contact = teachercontacttxt.getText();
                 String email = teacheremailtxt.getText();
+                String address = teacheraddresstxt.getText();
 
-                Teacher teacher = new Teacher(name, quali, contact, email);
+                String orgPath = teacherimg.getImage().getUrl();
+                File sourceFile = new File(orgPath.replace("file:",""));
 
+                File destinationFolder = new File("D:/backImage");
 
+                if(!destinationFolder.exists()){
+                    destinationFolder.mkdir();
+                }
 
+                File destinationFile = new File(destinationFolder,name+".jpg");
+
+            try {
+                Files.copy(sourceFile.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                String photoPath = destinationFile.getAbsolutePath();
+                Teacher teacher = new Teacher(name, quali, contact, email,address,photoPath);
                 tdb.insertTask(teacher);
                 getLoadData();
                 setTextnull();
+
+            } catch (IOException  | org.hibernate.exception.ConstraintViolationException exception) {
+
+                showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image");
+            }
+
+
+
+
+
+
+
+
+
+
+
+        });
+
+        teachertable.setOnKeyPressed(event -> {
+          //
+            if(event.getCode() == KeyCode.DELETE){
+
+                Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+                if (teacher == null) {
+                    showInformationDialog("Error", "No Selection", "Please select a teacher to delete.");
+                    return;
+                }
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Delete Confirmation");
+                alert.setContentText("Are you sure you want to delete this teacher?");
+
+                if(alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+
+                    String photPath = getPhotoPath(teacher.getName(),teacher.getEmail());
+
+                    if(photPath!= null && !photPath.isEmpty()){
+
+                        File photoFile = new File(photPath);
+
+                        if(photoFile.exists() && photoFile.isFile()){
+
+
+                            boolean deleted = photoFile.delete();
+                            tdb.deleteTask(teacher);
+                            getLoadData();
+
+                            if(!deleted){
+                                showInformationDialog("Data Delete Photo Error","Teacher","Teacher Error Photo Delete !!!");
+                            }
+
+
+
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+
+
+        });
+
+        teachertable.setOnMouseClicked(event -> {
+
+
+           Teacher oldteacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+            teachernametxt.setText(oldteacher.getName());
+            teacherqualificationtxt.setText(oldteacher.getQualification());
+            teachercontacttxt.setText(oldteacher.getContact());
+            teacheremailtxt.setText(oldteacher.getEmail());
+            teacheraddresstxt.setText(oldteacher.getAddress());
+
+            String photoPath = getPhotoPath(oldteacher.getName(), oldteacher.getEmail());
+
+            Image image = new Image("file:" + photoPath);
+            teacherimg.setImage(image);
+
+            editbtn.setOnAction(event1 -> {
+
+
+                String name = teachernametxt.getText();
+                String qualification = teacherqualificationtxt.getText();
+                String contact = teachercontacttxt.getText();
+                String email = teacheremailtxt.getText();
+                String address =teacheraddresstxt.getText();
+
+                String orgPath = teacherimg.getImage().getUrl();
+                File sourceFile = new File(orgPath.replace("file:",""));
+
+                File destinationFolder = new File("D:/backImage");
+
+                if(!destinationFolder.exists()){
+                    destinationFolder.mkdir();
+                }
+
+
+
+                File destinationFile = new File(destinationFolder,name+".jpg");
+
+                try {
+
+
+                    Files.copy(sourceFile.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    String upphotoPath = destinationFile.getAbsolutePath();
+                    Teacher upteacher = new Teacher(oldteacher.getTeacher_id(),name, qualification, contact, email,address,upphotoPath);
+                    tdb.updateTask(upteacher);
+                    getLoadData();
+                    setTextnull();
+
+                } catch (IOException e) {
+                    showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image");
+                }
+
+
+
+
+
+            });
 
 
 
@@ -150,7 +380,32 @@ public class Controller implements Initializable {
 
 
 
+
+
     }
+
+    private int getTeachID(String name,String email){
+
+
+        return tdb.getAllTask().stream()
+                .filter(teacher -> teacher.getName().equals(name) && teacher.getEmail().equals(email))
+                .map(Teacher::getTeacher_id)
+                .findFirst()
+                .orElse(-1);
+
+
+
+    }
+
+
+    private String getPhotoPath(String name, String email) {
+        return tdb.getAllTask().stream()
+                .filter(teacher -> teacher.getName().equals(name) && teacher.getEmail().equals(email))
+                .map(Teacher::getPhoto)
+                .findFirst()
+                .orElse(null);
+    }
+
 
     private  void rowUpdate(){
 
@@ -271,18 +526,11 @@ public class Controller implements Initializable {
         teacheremailtxt.setText("");
         suggestnamelb.setText("");
         suggestqualb.setText("");
+        teacheraddresstxt.setText("");
+        teacherimg.setImage(null);
 
     }
 
-    private void showErrorDialog(String title, String header, String content) {
-        javafx.application.Platform.runLater(() -> {
-            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(title);
-            alert.setHeaderText(header);
-            alert.setContentText(content);
-            alert.showAndWait();
-        });
-    }
 
     public void initializeSearch() {
 
@@ -383,6 +631,156 @@ public class Controller implements Initializable {
         );
     }
 
+
+    private void showInformationDialog(String title, String header, String content) {
+        javafx.application.Platform.runLater(() -> {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        });
+    }
+
+    public void exportToExcel(TableView<Teacher> tableView, Stage stage) {
+
+
+
+
+
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Excel File");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Excel Files", "*.xlsx")
+        );
+        fileChooser.setInitialFileName("exported_data.xlsx");
+
+
+        File selectedFile = fileChooser.showSaveDialog(stage);
+
+
+        if (selectedFile != null) {
+            try (FileOutputStream fos = new FileOutputStream(selectedFile);
+                 Workbook workbook = new XSSFWorkbook()) {
+
+
+                Sheet sheet = workbook.createSheet("Exported Data");
+
+
+                Row headerRow = sheet.createRow(0);
+                for (int i = 0; i < tableView.getColumns().size(); i++) {
+                    Cell cell = headerRow.createCell(i);
+                    cell.setCellValue(tableView.getColumns().get(i).getText());
+                }
+
+
+                ObservableList<?> items = tableView.getItems();
+                for (int rowIndex = 0; rowIndex < items.size(); rowIndex++) {
+                    Row dataRow = sheet.createRow(rowIndex + 1);
+                    Object rowData = items.get(rowIndex);
+
+                    for (int colIndex = 0; colIndex < tableView.getColumns().size(); colIndex++) {
+                        Object cellData = tableView.getColumns().get(colIndex)
+                                .getCellObservableValue((Teacher) rowData)
+                                .getValue();
+
+                        Cell cell = dataRow.createCell(colIndex);
+                        cell.setCellValue(cellData == null ? "" : cellData.toString());
+                    }
+                }
+
+
+                workbook.write(fos);
+
+                showInformationDialog("Export Success","Excel","Exported Data Success");
+
+
+                System.out.println("Data exported successfully to: " + selectedFile.getAbsolutePath());
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.err.println("Error occurred while saving the file.");
+            }
+        } else {
+
+            showInformationDialog("Export Cancelled","Excel","Exported Data Cancelled");
+            System.out.println("File save operation cancelled.");
+        }
+
+
+    }
+
+
+    public void importFromExcel(Stage stage) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Excel File");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Excel Files", "*.xlsx")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            try (FileInputStream fis = new FileInputStream(selectedFile);
+                 Workbook workbook = new XSSFWorkbook(fis)) {
+
+                Sheet sheet = workbook.getSheetAt(0); // Assuming the first sheet is the one to read
+
+                ObservableList<Teacher> data = FXCollections.observableArrayList();
+
+                System.out.println(sheet.getLastRowNum());
+
+                for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
+                    Row row = sheet.getRow(rowIndex);
+
+                    // Handle cell types properly
+                    String name = getCellValueAsString(row.getCell(0));
+                    String qualification = getCellValueAsString(row.getCell(1));
+                    String content = getCellValueAsString(row.getCell(2));
+                    String email = getCellValueAsString(row.getCell(3));
+
+
+                 //   data.add(new Teacher(name, qualification, content,email));
+                }
+
+
+               // tdb.bactchTask(data);
+
+
+
+
+                getLoadData();
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+        } else {
+            System.out.println("File open operation cancelled.");
+        }
+    }
+
+    // Helper method to get the value of a cell as a string
+    private String getCellValueAsString(Cell cell) {
+        if (cell == null) {
+            return "";
+        }
+        switch (cell.getCellType()) {
+            case STRING:
+                return cell.getStringCellValue();
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    return cell.getDateCellValue().toString(); // Handle date values
+                } else {
+                    return String.valueOf(cell.getNumericCellValue()); // Handle numeric values
+                }
+            case BOOLEAN:
+                return String.valueOf(cell.getBooleanCellValue());
+            default:
+                return "";
+        }
+    }
 
 
 

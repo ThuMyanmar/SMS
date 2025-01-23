@@ -2,7 +2,7 @@ package sspd.sms.databases;
 
 import sspd.sms.DAO.DataAccessObject;
 import sspd.sms.DAO.DatabaseConnect;
-import sspd.sms.courseoptions.module.Course;
+import sspd.sms.courseoptions.model.Course;
 import sspd.sms.teacheroptions.model.Teacher;
 
 import java.sql.Connection;
@@ -19,40 +19,40 @@ public class Teacherdb implements DataAccessObject<Teacher> {
     @Override
     public List<Teacher> getDataList() {
 
-        String sql = "SELECT * FROM `teacher` WHERE 1";
-
-        try(PreparedStatement pst = con.prepareStatement(sql)) {
-
-
-            ResultSet rs = pst.executeQuery();
-            List<Teacher> list = new ArrayList<>();
-
-            while(rs.next()) {
-
-                Teacher t = new Teacher(
-
-                        rs.getInt("teacher_id"),
-                        rs.getString("name"),
-                        rs.getString("qualification"),
-                        rs.getString("contact"),
-                        rs.getString("email")
-
-
-                );
-
-                list.add(t);
-
-
-            }
-            return list;
-
-
-        } catch (SQLException e) {
+//        String sql = "SELECT * FROM `teacher` WHERE 1";
+//
+//        try(PreparedStatement pst = con.prepareStatement(sql)) {
+//
+//
+//            ResultSet rs = pst.executeQuery();
+//            List<Teacher> list = new ArrayList<>();
+//
+//            while(rs.next()) {
+//
+//                Teacher t = new Teacher(
+//
+//                        rs.getInt("teacher_id"),
+//                        rs.getString("name"),
+//                        rs.getString("qualification"),
+//                        rs.getString("contact"),
+//                        rs.getString("email")
+//
+//
+//                );
+//
+//                list.add(t);
+//
+//
+//            }
+            return null;
 
 
-
-            throw new RuntimeException(e);
-        }
+//        } catch (SQLException e) {
+//
+//
+//
+//            throw new RuntimeException(e);
+//        }
 
 
 

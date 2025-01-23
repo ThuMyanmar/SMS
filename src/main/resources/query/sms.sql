@@ -31,10 +31,13 @@ create table course(
 create table teacher(
 
 	teacher_id int Auto_Increment PRIMARY KEY,
-	name VARCHAR (100)not null,
+	name VARCHAR (100)not null unique ,
 	qualification VARCHAR (100),
 	contact VARCHAR (20),
-	email VARCHAR (100)UNIQUE
+	email VARCHAR (100)UNIQUE,
+    address VARCHAR (255),
+    photo VARCHAR(255)
+
 	
 
 );

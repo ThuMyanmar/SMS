@@ -6,15 +6,15 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.teacheroptions.model.Teacher;
 
 import java.util.List;
 import java.util.Set;
+
 
 @Component
 public class Timpls implements Taskdao<Teacher> {
@@ -27,6 +27,8 @@ public class Timpls implements Taskdao<Teacher> {
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
+
+
     @Autowired
     public void setValidator(Validator validator) {
         this.validator = validator;
@@ -38,7 +40,7 @@ public class Timpls implements Taskdao<Teacher> {
 
         Session session = sessionFactory.openSession();
 
-        List<Teacher>tlist = session.createQuery("FROM Teacher t ORDER BY t.id DESC").list();
+        List<Teacher>tlist = session.createQuery("FROM Teacher  t ORDER BY t.id DESC").list();
 
         session.close();
 
@@ -111,6 +113,45 @@ public class Timpls implements Taskdao<Teacher> {
     @Override
     public void deleteTask(Teacher task) {
 
+
+
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.remove(task);
+        showInformationDialog("Data Delete Successful","Teacher","Teacher Data Delete Successfully!!!");
+            session.getTransaction().commit();
+            session.close();
+
+
+
+
+    }
+
+    @Override
+    public void bactchTask(List<Teacher> list) {
+
+        Session session = sessionFactory.openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        int batchSize = 100;
+
+        for(int i = 0; i < batchSize; i++) {
+
+            session.save(list.get(i));
+
+            if(i % batchSize == 0 && i>0) {
+
+                session.flush();
+                session.clear();
+            }
+
+        }
+        tx.commit();
+        showInformationDialog("Data Import Successful","Teacher","Teacher Import Successfully!!!");
+        session.close();
+
+
     }
 
     private void showErrorDialog(String title, String header, String content) {
@@ -122,6 +163,7 @@ public class Timpls implements Taskdao<Teacher> {
             alert.showAndWait();
         });
     }
+
     private void showInformationDialog(String title, String header, String content) {
         javafx.application.Platform.runLater(() -> {
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);

@@ -1,0 +1,16 @@
+/* Style the ImageView with a border and padding */
+.image-view {
+    -fx-padding: 10;                   /* Padding around the ImageView */
+    -fx-border-color: #4CAF50;         /* Green border color */
+    -fx-border-width: 2;               /* Thickness of the border */
+    -fx-border-radius: 5;              /* Rounded corners for the border */
+    -fx-background-color: #f5f5f5;     /* Light background color */
+    -fx-background-radius: 5;          /* Rounded corners for the background */
+}
+
+/* Add a drop shadow effect to the ImageView */
+.image-view:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 3, 3); /* Shadow on hover */
+    -fx-cursor: hand; /* Change cursor to hand when hovering */
+}
+
