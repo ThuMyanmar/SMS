@@ -2,6 +2,8 @@ package sspd.sms.courseoptions.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -20,12 +22,14 @@ public class Course {
     @Column(name = "description")
     private String description;
 
-    @NotBlank(message = "Required Duration ....")
+    @Positive(message = "Duration must be a positive value.")
     @Column(name = "duration")
+
     private double duration;
 
-    @NotBlank(message = "Required Fee")
+    @PositiveOrZero(message = "Fee must be zero or a positive value.")
     @Column(name = "fee")
+
     private int fee;
 
     public Course() {}

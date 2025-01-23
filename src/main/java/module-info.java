@@ -43,11 +43,11 @@ module sspd.sms {
     opens  sspd.sms.courseoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
     exports  sspd.sms.courseoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
 
-    opens  sspd.sms.courseoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
-    exports  sspd.sms.courseoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
+    opens  sspd.sms.courseoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base,org.hibernate.validator;
+    exports  sspd.sms.courseoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base,org.hibernate.validator;
 
-    opens  sspd.sms.courseoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml;
-    exports  sspd.sms.courseoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml;
+    opens  sspd.sms.courseoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
+    exports  sspd.sms.courseoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
 
 

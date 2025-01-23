@@ -19,8 +19,15 @@ import javax.sql.DataSource;
 @ComponentScans({
         @ComponentScan(basePackages = "sspd.sms.teacheroptions.db"),
         @ComponentScan(basePackages = "sspd.sms.courseoptions.db")
+
 })
+
 public class AppConfig {
+
+
+
+
+
 
 
     @Bean

@@ -118,7 +118,7 @@ public class Timpls implements Taskdao<Teacher> {
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.remove(task);
-        showInformationDialog("Data Delete Successful","Teacher","Teacher Data Delete Successfully!!!");
+            showInformationDialog("Data Delete Successful","Teacher","Teacher Data Delete Successfully!!!");
             session.getTransaction().commit();
             session.close();
 
@@ -134,19 +134,18 @@ public class Timpls implements Taskdao<Teacher> {
 
         Transaction tx = session.beginTransaction();
 
-        int batchSize = 100;
 
-        for(int i = 0; i < batchSize; i++) {
 
-            session.save(list.get(i));
+        for(Teacher t :list){
 
-            if(i % batchSize == 0 && i>0) {
-
-                session.flush();
-                session.clear();
-            }
+           session.persist(t);
 
         }
+
+        session.flush();
+        session.clear();
+
+
         tx.commit();
         showInformationDialog("Data Import Successful","Teacher","Teacher Import Successfully!!!");
         session.close();

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class Teacher {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int teacher_id;
 
         @NotBlank
@@ -70,6 +70,14 @@ public class Teacher {
         this.email = email;
         this.address = address;
         this.photo = photo;
+    }
+
+    public Teacher(String name, String qualification, String contact, String email, String address) {
+        this.name = name;
+        this.qualification = qualification;
+        this.contact = contact;
+        this.email = email;
+        this.address = address;
     }
 
     public String getAddress() {

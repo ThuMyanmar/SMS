@@ -4,12 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.print.PrinterJob;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -32,6 +34,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -47,8 +50,6 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Teacher, String> nameCol;
 
-    @FXML
-    private Button printbtn;
 
     @FXML
     private TableColumn<Teacher, String> qualificationCol;
@@ -312,6 +313,10 @@ public class Controller implements Initializable {
 
 
         });
+
+
+
+
 
         teachertable.setOnMouseClicked(event -> {
 
@@ -733,18 +738,26 @@ public class Controller implements Initializable {
                 for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
                     Row row = sheet.getRow(rowIndex);
 
-                    // Handle cell types properly
+
                     String name = getCellValueAsString(row.getCell(0));
                     String qualification = getCellValueAsString(row.getCell(1));
                     String content = getCellValueAsString(row.getCell(2));
                     String email = getCellValueAsString(row.getCell(3));
+                    String address = getCellValueAsString(row.getCell(4));
+                    String photo = getCellValueAsString(row.getCell(5));
 
 
-                 //   data.add(new Teacher(name, qualification, content,email));
+
+
+                    data.add(new Teacher(name, qualification, content,email,address,photo));
                 }
 
 
-               // tdb.bactchTask(data);
+
+
+
+
+              tdb.bactchTask(data);
 
 
 
@@ -761,26 +774,28 @@ public class Controller implements Initializable {
         }
     }
 
-    // Helper method to get the value of a cell as a string
     private String getCellValueAsString(Cell cell) {
         if (cell == null) {
-            return "";
+            return ""; // Return empty string for null cells
         }
         switch (cell.getCellType()) {
             case STRING:
                 return cell.getStringCellValue();
             case NUMERIC:
                 if (DateUtil.isCellDateFormatted(cell)) {
-                    return cell.getDateCellValue().toString(); // Handle date values
+                    return cell.getDateCellValue().toString(); // Convert date to string
                 } else {
-                    return String.valueOf(cell.getNumericCellValue()); // Handle numeric values
+                    return String.valueOf((int) cell.getNumericCellValue()); // Convert numeric value to string
                 }
             case BOOLEAN:
                 return String.valueOf(cell.getBooleanCellValue());
+            case FORMULA:
+                return cell.getCellFormula(); // Return the formula as a string
             default:
-                return "";
+                return ""; // Return empty string for other types
         }
     }
+
 
 
 

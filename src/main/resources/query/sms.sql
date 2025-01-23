@@ -21,7 +21,7 @@ create table student (
 
 create table course(
 	course_id int  Auto_Increment PRIMARY KEY ,
-	course_name VARCHAR(100)not null,
+	course_name VARCHAR(100)not null unique ,
 	description TEXT,
 	duration DOUBLE,
 	fee int
