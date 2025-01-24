@@ -35,7 +35,7 @@ public class Course {
     @Column(name = "fee")
     private int fee;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<TeacherSubject> teacherSubjects;
 
     public Course() {}

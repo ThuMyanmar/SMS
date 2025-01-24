@@ -52,7 +52,7 @@ public class Teacher {
     @Column(name="photo",length = 255)
     private String photo;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<TeacherSubject> teacherSubjects;
 
 

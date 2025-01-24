@@ -17,6 +17,7 @@ module sspd.sms {
     requires org.apache.poi.ooxml;
     requires de.jensd.fx.glyphs.commons;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires com.jfoenix;
 
 
     opens sspd.sms;

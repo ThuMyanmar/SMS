@@ -10,7 +10,6 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sspd.sms.DAO.Taskdao;
-import sspd.sms.teacheroptions.model.Teacher;
 import sspd.sms.teacheroptions.model.TeacherSubject;
 
 import java.util.List;

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1309.0" style="-fx-background-color: #1E88E5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.DashboardController">
+   <children>
+      <AnchorPane layoutY="-4.0" prefHeight="91.0" prefWidth="1300.0" style="-fx-background-color: #1E88E5;">
+         <children>
+            <ImageView fitHeight="60.0" fitWidth="49.0" layoutX="8.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logwhite.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="60.0" layoutY="41.0" prefHeight="21.0" prefWidth="166.0" text="IT Services &amp; Training" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="stubtn" layoutX="16.0" layoutY="114.0" prefHeight="41.0" prefWidth="172.0" text="Student Dashboard" textFill="WHITE">
+         <font>
+            <Font name="CG Times Bold" size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill: white;" size="20" />
+         </graphic>
+      </JFXButton>
+      <AnchorPane fx:id="setPand" layoutX="227.0" layoutY="61.0" prefHeight="632.0" prefWidth="1073.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
+      <JFXButton fx:id="teacherbn" layoutX="16.0" layoutY="174.0" prefHeight="41.0" prefWidth="172.0" text="   Teacher Options" textFill="WHITE">
+         <font>
+            <Font name="CG Times Bold" size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="GRADUATION_CAP" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="coursebtn" layoutX="16.0" layoutY="239.0" prefHeight="41.0" prefWidth="172.0" text="   Course Options" textFill="WHITE">
+         <font>
+            <Font name="CG Times Bold" size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="BOOK" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="classbtn" layoutX="18.0" layoutY="304.0" prefHeight="41.0" prefWidth="172.0" text="   Classes Options" textFill="WHITE">
+         <font>
+            <Font name="CG Times Bold" size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="LIST" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+         </graphic>
+      </JFXButton>
+      <Polygon fx:id="teacherNotic" layoutX="210.0" layoutY="272.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.9607843160629272" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Polygon>
+      <Polygon fx:id="stuNotic" layoutX="210.0" layoutY="210.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;" />
+      <Polygon fx:id="courseNotic" layoutX="210.0" layoutY="335.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.9607843160629272" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Polygon>
+      <Polygon fx:id="classNotic" layoutX="210.0" layoutY="399.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+         <fill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.9607843160629272" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Polygon>
+   </children>
+</AnchorPane>

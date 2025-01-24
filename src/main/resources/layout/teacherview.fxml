@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1197.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.teacheroptions.controllers.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="1062.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.teacheroptions.controllers.Controller">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1219.0">
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1054.0">
         <menus>
           <Menu mnemonicParsing="false" text="File options">
             <items>
@@ -29,23 +29,23 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="teachertable" layoutX="14.0" layoutY="40.0" prefHeight="574.0" prefWidth="814.0">
+      <TableView fx:id="teachertable" layoutX="14.0" layoutY="40.0" prefHeight="528.0" prefWidth="754.0">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="140.0" text="Teacher Name" />
-          <TableColumn fx:id="qualificationCol" prefWidth="159.0" text="Qualification" />
-            <TableColumn fx:id="contactCol" prefWidth="149.0" text="Contact" />
-            <TableColumn fx:id="emailCol" prefWidth="152.0" text="Email" />
-            <TableColumn fx:id="addressCol" prefWidth="201.0" text="Address" />
+          <TableColumn fx:id="nameCol" prefWidth="118.0" text="Teacher Name" />
+          <TableColumn fx:id="qualificationCol" prefWidth="128.0" text="Qualification" />
+            <TableColumn fx:id="contactCol" prefWidth="157.0" text="Contact" />
+            <TableColumn fx:id="emailCol" prefWidth="159.0" text="Email" />
+            <TableColumn fx:id="addressCol" prefWidth="174.0" text="Address" />
         </columns>
       </TableView>
-      <VBox layoutX="841.0" layoutY="213.0" prefHeight="396.0" prefWidth="339.0">
+      <VBox layoutX="772.0" layoutY="213.0" prefHeight="373.0" prefWidth="290.0">
          <children>
             <Label fx:id="suggestnamelb" prefHeight="17.0" prefWidth="317.0" textFill="RED">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="teachernametxt" prefHeight="40.0" promptText="Teacher Name :">
+            <TextField fx:id="teachernametxt" prefHeight="38.0" prefWidth="296.0" promptText="Teacher Name :">
                <font>
                   <Font name="Pyidaungsu" size="12.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <TextArea fx:id="teacherqualificationtxt" prefHeight="76.0" prefWidth="324.0" promptText="Teacher Qualification :">
+            <TextArea fx:id="teacherqualificationtxt" prefHeight="59.0" prefWidth="280.0" promptText="Teacher Qualification :">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
@@ -79,14 +79,14 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextField>
-            <TextArea fx:id="teacheraddresstxt" layoutX="20.0" layoutY="140.0" prefHeight="103.0" prefWidth="329.0" promptText="Teacher Address :">
+            <TextArea fx:id="teacheraddresstxt" layoutX="20.0" layoutY="140.0" prefHeight="81.0" prefWidth="280.0" promptText="Teacher Address :">
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </TextArea>
          </children>
       </VBox>
-      <Button fx:id="savebtn" focusTraversable="false" layoutX="848.0" layoutY="618.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Save">
+      <Button fx:id="savebtn" focusTraversable="false" layoutX="781.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Save">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -94,7 +94,7 @@
             <FontAwesomeIconView glyphName="SAVE" size="24" />
          </graphic>
       </Button>
-      <Button fx:id="teachersubjectbtn" focusTraversable="false" layoutX="1070.0" layoutY="618.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Subjects">
+      <Button fx:id="teachersubjectbtn" focusTraversable="false" layoutX="961.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" text="Subjects">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -102,9 +102,9 @@
             <FontAwesomeIconView glyphName="BOOK" size="24" />
          </graphic>
       </Button>
-      <Label fx:id="totaltlb" layoutX="744.0" layoutY="625.0" prefHeight="25.0" prefWidth="73.0" text="Label" textFill="RED" />
-      <Label layoutX="652.0" layoutY="625.0" prefHeight="25.0" prefWidth="92.0" text="Total Teachers :" />
-      <Button fx:id="uploadimgbtn" focusTraversable="false" layoutX="1023.0" layoutY="107.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" text="Upload">
+      <Label fx:id="totaltlb" layoutX="695.0" layoutY="574.0" prefHeight="25.0" prefWidth="73.0" text="Label" textFill="RED" />
+      <Label layoutX="603.0" layoutY="574.0" prefHeight="25.0" prefWidth="92.0" text="Total Teachers :" />
+      <Button fx:id="uploadimgbtn" focusTraversable="false" layoutX="928.0" layoutY="107.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" text="Upload">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -112,12 +112,12 @@
             <FontAwesomeIconView glyphName="PHOTO" size="24" />
          </graphic>
       </Button>
-      <Pane layoutX="844.0" layoutY="33.0" prefHeight="172.0" prefWidth="145.0" styleClass="image-view" stylesheets="@../style/imageview.css">
+      <Pane layoutX="776.0" layoutY="33.0" prefHeight="172.0" prefWidth="145.0" styleClass="image-view" stylesheets="@../style/imageview.css">
          <children>
             <ImageView fx:id="teacherimg" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
          </children>
       </Pane>
-      <Button fx:id="editbtn" focusTraversable="false" layoutX="942.0" layoutY="618.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="115.0" text="Edit">
+      <Button fx:id="editbtn" focusTraversable="false" layoutX="871.0" layoutY="584.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Edit">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

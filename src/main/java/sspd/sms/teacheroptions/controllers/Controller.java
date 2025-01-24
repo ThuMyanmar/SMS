@@ -244,6 +244,7 @@ public class Controller implements Initializable {
                 stage.initModality(Modality.WINDOW_MODAL);
                 Stage mainStage = (Stage) teachertable.getScene().getWindow();
                 stage.initOwner(mainStage);
+                stage.setTitle("Teacher Subjects");
                 stage.setScene(scene);
                 stage.show();
 

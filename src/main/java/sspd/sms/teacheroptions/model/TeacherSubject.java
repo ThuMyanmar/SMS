@@ -11,11 +11,11 @@ public class TeacherSubject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tsid;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="teacher_id", nullable = false)
     private Teacher teacher;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 

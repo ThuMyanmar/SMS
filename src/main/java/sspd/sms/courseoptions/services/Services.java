@@ -1,22 +1,15 @@
 package sspd.sms.courseoptions.services;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import sspd.sms.config.AppConfig;
 import sspd.sms.courseoptions.db.Courseimpl;
 import sspd.sms.courseoptions.model.Course;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component

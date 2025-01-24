@@ -3,7 +3,9 @@ package sspd.sms.teacheroptions.services;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+import sspd.sms.config.AppConfig;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.services.Services;
 import sspd.sms.teacheroptions.db.Timpls;
@@ -14,9 +16,13 @@ import sspd.sms.teacheroptions.model.TeacherSubject;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class TeacherServices {
 
-    private ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+
+
+
+    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
     private Timpls tdb = context.getBean(Timpls.class );
 
