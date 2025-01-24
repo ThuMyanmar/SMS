@@ -17,6 +17,7 @@ import sspd.sms.courseoptions.model.Course;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class Services {
@@ -123,6 +124,14 @@ public class Services {
                 .map(Course::getCourse_id)
                 .findFirst()
                 .orElse(-1);
+
+
+    }
+
+    public List<String>getCourseNames() {
+
+       return getAllCourses().stream()
+                .map(Course::getCourse_name).sorted().collect(Collectors.toList());
 
 
     }

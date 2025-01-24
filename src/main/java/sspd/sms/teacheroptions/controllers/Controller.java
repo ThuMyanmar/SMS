@@ -3,8 +3,10 @@ package sspd.sms.teacheroptions.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -22,10 +24,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import sspd.sms.Launch;
 import sspd.sms.config.AppConfig;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.model.Teacher;
+import sspd.sms.teacheroptions.model.TeacherDTO;
+import sspd.sms.teacheroptions.services.TeacherServices;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -123,7 +128,9 @@ public class Controller implements Initializable {
     private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
 
-    private Timpls tdb = context.getBean(Timpls.class    );
+    private Timpls tdb = context.getBean(Timpls.class);
+
+    private TeacherServices tservice = new TeacherServices();
 
 
 
@@ -187,6 +194,72 @@ public class Controller implements Initializable {
 
 
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
+
+
+        teachersubjectbtn.setOnAction(event -> {
+
+
+            Teacher teacher = (Teacher) teachertable.getSelectionModel().getSelectedItem();
+
+
+            if(teacher==null){
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No Selection");
+                alert.setHeaderText("No Teacher Selected");
+                alert.setContentText("Please select a teacher from the table.");
+                alert.showAndWait();
+                return;
+            }
+
+            int teacherId = tservice.getTeacherId(teacher.getName());
+            if (teacherId <= 0) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Teacher ID Retrieval Failed");
+                alert.setContentText("Unable to fetch teacher ID for: " + teacher.getName());
+                alert.showAndWait();
+                return;
+            }
+
+            teacher.setTeacher_id(teacherId);
+
+            TeacherDTO teacherDTO = TeacherDTO.getInstance();
+            teacherDTO.setTeacher(teacher);
+
+
+
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/teachersubjectsview.fxml"));
+
+            Scene scene = null;
+
+            Stage stage = new Stage();
+
+            try{
+
+                scene = new Scene(fxmlLoader.load());
+                stage.initStyle(StageStyle.UTILITY);
+                stage.initModality(Modality.WINDOW_MODAL);
+                Stage mainStage = (Stage) teachertable.getScene().getWindow();
+                stage.initOwner(mainStage);
+                stage.setScene(scene);
+                stage.show();
+
+
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        });
+
+
+
+
+
 
           uploadimgbtn.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();

@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Component;
+import sspd.sms.courseoptions.model.Course;
+
+import java.util.Set;
 
 @Entity
 @Table(name="teacher")
@@ -49,6 +52,9 @@ public class Teacher {
     @Column(name="photo",length = 255)
     private String photo;
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL)
+    private Set<TeacherSubject> teacherSubjects;
+
 
 
     public Teacher(){}
@@ -78,6 +84,14 @@ public class Teacher {
         this.contact = contact;
         this.email = email;
         this.address = address;
+    }
+
+    public Set<TeacherSubject> getTeacherSubjects() {
+        return teacherSubjects;
+    }
+
+    public void setTeacherSubjects(Set<TeacherSubject> teacherSubjects) {
+        this.teacherSubjects = teacherSubjects;
     }
 
     public String getAddress() {

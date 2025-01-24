@@ -5,6 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+import sspd.sms.teacheroptions.model.Teacher;
+import sspd.sms.teacheroptions.model.TeacherSubject;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "course")
@@ -29,8 +33,10 @@ public class Course {
 
     @PositiveOrZero(message = "Fee must be zero or a positive value.")
     @Column(name = "fee")
-
     private int fee;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private Set<TeacherSubject> teacherSubjects;
 
     public Course() {}
 
@@ -48,6 +54,20 @@ public class Course {
         this.duration = duration;
         this.fee = fee;
 
+    }
+
+    public Course(int course_id, String course_name, String description) {
+        this.course_id = course_id;
+        this.course_name = course_name;
+        this.description = description;
+    }
+
+    public Set<TeacherSubject> getTeacherSubjects() {
+        return teacherSubjects;
+    }
+
+    public void setTeacherSubjects(Set<TeacherSubject> teacherSubjects) {
+        this.teacherSubjects = teacherSubjects;
     }
 
     public int getCourse_id() {
