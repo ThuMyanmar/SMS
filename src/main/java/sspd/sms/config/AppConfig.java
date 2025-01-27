@@ -18,14 +18,12 @@ import javax.sql.DataSource;
 @EnableTransactionManagement
 @ComponentScans({
         @ComponentScan(basePackages = "sspd.sms.teacheroptions.db"),
-        @ComponentScan(basePackages = "sspd.sms.courseoptions.db")
+        @ComponentScan(basePackages = "sspd.sms.courseoptions.db"),
+        @ComponentScan(basePackages = "sspd.sms.classoptions.db")
 
 })
 
 public class AppConfig {
-
-
-
 
 
 
@@ -55,7 +53,8 @@ public class AppConfig {
 
         sessionFactory.setPackagesToScan(
                 "sspd.sms.teacheroptions",
-                "sspd.sms.courseoptions"
+                "sspd.sms.courseoptions",
+                "sspd.sms.classoptions"
         );
 
         sessionFactory.setConfigLocation(new org.springframework.core.io.ClassPathResource("hibernate.cfg.xml"));

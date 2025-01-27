@@ -18,6 +18,7 @@ module sspd.sms {
     requires de.jensd.fx.glyphs.commons;
     requires de.jensd.fx.glyphs.fontawesome;
     requires com.jfoenix;
+    requires java.desktop;
 
 
     opens sspd.sms;
@@ -51,5 +52,16 @@ module sspd.sms {
     exports  sspd.sms.courseoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
 
+    opens sspd.sms.classoptions.controllers to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.classoptions.controllers to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml;
+
+    opens  sspd.sms.classoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
+    exports  sspd.sms.classoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base;
+
+    opens  sspd.sms.classoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base,org.hibernate.validator;
+    exports  sspd.sms.classoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,javafx.base,org.hibernate.validator;
+
+    opens  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
+    exports  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="374.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.TableviewController">
+   <children>
+      <TableView fx:id="Coursetb" prefHeight="374.0" prefWidth="575.0">
+        <columns>
+          <TableColumn fx:id="courseidCol" prefWidth="90.0" text="Course ID" />
+          <TableColumn fx:id="coursenameCol" minWidth="1.0" prefWidth="134.0" text="Course Name" />
+            <TableColumn fx:id="descriptionCol" minWidth="1.0" prefWidth="135.0" text="Description" />
+            <TableColumn fx:id="durationCol" minWidth="1.0" prefWidth="113.0" text="Duration" />
+            <TableColumn fx:id="feeCol" prefWidth="130.0" text="Fee" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,4 +1,4 @@
-package sspd.sms.courseoptions.db;
+package sspd.sms.classoptions.db;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
@@ -10,56 +10,53 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sspd.sms.DAO.Taskdao;
-import sspd.sms.courseoptions.model.Course;
+import sspd.sms.classoptions.model.Classes;
 
 import java.util.List;
 import java.util.Set;
 
 @Component
-public class Courseimpl implements Taskdao<Course> {
+public class Classimpls implements Taskdao<Classes> {
 
 
     private SessionFactory sessionFactory;
-
     private Validator validator;
 
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-
     }
     @Autowired
     public void setValidator(Validator validator) {
         this.validator = validator;
     }
 
-
-
-
     @Override
-    public List<Course> getAllTask() {
+    public List<Classes> getAllTask() {
 
-        Session session = sessionFactory.openSession() ;
+        Session session = sessionFactory.openSession();
         session.beginTransaction();
-        return session.createQuery("from Course c order by c.id desc ").list();
+        List<Classes> list = session.createQuery("from Classes").list();
+        session.getTransaction().commit();
+        session.close();
 
+
+        return list;
     }
 
     @Override
-    public void insertTask(Course task) {
+    public void insertTask(Classes task) {
 
-        Set<ConstraintViolation<Course>> violations = validator.validate(task);
+        Set<ConstraintViolation<Classes>> violations = validator.validate(task);
 
         String name = null;
 
         if (!violations.isEmpty()) {
             StringBuilder errorMessages = new StringBuilder();
-            for (ConstraintViolation<Course> violation : violations) {
+            for (ConstraintViolation<Classes> violation : violations) {
                 errorMessages.append(violation.getMessage()).append("\n");
                 name = String.valueOf(violation.getPropertyPath());
             }
-
-
 
         }
         else {
@@ -72,31 +69,35 @@ public class Courseimpl implements Taskdao<Course> {
 
 
         }
+
+
+
+
+
     }
 
     @Override
-    public void updateTask(Course task) {
+    public void updateTask(Classes task) {
 
-        Set<ConstraintViolation<Course>> violations = validator.validate(task);
+        Set<ConstraintViolation<Classes>> violations = validator.validate(task);
 
         String name = null;
 
         if (!violations.isEmpty()) {
             StringBuilder errorMessages = new StringBuilder();
-            for (ConstraintViolation<Course> violation : violations) {
+            for (ConstraintViolation<Classes> violation : violations) {
                 errorMessages.append(violation.getMessage()).append("\n");
                 name = String.valueOf(violation.getPropertyPath());
             }
 
-            showErrorDialog("Database Error","Data Update Error",errorMessages.toString()+"\n"+name);
+            showErrorDialog("Database Error", "Data Update Error", errorMessages.toString() + "\n" + name);
 
-        }
-        else {
+        } else {
 
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.merge(task);
-            showInformationDialog("Data Update Successful","Course","Course Data Update Successfully!!!");
+            showInformationDialog("Data Update Successful", "Course", "Course Data Update Successfully!!!");
             session.getTransaction().commit();
             session.close();
 
@@ -106,18 +107,33 @@ public class Courseimpl implements Taskdao<Course> {
     }
 
     @Override
-    public void deleteTask(Course task) {
+    public void deleteTask(Classes task) {
+        Set<ConstraintViolation<Classes>> violations = validator.validate(task);
 
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.remove(task);
+        String name = null;
 
-        session.getTransaction().commit();
-        session.close();
+        if (!violations.isEmpty()) {
+            StringBuilder errorMessages = new StringBuilder();
+            for (ConstraintViolation<Classes> violation : violations) {
+                errorMessages.append(violation.getMessage()).append("\n");
+                name = String.valueOf(violation.getPropertyPath());
+            }
+
+            showErrorDialog("Database Error", "Data Update Error", errorMessages.toString() + "\n" + name);
+
+        } else {
+
+            Session session = sessionFactory.openSession();
+            session.beginTransaction();
+            session.remove(task);
+            session.getTransaction().commit();
+            session.close();
+        }
 
     }
+
     @Override
-    public void bactchTask(List<Course> list) {
+    public void bactchTask(List<Classes> list) {
 
         Session session = sessionFactory.openSession();
 
@@ -125,7 +141,7 @@ public class Courseimpl implements Taskdao<Course> {
 
 
 
-        for(Course t :list){
+        for(Classes t :list){
 
             session.persist(t);
 
@@ -138,6 +154,7 @@ public class Courseimpl implements Taskdao<Course> {
         tx.commit();
 
         session.close();
+
 
     }
 

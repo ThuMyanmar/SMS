@@ -57,11 +57,22 @@ create table classes(
 	class_id int Auto_Increment PRIMARY KEY,
 	class_name VARCHAR (100) not null,
 	course_id int not null,
-	teacher_id int not null,
-	scedule VARCHAR(50),
+	scedule int not null,
 	limit_stu int ,
-	FOREIGN Key (course_id) REFERENCES course(course_id),
-	FOREIGN Key (teacher_id) REFERENCES teacher(teacher_id)
+	FOREIGN Key (course_id) REFERENCES course(course_id)
+
+
+);
+
+
+create table teacher_class(
+
+    teacher_classid int PRIMARY KEY Auto_Increment,
+    teacher_id int,
+    class_id int,
+    FOREIGN Key (teacher_id) REFERENCES teacher(teacher_id),
+    FOREIGN Key (class_id) REFERENCES classes(class_id)
+
 
 );
 

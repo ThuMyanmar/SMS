@@ -23,7 +23,7 @@ public class TestClass {
     Teacherdb tdb = new Teacherdb();
     TeacherSubjectdb tstb = new TeacherSubjectdb();
     Coursedb cdb = new Coursedb();
-    Classesdb cldb = new Classesdb();
+
     Certifiactetemplatesdb cte = new Certifiactetemplatesdb();
     Certificatedb cetb = new Certificatedb();
 
