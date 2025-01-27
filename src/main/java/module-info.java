@@ -8,6 +8,7 @@ module sspd.sms {
     requires spring.beans;
     requires jakarta.persistence;
     requires java.naming;
+    requires com.zaxxer.hikari;
     requires spring.tx;
     requires spring.orm;
     requires spring.core;

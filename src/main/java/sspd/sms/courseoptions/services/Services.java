@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import sspd.sms.config.AppConfig;
+import sspd.sms.config.SpringContextHelper;
 import sspd.sms.courseoptions.db.Courseimpl;
 import sspd.sms.courseoptions.model.Course;
 
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class Services {
 
-    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+    private ApplicationContext context = SpringContextHelper.getContext();
 
     private Courseimpl cdb = context.getBean(Courseimpl.class);
 

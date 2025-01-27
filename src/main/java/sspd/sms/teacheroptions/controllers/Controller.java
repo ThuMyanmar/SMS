@@ -26,6 +26,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import sspd.sms.Launch;
 import sspd.sms.config.AppConfig;
+import sspd.sms.config.SpringContextHelper;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.model.Teacher;
@@ -125,7 +126,7 @@ public class Controller implements Initializable {
     @FXML
     private Label totaltlb;
 
-    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+    private ApplicationContext context = SpringContextHelper.getContext();
 
 
     private Timpls tdb = context.getBean(Timpls.class);
