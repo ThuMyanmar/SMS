@@ -38,8 +38,9 @@ public class Services {
         return courseList;
     }
 
-    public void insertCourse(Course course) {
-        handleCourseChange(() -> cdb.insertTask(course), "Course Data Insert Successfully!!!");
+    public int insertCourse(Course course) {
+        return handleCourseChange(() -> cdb.insertTask(course), "Course Data Insert Successfully!!!");
+
     }
 
     public void updateCourse(Course course) {
@@ -54,13 +55,16 @@ public class Services {
         handleCourseChange(() -> cdb.bactchTask(list), "Courses Imported Successfully!!!");
     }
 
-    private void handleCourseChange(Runnable action, String successMessage) {
+    private int handleCourseChange(Runnable action, String successMessage) {
+        int result = 0;
         int oldSize = getAllCourses().size();
         action.run();
         int newSize = getAllCourses().size();
         if (oldSize != newSize) {
+            result = 1;
             showInformationDialog("Operation Successful", "Course", successMessage);
         }
+        return result;
     }
 
     private void showInformationDialog(String title, String header, String content) {

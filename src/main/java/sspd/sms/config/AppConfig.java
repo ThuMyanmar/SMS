@@ -106,6 +106,8 @@ public class AppConfig {
         return properties;
     }
 
+
+
     @Bean
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();

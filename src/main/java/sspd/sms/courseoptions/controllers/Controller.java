@@ -82,7 +82,7 @@ public class Controller implements Initializable {
 
 
         tableIni();
-        getLoadData();
+       getLoadData();
         activeEvent();
 
     }
@@ -103,11 +103,20 @@ public class Controller implements Initializable {
 
 
                     Course course = new Course(name, desc, duration, fee);
-                    services.insertCourse(course);
-                    getClear();
+                    int result = services.insertCourse(course);
+
+                    if (result == 1) {
+
+                        getClear();
 
 
-                    getLoadData();
+                        getLoadData();
+
+
+
+
+                    }
+
 
                 } catch (NumberFormatException e) {
 

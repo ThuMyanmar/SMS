@@ -58,6 +58,8 @@ public class Courseimpl implements Taskdao<Course> {
                 errorMessages.append(violation.getMessage()).append("\n");
                 name = String.valueOf(violation.getPropertyPath());
             }
+            showErrorDialog("Database Error","Data Insertion Error",errorMessages.toString()+"\n"+name);
+
 
 
 
