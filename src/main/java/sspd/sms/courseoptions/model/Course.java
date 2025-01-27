@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import sspd.sms.teacheroptions.model.Teacher;
 import sspd.sms.teacheroptions.model.TeacherSubject;
 

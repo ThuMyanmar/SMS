@@ -1,6 +1,5 @@
 package sspd.sms.config;
 
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.SessionFactory;
@@ -19,14 +18,8 @@ import java.util.Properties;
         @ComponentScan(basePackages = "sspd.sms.teacheroptions.db"),
         @ComponentScan(basePackages = "sspd.sms.courseoptions.db"),
         @ComponentScan(basePackages = "sspd.sms.classoptions.db")
-
 })
-
-
 public class AppConfig {
-
-
-
 
     @Bean
     public LocalValidatorFactoryBean validator() {
@@ -37,9 +30,6 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
-
-
-
         HikariConfig hikariConfig = new HikariConfig();
 
         // Database connection settings
@@ -58,22 +48,6 @@ public class AppConfig {
         return new HikariDataSource(hikariConfig);
     }
 
-
-//    @Bean
-//    public LocalSessionFactoryBean sessionFactory() {
-//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-//        sessionFactory.setDataSource(dataSource());
-//       // sessionFactory.setPackagesToScan("sspd.sms.teacheroptions");
-//
-//        sessionFactory.setPackagesToScan(
-//                "sspd.sms.teacheroptions",
-//                "sspd.sms.courseoptions"
-//        );
-//
-//        sessionFactory.setConfigLocation(new org.springframework.core.io.ClassPathResource("hibernate.cfg.xml"));
-//        return sessionFactory;
-
-
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -86,6 +60,7 @@ public class AppConfig {
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
+
     private Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
@@ -103,10 +78,9 @@ public class AppConfig {
         properties.put("hibernate.order_updates", "true");
 
 
+
         return properties;
     }
-
-
 
     @Bean
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {

@@ -20,19 +20,18 @@ public class Classes {
     private String class_name;
 
 
-    @NotBlank
+
     @OneToOne
     @JoinColumn(name = "course_course_id")
     private Course course;
 
-    @Size(min = 1, max = 60)
+
     @Column(name="scedule")
     private int scedule;
 
-    @Size(min = 1, max = 20)
+
     @Column(name="limit_stu")
     private int limit_stu;
-
     public Classes(int class_id, String class_name, Course course, int scedule, int limit_stu) {
         this.class_id = class_id;
         this.class_name = class_name;

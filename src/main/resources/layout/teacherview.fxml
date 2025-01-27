@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="1062.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.teacheroptions.controllers.Controller">
    <children>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1054.0">
+      <MenuBar layoutX="12.0" layoutY="4.0" prefHeight="25.0" prefWidth="1042.0">
         <menus>
           <Menu mnemonicParsing="false" text="File options">
             <items>

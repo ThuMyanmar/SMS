@@ -7,13 +7,14 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.config.AppConfig;
+import sspd.sms.config.SpringContextHelper;
 
 import java.util.List;
 
 public class ClassesService {
 
-    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-    Classimpls classimpls = (Classimpls) context.getBean(Classimpls.class);
+    private  ApplicationContext context = SpringContextHelper.getContext();
+    Classimpls classimpls =  context.getBean(Classimpls.class);
 
 
     public List<Classes> getAllClasses() {

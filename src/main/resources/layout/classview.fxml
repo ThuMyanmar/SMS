@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="547.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.classoptions.controllers.Controller">
+<AnchorPane fx:id="mainPane" prefHeight="547.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.classoptions.controllers.Controller">
    <children>
       <TableView fx:id="classtable" layoutX="7.0" layoutY="32.0" prefHeight="486.0" prefWidth="601.0">
          <columns>

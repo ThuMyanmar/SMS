@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="551.0" prefWidth="1107.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Controller">
+<AnchorPane prefHeight="551.0" prefWidth="1089.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Controller">
    <children>
       <TableView fx:id="coursetable" layoutX="14.0" layoutY="41.0" prefHeight="467.0" prefWidth="736.0">
         <columns>
@@ -71,7 +71,7 @@
             <FontAwesomeIconView glyphName="EDIT" size="24" />
          </graphic>
       </Button>
-      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="1107.0">
+      <MenuBar layoutX="11.0" layoutY="6.0" prefHeight="25.0" prefWidth="1059.0">
         <menus>
           <Menu mnemonicParsing="false" text="File Options">
             <items>

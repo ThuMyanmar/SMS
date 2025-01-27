@@ -5,8 +5,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import org.hibernate.validator.internal.engine.messageinterpolation.InterpolationTerm;
 import sspd.sms.courseoptions.model.Course;
+import sspd.sms.courseoptions.model.CourseDTO;
 import sspd.sms.courseoptions.services.Services;
 
 import java.net.URL;
@@ -16,7 +18,7 @@ import java.util.ResourceBundle;
 public class TableviewController implements Initializable {
 
     @FXML
-    private TableView Coursetb;
+    private TableView coursetable;
 
     @FXML
     private TableColumn<Course, Integer> courseidCol;
@@ -38,15 +40,39 @@ public class TableviewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
+
+
+
         Coursetbini();
         getLoadData();
+
+
+        coursetable.setOnMouseClicked(event -> {
+
+
+            if(event.getClickCount() == 2) {
+
+
+                Stage stage = (Stage) coursetable.getScene().getWindow();
+
+               Course course = (Course) coursetable.getSelectionModel().getSelectedItem();
+               CourseDTO dto = CourseDTO.getInstance();
+               dto.setCourse(course);
+
+
+
+            }
+
+
+        });
 
     }
 
     public void getLoadData(){
 
         List<Course> clist = services.getAllCourses();
-        Coursetb.getItems().setAll(clist);
+        coursetable.getItems().setAll(clist);
 
     }
 
