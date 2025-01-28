@@ -10,6 +10,8 @@ import sspd.sms.classoptions.model.Classview;
 import sspd.sms.config.AppConfig;
 import sspd.sms.config.SpringContextHelper;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,10 +65,6 @@ public class ClassesService {
 
     public void SaveClass(Classes classes) {
 
-
-        if(getStatus(classes.getClass_id())==0) {
-
-
             int oldSize = classimpls.getAllTask().size();
             classimpls.insertTask(classes);
             int newSize = classimpls.getAllTask().size();
@@ -83,20 +81,15 @@ public class ClassesService {
             }
 
         }
-        else {
 
-            showErrorDialog("Data Insert not Successful","Close Class","Your class is ful!!!");
+    public static String calculateEndDate(int days) {
+        LocalDate startDate = LocalDate.now();
+        LocalDate endDate = startDate.plusDays(days-1);
 
-
-        }
-
-
-
-
-
-
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return endDate.format(formatter);
     }
+
 
     public int getStatus(int class_id) {
         return classes.stream()
@@ -120,9 +113,21 @@ public class ClassesService {
 
     public void classUpdate(Classes classes) {
 
+        classes.setClass_id(getClassIdd(classes.getClass_name()));
+
         classimpls.updateTask(classes);
 
 
+    }
+
+
+
+
+    public int getClassIdd(String classname){
+      return   classes.stream()
+                .filter(classes1 -> classes1.getClass_name().equals(classname))
+                .map(Classes::getClass_id)
+                .findFirst().orElse(-1);
     }
 
     public void ClassDelete(Classes classes) {

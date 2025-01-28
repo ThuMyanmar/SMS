@@ -259,25 +259,32 @@ public class Controller implements Initializable {
         classtable.setOnMouseClicked(event1 -> {
 
 
-            Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+            if(event1.getClickCount()==2){
 
-            nametxt.setText(classview.getClass_name());
-            coursetxt.setText(classview.getCourse_name());
-            limitstudenttxt.setText(String.valueOf(classview.getLimit_stu()));
-            seduletxt.setText(String.valueOf(classview.getScedule()));
+                Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+
+                nametxt.setText(classview.getClass_name());
+                coursetxt.setText(classview.getCourse_name());
+                limitstudenttxt.setText(String.valueOf(classview.getLimit_stu()));
+                seduletxt.setText(String.valueOf(classview.getScedule()));
 
 
-            if(classview.getStatus().equals("Open")){
+                if(classview.getStatus().equals("Open")){
 
-                opencheckbox.setSelected(true);
-                notopencheckbox.setSelected(false);
+                    opencheckbox.setSelected(true);
+                    notopencheckbox.setSelected(false);
 
+
+                }
+                else{
+                    notopencheckbox.setSelected(true);
+                    opencheckbox.setSelected(false);
+                }
 
             }
-            else{
-                notopencheckbox.setSelected(true);
-                opencheckbox.setSelected(false);
-            }
+
+
+
 
 
 
