@@ -55,10 +55,12 @@ create table teacher_subjects(
 create table classes(
 
 	class_id int Auto_Increment PRIMARY KEY,
+    date Date not null default current_date,
 	class_name VARCHAR (100) not null,
 	course_id int not null,
 	scedule int not null,
 	limit_stu int ,
+    status tinyint,
 	FOREIGN Key (course_id) REFERENCES course(course_id)
 
 

@@ -1,5 +1,7 @@
 package sspd.sms.classoptions.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,13 +13,16 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sspd.sms.classoptions.model.Classes;
+import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
 import sspd.sms.courseoptions.model.CourseDTO;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Controller implements Initializable {
 
@@ -28,19 +33,19 @@ public class Controller implements Initializable {
 
 
     @FXML
-    private TableColumn<Classes, Integer> courseCol;
+    private TableColumn<Classview, String> courseCol;
 
     @FXML
     private TextField coursetxt;
 
     @FXML
-    private TableColumn<Classes, Integer> limitstudentCol;
+    private TableColumn<Classview, Integer> limitstudentCol;
 
     @FXML
     private TextField limitstudenttxt;
 
     @FXML
-    private TableColumn<Classes, String> nameCol;
+    private TableColumn<Classview, String> nameCol;
 
     @FXML
     private TextField nametxt;
@@ -49,7 +54,14 @@ public class Controller implements Initializable {
     private Button savebtn;
 
     @FXML
-    private TableColumn<Classes, Integer> sceduleCol;
+    private TableColumn<Classview, Integer> sceduleCol;
+
+    @FXML
+    private TableColumn<Classview, Date> dateCol;
+
+
+    @FXML
+    private TableColumn<Classview, String> statusCol;
 
     @FXML
     private TextField seduletxt;
@@ -65,6 +77,19 @@ public class Controller implements Initializable {
     private AnchorPane mainPane;
 
 
+    @FXML
+    private Label countlb;
+
+    @FXML
+    private CheckBox notopencheckbox;
+
+    @FXML
+    private CheckBox opencheckbox;
+    @FXML
+    private TableColumn<Classview, Integer> totalTeacher;
+
+
+
     ClassesService classesService = new ClassesService();
 
     @Override
@@ -78,6 +103,8 @@ public class Controller implements Initializable {
     }
 
     private void actionEvent() {
+
+        AtomicInteger status = new AtomicInteger();
 
         mainPane.setOnKeyPressed(event1 -> {
 
@@ -121,6 +148,31 @@ public class Controller implements Initializable {
 
         });
 
+        notopencheckbox.setOnAction(event -> {
+
+
+           if(notopencheckbox.isSelected()) {
+
+
+               opencheckbox.setSelected(false);
+
+           }
+
+        });
+
+        opencheckbox.setOnAction(event -> {
+
+            status.set(1);
+
+
+            if(opencheckbox.isSelected()) {
+
+                notopencheckbox.setSelected(false);
+
+            }
+
+        });
+
         savebtn.setOnAction(event -> {
 
 
@@ -131,16 +183,15 @@ public class Controller implements Initializable {
 
                CourseDTO couserDTO = CourseDTO.getInstance();
 
-                   System.out.println(couserDTO.getCourse().getCourse_id());
+               String name =  nametxt.getText();
+               int sedu = Integer.parseInt(seduletxt.getText());
+               int  limitstu = Integer.parseInt(limitstudenttxt.getText());
 
+               Classes classes =new Classes(name, Date.valueOf(LocalDate.now()),couserDTO.getCourse(),sedu,limitstu,status.get());
 
-//               String name =  nametxt.getText();
-//               int sedu = Integer.parseInt(seduletxt.getText());
-//               int  limitstu = Integer.parseInt(limitstudenttxt.getText());
-//
-//               Classes classes =new Classes(name,couserDTO.getCourse(),sedu,limitstu);
-//
-//               classesService.SaveClass(classes);
+               classesService.SaveClass(classes);
+
+               getLoadData();
 
                } catch (NumberFormatException e) {
                    e.printStackTrace();
@@ -152,9 +203,6 @@ public class Controller implements Initializable {
                    alert.showAndWait();
                }
 
-
-
-
            }else {
 
                Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -164,31 +212,30 @@ public class Controller implements Initializable {
                alert.showAndWait();
            }
 
-
-
-
-
-
         });
-
-
-
 
     }
 
     private void getLoadData() {
 
-       List<Classes> clist =  classesService.getAllClasses();
-        classtable.getItems().setAll(clist);
+
+        ObservableList<Classview> list = FXCollections.observableArrayList(classesService.getAllClasses());
+
+        countlb.setText(String.valueOf(classesService.countClasses()));
+
+        classtable.setItems(list);
 
     }
 
     private void classtableini() {
 
         nameCol.setCellValueFactory(new PropertyValueFactory<>("class_name"));
-        courseCol.setCellValueFactory(new PropertyValueFactory<>("course"));
+        courseCol.setCellValueFactory(new PropertyValueFactory<>("course_name"));
         sceduleCol.setCellValueFactory(new PropertyValueFactory<>("scedule"));
         limitstudentCol.setCellValueFactory(new PropertyValueFactory<>("limit_stu"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        totalTeacher.setCellValueFactory(new PropertyValueFactory<>("totalteacher"));
 
 
 
