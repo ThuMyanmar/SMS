@@ -214,6 +214,81 @@ public class Controller implements Initializable {
 
         });
 
+        updatebtn.setOnAction(event -> {
+
+
+            if(!seduletxt.getText().isEmpty() && !limitstudenttxt.getText().isEmpty()){
+
+                try {
+
+                    CourseDTO couserDTO = CourseDTO.getInstance();
+
+                    String name =  nametxt.getText();
+                    int sedu = Integer.parseInt(seduletxt.getText());
+                    int  limitstu = Integer.parseInt(limitstudenttxt.getText());
+
+                    Classes classes =new Classes(name, Date.valueOf(LocalDate.now()),couserDTO.getCourse(),sedu,limitstu,status.get());
+
+                    classesService.classUpdate(classes);
+
+                    getLoadData();
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Invalid Input");
+                    alert.setHeaderText("Please enter valid numeric values.");
+                    alert.setContentText("Sedule and Limitstu must be numbers.");
+                    alert.showAndWait();
+                }
+
+            }else {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Empty Fields");
+                alert.setHeaderText("All fields are required.");
+                alert.setContentText("Please fill out both the Duration and Fee fields.");
+                alert.showAndWait();
+            }
+
+
+
+        });
+
+        classtable.setOnMouseClicked(event1 -> {
+
+
+            Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+
+            nametxt.setText(classview.getClass_name());
+            coursetxt.setText(classview.getCourse_name());
+            limitstudenttxt.setText(String.valueOf(classview.getLimit_stu()));
+            seduletxt.setText(String.valueOf(classview.getScedule()));
+
+
+            if(classview.getStatus().equals("Open")){
+
+                opencheckbox.setSelected(true);
+                notopencheckbox.setSelected(false);
+
+
+            }
+            else{
+                notopencheckbox.setSelected(true);
+                opencheckbox.setSelected(false);
+            }
+
+
+
+        });
+
+
+
+
+
+
+
     }
 
     private void getLoadData() {

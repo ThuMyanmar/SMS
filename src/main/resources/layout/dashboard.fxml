@@ -36,7 +36,7 @@
             <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill: white;" size="20" />
          </graphic>
       </JFXButton>
-      <AnchorPane fx:id="setPand" layoutX="227.0" layoutY="61.0" prefHeight="632.0" prefWidth="1073.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
+      <AnchorPane fx:id="setPand" layoutX="215.0" layoutY="62.0" prefHeight="632.0" prefWidth="1073.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
       <JFXButton fx:id="teacherbn" layoutX="16.0" layoutY="174.0" prefHeight="41.0" prefWidth="172.0" text="   Teacher Options" textFill="WHITE">
          <font>
             <Font name="CG Times Bold" size="15.0" />
@@ -61,7 +61,7 @@
             <FontAwesomeIconView glyphName="LIST" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
          </graphic>
       </JFXButton>
-      <Polygon fx:id="teacherNotic" layoutX="210.0" layoutY="272.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+      <Polygon fx:id="teacherNotic" layoutX="198.0" layoutY="273.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -79,8 +79,8 @@
             </LinearGradient>
          </fill>
       </Polygon>
-      <Polygon fx:id="stuNotic" layoutX="210.0" layoutY="210.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;" />
-      <Polygon fx:id="courseNotic" layoutX="210.0" layoutY="335.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+      <Polygon fx:id="stuNotic" layoutX="198.0" layoutY="211.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;" />
+      <Polygon fx:id="courseNotic" layoutX="198.0" layoutY="336.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>
@@ -98,7 +98,7 @@
             </LinearGradient>
          </fill>
       </Polygon>
-      <Polygon fx:id="classNotic" layoutX="210.0" layoutY="399.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
+      <Polygon fx:id="classNotic" layoutX="198.0" layoutY="400.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">
          <fill>
             <LinearGradient endX="1.0" endY="1.0">
                <stops>

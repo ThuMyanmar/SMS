@@ -118,7 +118,7 @@ public class ClassesService {
     }
 
 
-    public void ClassUpdate(Classes classes) {
+    public void classUpdate(Classes classes) {
 
         classimpls.updateTask(classes);
 
