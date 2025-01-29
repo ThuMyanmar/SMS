@@ -21,44 +21,45 @@
                   <Image url="@../images/logwhite.png" />
                </image>
             </ImageView>
-            <Label layoutX="60.0" layoutY="41.0" prefHeight="21.0" prefWidth="166.0" text="IT Services &amp; Training" textFill="WHITE">
+            <Label layoutX="60.0" layoutY="41.0" prefHeight="21.0" prefWidth="99.0" text="IT Services &amp; Training" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
+            <AnchorPane layoutX="211.0" layoutY="10.0" prefHeight="48.0" prefWidth="1086.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="stubtn" layoutX="16.0" layoutY="114.0" prefHeight="41.0" prefWidth="172.0" text="Student Dashboard" textFill="WHITE">
+      <JFXButton fx:id="stubtn" layoutX="16.0" layoutY="114.0" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #FFEE58; -fx-background-radius: 5; -fx-border-radius: 5;" text="သင်တန်းသားများ">
          <font>
-            <Font name="CG Times Bold" size="15.0" />
+            <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill: white;" size="20" />
+            <FontAwesomeIconView glyphName="USERS" glyphStyle="-fx-fill: black;" size="20" />
          </graphic>
       </JFXButton>
-      <AnchorPane fx:id="setPand" layoutX="215.0" layoutY="62.0" prefHeight="632.0" prefWidth="1073.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
-      <JFXButton fx:id="teacherbn" layoutX="16.0" layoutY="174.0" prefHeight="41.0" prefWidth="172.0" text="   Teacher Options" textFill="WHITE">
+      <AnchorPane fx:id="setPand" layoutX="215.0" layoutY="62.0" prefHeight="629.0" prefWidth="1086.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 10;" />
+      <JFXButton fx:id="teacherbn" layoutX="16.0" layoutY="174.0" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #FFEE58;" text="   ဆရာ ၊ ဆရာမများ" textFill="#070606">
          <font>
-            <Font name="CG Times Bold" size="15.0" />
+            <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="GRADUATION_CAP" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+            <FontAwesomeIconView glyphName="GRADUATION_CAP" glyphStyle="-fx-fill: black;" selectionEnd="20" size="20" />
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="coursebtn" layoutX="16.0" layoutY="239.0" prefHeight="41.0" prefWidth="172.0" text="   Course Options" textFill="WHITE">
+      <JFXButton fx:id="coursebtn" layoutX="16.0" layoutY="239.0" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #FFEE58;" text=" ဘာသာရပ်များ">
          <font>
-            <Font name="CG Times Bold" size="15.0" />
+            <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="BOOK" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+            <FontAwesomeIconView glyphName="BOOK" glyphStyle="-fx-fill: black;" selectionEnd="20" size="20" text="" />
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="classbtn" layoutX="18.0" layoutY="304.0" prefHeight="41.0" prefWidth="172.0" text="   Classes Options" textFill="WHITE">
+      <JFXButton fx:id="classbtn" layoutX="18.0" layoutY="304.0" prefHeight="41.0" prefWidth="172.0" style="-fx-background-color: #FFEE58;" text="   သင်တန်းများ">
          <font>
-            <Font name="CG Times Bold" size="15.0" />
+            <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="LIST" glyphStyle="-fx-fill: white;" selectionEnd="20" size="20" />
+            <FontAwesomeIconView glyphName="LIST" glyphStyle="-fx-fill: black;" selectionEnd="20" size="20" />
          </graphic>
       </JFXButton>
       <Polygon fx:id="teacherNotic" layoutX="198.0" layoutY="273.0" points="2.0, -74.0, 17.0, -61.0, 17.0, -84.0" stroke="WHITESMOKE" strokeType="INSIDE" style="-fx-fill: #1E88E5; -fx-stroke: #1E88E5;">

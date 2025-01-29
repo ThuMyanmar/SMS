@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="551.0" prefWidth="969.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.teacheroptions.controllers.TeacherSubjectController">
+   <children>
+      <Pane prefHeight="49.0" prefWidth="967.0" style="-fx-background-color: #29B6F6;">
+         <children>
+            <Label layoutX="-4.0" layoutY="-1.0" prefHeight="49.0" prefWidth="969.0" style="-fx-alignment: center;" text="Class has Teacher" textFill="WHITE">
+               <font>
+                  <Font name="CG Times Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label fx:id="teachernamelb" layoutX="7.0" layoutY="54.0" prefHeight="50.0" prefWidth="542.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" text="Label" textFill="#d9ff00">
+         <graphic>
+            <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: Green;" pickOnBounds="true" size="40" stroke="WHITE" />
+         </graphic>
+         <font>
+            <Font name="Pyidaungsu Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="teachertable" layoutX="6.0" layoutY="108.0" prefHeight="429.0" prefWidth="542.0">
+         <columns>
+            <TableColumn fx:id="nameCol" prefWidth="178.0" text="Teacher Name" />
+            <TableColumn fx:id="DesCol" prefWidth="339.0" text="Qualication" />
+         </columns>
+      </TableView>
+      <TableView fx:id="setteachertable" layoutX="681.0" layoutY="109.0" prefHeight="429.0" prefWidth="272.0">
+         <columns>
+            <TableColumn fx:id="subCol" prefWidth="251.0" text="Teacher Name" />
+         </columns>
+      </TableView>
+      <Button fx:id="addbtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="247.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Add">
+         <graphic>
+            <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: Green;" size="18" strokeType="OUTSIDE" />
+         </graphic>
+      </Button>
+      <Label fx:id="teachersublb" layoutX="681.0" layoutY="54.0" prefHeight="50.0" prefWidth="272.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" text="Label" textFill="#d9ff00">
+         <font>
+            <Font name="Pyidaungsu Bold" size="15.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIconView glyphName="DATABASE" glyphStyle="-fx-fill: Green;" pickOnBounds="true" size="40" stroke="WHITE" />
+         </graphic>
+      </Label>
+      <Button fx:id="removebtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Remove">
+         <graphic>
+            <FontAwesomeIconView glyphName="REMOVE" glyphStyle="-fx-fill: Green;" size="18" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
