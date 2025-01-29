@@ -1,0 +1,56 @@
+.root {
+    -primary-color: #4CAF50;
+    -danger-color: #f44336;
+    -text-color: #333333;
+}
+
+/* Main Container */
+#root {
+    -fx-background-color: #ffffff;
+    -fx-border-color: -primary-color;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+/* Buttons */
+.button {
+    -fx-font-family: "Pyidaungsu";
+    -fx-font-size: 14px;
+    -fx-padding: 8px 25px;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s;
+}
+
+.success-btn {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+}
+
+.success-btn:hover {
+    -fx-background-color: #45a049;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.danger-btn {
+    -fx-background-color: -danger-color;
+    -fx-text-fill: white;
+}
+
+.danger-btn:hover {
+    -fx-background-color: #d32f2f;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Label */
+#messageLabel {
+    -fx-text-fill: -text-color;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+}
