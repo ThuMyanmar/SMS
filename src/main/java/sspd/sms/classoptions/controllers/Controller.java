@@ -15,7 +15,9 @@ import javafx.stage.Stage;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
+import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.model.CourseDTO;
+import sspd.sms.courseoptions.services.Services;
 
 import java.io.IOException;
 import java.net.URL;
@@ -153,6 +155,8 @@ public class Controller implements Initializable {
 
            if(notopencheckbox.isSelected()) {
 
+               status.set(0);
+
 
                opencheckbox.setSelected(false);
 
@@ -221,6 +225,8 @@ public class Controller implements Initializable {
 
                 try {
 
+
+
                     CourseDTO couserDTO = CourseDTO.getInstance();
 
                     String name =  nametxt.getText();
@@ -232,6 +238,10 @@ public class Controller implements Initializable {
                     classesService.classUpdate(classes);
 
                     getLoadData();
+                    getClear();
+
+
+
 
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
@@ -268,6 +278,17 @@ public class Controller implements Initializable {
                 limitstudenttxt.setText(String.valueOf(classview.getLimit_stu()));
                 seduletxt.setText(String.valueOf(classview.getScedule()));
 
+                Services cservice = new Services();
+
+
+
+                Course course  = cservice.getCourseByName(coursetxt.getText());
+
+
+
+                CourseDTO courseDTO = CourseDTO.getInstance();
+                courseDTO.setCourse(course);
+
 
                 if(classview.getStatus().equals("Open")){
 
@@ -294,6 +315,22 @@ public class Controller implements Initializable {
 
 
 
+
+
+    }
+
+
+    private void getClear(){
+
+        nametxt.setText("");
+        limitstudenttxt.setText("");
+        coursetxt.setText("");
+        seduletxt.setText("");
+        opencheckbox.setSelected(false);
+        notopencheckbox.setSelected(false);
+
+        CourseDTO c = CourseDTO.getInstance();
+        c.setCourse(null);
 
 
     }

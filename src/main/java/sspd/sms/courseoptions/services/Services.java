@@ -38,6 +38,21 @@ public class Services {
         return courseList;
     }
 
+    public Course getCourseByName(String courseName) {
+
+        if (courseName == null) {
+            return null;
+        }
+
+        return getAllCourses().stream()
+                .filter(course -> courseName.equalsIgnoreCase(course.getCourse_name())) // Case-insensitive match
+                .findFirst()
+                .orElse(null);
+    }
+
+
+
+
     public int insertCourse(Course course) {
         return handleCourseChange(() -> cdb.insertTask(course), "Course Data Insert Successfully!!!");
 
