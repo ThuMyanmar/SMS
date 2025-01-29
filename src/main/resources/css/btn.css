@@ -1,96 +1,58 @@
-/* General Button Style */
+/* Compact Button Styles */
 .button {
-    -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-font-size: 14px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #ffffff;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 12px;
     -fx-background-radius: 8px;
     -fx-border-radius: 8px;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0, 0, 2);
-    -fx-padding: 10px 20px;
-    -fx-transition: all 0.3s ease;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0.1, 0, 1);
+    -fx-border-width: 1.5px;
 }
 
-/* Primary Button */
+/* Small Primary Button */
 .primary-button {
-    -fx-background-color: linear-gradient(to bottom, #007ACC, #005B9F);
-    -fx-border-color: #005B9F;
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom right, #7F00FF, #E100FF);
+    -fx-padding: 6px 12px;
+    -fx-font-size: 13px;
+    -fx-effect: dropshadow(gaussian, rgba(127,0,255,0.3), 8, 0.2, 0, 1);
 }
 
-.primary-button:hover {
-    -fx-background-color: linear-gradient(to bottom, #0095FF, #007ACC);
-    -fx-effect: dropshadow(gaussian, rgba(0,149,255,0.3), 8, 0, 0, 3);
-}
-
-.primary-button:pressed {
-    -fx-background-color: #004A7F;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 0, 1);
-}
-
-/* Secondary Button */
+/* Mini Secondary Button */
 .secondary-button {
-    -fx-background-color: #f0f0f0;
-    -fx-border-color: #cccccc;
-    -fx-text-fill: #4a4a4a;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 1);
+    -fx-padding: 5px 10px;
+    -fx-font-size: 12px;
+    -fx-background-color: linear-gradient(to bottom right, #00F2FE, #4FACFE);
 }
 
-.secondary-button:hover {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #007ACC;
-    -fx-text-fill: #007ACC;
-}
-
-.secondary-button:pressed {
-    -fx-background-color: #e0e0e0;
-}
-
-/* Success Button */
-.success-button {
-    -fx-background-color: linear-gradient(to bottom, #28a745, #218838);
-    -fx-border-color: #218838;
-}
-
-.success-button:hover {
-    -fx-background-color: linear-gradient(to bottom, #34d058, #28a745);
-}
-
-.success-button:pressed {
-    -fx-background-color: #1e7e34;
-}
-
-/* Disabled State */
-.button:disabled {
-    -fx-opacity: 0.7;
-    -fx-background-color: #cccccc;
-    -fx-text-fill: #666666;
-    -fx-effect: none;
-    -fx-cursor: default;
-}
-
-/* Icon Button */
+/* Compact Icon Button */
 .icon-button {
-    -fx-padding: 8px 12px;
-    -fx-background-radius: 50%;
-    -fx-min-width: 40px;
-    -fx-min-height: 40px;
-    -fx-max-width: 40px;
-    -fx-max-height: 40px;
+    -fx-padding: 4px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-max-width: 32px;
+    -fx-max-height: 32px;
+    -fx-font-size: 14px;
 }
 
-/* Floating Action Button */
+/* Small FAB Button */
 .fab-button {
-    -fx-background-color: #007ACC;
-    -fx-background-radius: 50%;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);
-    -fx-min-width: 56px;
-    -fx-min-height: 56px;
-    -fx-font-size: 24px;
+    -fx-min-width: 48px;
+    -fx-min-height: 48px;
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(255,65,129,0.4), 8, 0.3, 0, 2);
 }
 
-.fab-button:hover {
-    -fx-background-color: #005B9F;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0, 0, 4);
+/* Tiny Success Button */
+.success-button {
+    -fx-padding: 4px 8px;
+    -fx-font-size: 11px;
+    -fx-background-color: linear-gradient(to bottom right, #00FF87, #60EFFF);
+}
+
+/* Hover Effects Adjustment */
+.button:hover {
+    -fx-translate-y: -0.5px;
+}
+
+.button:pressed {
+    -fx-translate-y: 0;
 }

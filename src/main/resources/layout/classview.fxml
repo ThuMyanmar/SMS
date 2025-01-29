@@ -38,17 +38,20 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="savebtn" layoutX="457.0" layoutY="530.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" stylesheets="@../css/btn.css" text="Save">
+      <Button fx:id="savebtn" layoutX="457.0" layoutY="530.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="169.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" size="24" />
          </graphic>
+         <font>
+            <Font name="Pyidaungsu" size="18.0" />
+         </font>
       </Button>
-      <Button fx:id="updatebtn" layoutX="580.0" layoutY="530.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Update">
+      <Button fx:id="updatebtn" layoutX="848.0" layoutY="525.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Update">
          <graphic>
             <FontAwesomeIconView glyphName="EDIT" size="24" />
          </graphic>
       </Button>
-      <Button fx:id="teacherbtn" layoutX="707.0" layoutY="530.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Teacher">
+      <Button fx:id="teacherbtn" layoutX="860.0" layoutY="578.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" text="Teacher">
          <graphic>
             <FontAwesomeIconView glyphName="USERS" size="24" />
          </graphic>
