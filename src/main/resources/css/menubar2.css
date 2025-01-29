@@ -1,0 +1,126 @@
+/* menubar.css */
+
+/* ========== Color Variables ========== */
+.root {
+    -menu-bg: #4CAF50;          /* Primary Green */
+    -menu-hover: #45a049;       /* Darker Green */
+    -menu-active: #388E3C;      /* Active State Green */
+    -menu-text: white;
+    -dropdown-bg: #ffffff;      /* Dropdown Background */
+    -dropdown-hover: #e3f2fd;   /* Light Blue Hover */
+    -dropdown-text: #333333;
+    -dropdown-border: #e0e0e0;
+}
+
+/* ========== Base MenuBar Styles ========== */
+.menu-bar {
+    -fx-background-color: -menu-bg;
+    -fx-padding: 6px 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 3);
+    -fx-font-family: "Pyidaungsu";
+    -fx-spacing: 10px;          /* Space between menus */
+}
+
+/* ========== Menu Buttons ========== */
+.menu-bar > .menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: -menu-text;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 20px;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease; /* Smooth transitions */
+}
+
+.menu-bar > .menu-button:hover {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-radius: 6px;
+    -fx-translate-y: -1px;      /* Slight lift effect */
+}
+
+.menu-bar > .menu-button:showing {
+    -fx-background-color: -menu-hover;
+    -fx-background-radius: 6px 6px 0 0;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+/* ========== Dropdown Menu ========== */
+.context-menu {
+    -fx-background-color: -dropdown-bg;
+    -fx-border-color: -dropdown-border;
+    -fx-border-width: 1.2px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 8, 0, 2, 4);
+    -fx-padding: 6px 0;
+}
+
+/* ========== Menu Items ========== */
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-padding: 8px 30px;
+    -fx-font-size: 13px;
+    -fx-min-width: 180px;       /* Minimum width for items */
+}
+
+.menu-item .label {
+    -fx-text-fill: -dropdown-text;
+    -fx-padding: 0 8px;
+}
+
+.menu-item:hover {
+    -fx-background-color: -dropdown-hover !important;
+    -fx-background-radius: 4px;
+    -fx-translate-x: 3px;       /* Slide right effect */
+}
+
+.menu-item:focused {
+    -fx-background-color: -menu-active !important;
+    -fx-background-radius: 4px;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* ========== Advanced Effects ========== */
+/* Animated Checkmark for CheckMenuItems */
+.menu-item:checked .left-container {
+    -fx-padding: 0 8px 0 0;
+}
+
+.menu-item:checked .left-container .check {
+    -fx-background-color: -menu-active;
+    -fx-shape: "M 0 4 L 4 8 L 12 0 L 4 0 L 0 4";
+    -fx-scale-shape: false;
+}
+
+/* Ripple Effect (Requires JavaFX 17+) */
+.menu-button .rippler {
+    -fx-rippler-color: rgba(255,255,255,0.3);
+}
+
+/* ========== Special Elements ========== */
+/* Separator */
+.separator-menu-item .line {
+    -fx-border-color: -dropdown-border;
+    -fx-border-width: 0.8px;
+    -fx-padding: 3px 0;
+}
+
+/* Accelerator Text */
+.accelerator-text {
+    -fx-text-fill: #757575;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 0 20px;
+}
+
+/* Disabled Items */
+.menu-item:disabled {
+    -fx-opacity: 0.7;
+}
+
+.menu-item:disabled .label {
+    -fx-text-fill: #9e9e9e;
+    -fx-font-style: italic;
+}

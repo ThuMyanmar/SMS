@@ -28,18 +28,18 @@
             <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="coursetable" layoutX="6.0" layoutY="108.0" prefHeight="429.0" prefWidth="542.0">
+      <TableView fx:id="coursetable" layoutX="6.0" layoutY="108.0" prefHeight="429.0" prefWidth="542.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="nameCol" prefWidth="178.0" text="Course Name" />
-            <TableColumn fx:id="DesCol" prefWidth="339.0" text="Description" />
+            <TableColumn fx:id="nameCol" prefWidth="178.0" text="သင်ခန်းစာ အမည်" />
+            <TableColumn fx:id="DesCol" prefWidth="363.0" text="အချက်အလက်" />
          </columns>
       </TableView>
-      <TableView fx:id="subjecttable" layoutX="681.0" layoutY="109.0" prefHeight="429.0" prefWidth="272.0">
+      <TableView fx:id="subjecttable" layoutX="681.0" layoutY="109.0" prefHeight="429.0" prefWidth="272.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="subCol" prefWidth="251.0" text="Course Name" />
+            <TableColumn fx:id="subCol" prefWidth="270.0" text="သင်ခန်းစာ အမည်" />
          </columns>
       </TableView>
-      <Button fx:id="addbtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="247.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Add">
+      <Button fx:id="addbtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="247.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" styleClass="secondary-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: Green;" size="18" strokeType="OUTSIDE" />
          </graphic>
@@ -52,7 +52,7 @@
             <FontAwesomeIconView glyphName="DATABASE" glyphStyle="-fx-fill: Green;" pickOnBounds="true" size="40" stroke="WHITE" />
          </graphic>
       </Label>
-      <Button fx:id="removebtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Remove">
+      <Button fx:id="removebtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="109.0" styleClass="secondary-button" stylesheets="@../css/btn.css" text="လျော့မည်။">
          <graphic>
             <FontAwesomeIconView glyphName="REMOVE" glyphStyle="-fx-fill: Green;" size="18" />
          </graphic>

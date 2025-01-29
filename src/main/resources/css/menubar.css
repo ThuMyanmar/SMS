@@ -1,0 +1,86 @@
+/* menubar.css */
+
+/* MenuBar Base Style */
+.menu-bar {
+    -fx-background-color: #4CAF50; /* ပင်မအရောင် */
+    -fx-padding: 5px 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-font-family: "Pyidaungsu";
+}
+
+/* Menu Buttons (File, Edit, etc.) */
+.menu-bar > .menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+}
+
+.menu-bar > .menu-button:hover {
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-background-radius: 5px;
+}
+
+.menu-bar > .menu-button:showing {
+    -fx-background-color: #45a049;
+    -fx-background-radius: 5px 5px 0 0;
+}
+
+/* Menu Items (Dropdown Items) */
+.menu-bar .menu-item {
+    -fx-background-color: #f8f9fa;
+    -fx-padding: 8px 25px;
+    -fx-font-size: 13px;
+}
+
+.menu-bar .menu-item .label {
+    -fx-text-fill: #333333;
+}
+
+.menu-bar .menu-item:hover {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: #1a73e8;
+}
+
+.menu-bar .menu-item:focused {
+    -fx-background-color: #4CAF50;
+}
+
+.menu-bar .menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+/* Context Menu (Dropdown) */
+.context-menu {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 2, 2);
+    -fx-padding: 5px 0;
+}
+
+/* Separator */
+.menu-bar .separator-menu-item {
+    -fx-padding: 5px 0;
+}
+
+.menu-bar .separator-menu-item .line {
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0.5px;
+}
+
+/* Accelerator Text (Shortcut Keys) */
+.menu-item .accelerator-text {
+    -fx-text-fill: #757575;
+    -fx-font-size: 12px;
+}
+
+/* Disabled Items */
+.menu-item:disabled {
+    -fx-opacity: 0.6;
+}
+
+.menu-item:disabled .label {
+    -fx-text-fill: #9e9e9e;
+}

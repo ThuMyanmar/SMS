@@ -15,19 +15,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="551.0" prefWidth="1089.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Controller">
+<AnchorPane prefHeight="631.0" prefWidth="1079.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Controller">
    <children>
-      <TableView fx:id="coursetable" layoutX="14.0" layoutY="41.0" prefHeight="467.0" prefWidth="736.0">
+      <TableView fx:id="coursetable" layoutX="14.0" layoutY="56.0" prefHeight="560.0" prefWidth="736.0" stylesheets="@../css/tableview.css">
         <columns>
-          <TableColumn fx:id="nameCol" prefWidth="178.0" text="Course Name" />
-          <TableColumn fx:id="DesCol" prefWidth="339.0" text="Description" />
-            <TableColumn fx:id="durationCol" prefWidth="96.0" text="Duration" />
-            <TableColumn fx:id="feeCol" prefWidth="107.0" text="Fee" />
+          <TableColumn fx:id="nameCol" prefWidth="178.0" text="သင်ခန်းစာ အမည်" />
+          <TableColumn fx:id="DesCol" prefWidth="373.0" text="အချက်အလက်" />
+            <TableColumn fx:id="durationCol" prefWidth="72.0" text="ကြာချိန်" />
+            <TableColumn fx:id="feeCol" prefWidth="111.0" text="သင်တန်းကြေး" />
         </columns>
       </TableView>
-      <VBox layoutX="774.0" layoutY="41.0" prefHeight="415.0" prefWidth="307.0">
+      <VBox layoutX="766.0" layoutY="140.0" prefHeight="415.0" prefWidth="307.0">
          <children>
-            <TextField fx:id="nametxt" prefHeight="40.0" promptText="Course Name .........">
+            <TextField fx:id="nametxt" prefHeight="40.0" promptText="သင်ခန်းစာ အမည်" stylesheets="@../css/txt.css">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -35,7 +35,7 @@
                   <Font name="Pyidaungsu" size="12.0" />
                </font>
             </TextField>
-            <TextArea fx:id="desctxt" prefHeight="200.0" prefWidth="200.0" promptText="Description ......">
+            <TextArea fx:id="desctxt" prefHeight="200.0" prefWidth="200.0" promptText="အချက်အလက်" styleClass="prompt-text" stylesheets="@../css/txt.css">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -43,7 +43,7 @@
                   <Font name="Pyidaungsu" size="12.0" />
                </font>
             </TextArea>
-            <TextField fx:id="durationtxt" layoutX="10.0" layoutY="10.0" prefHeight="40.0" promptText="Duration .....">
+            <TextField fx:id="durationtxt" layoutX="10.0" layoutY="10.0" prefHeight="40.0" promptText="ကြာချိန်" stylesheets="@../css/txt.css">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -51,7 +51,7 @@
                   <Font name="Pyidaungsu" size="12.0" />
                </font>
             </TextField>
-            <TextField fx:id="feetxt" layoutX="10.0" layoutY="235.0" prefHeight="40.0" promptText="Fee .....">
+            <TextField fx:id="feetxt" layoutX="10.0" layoutY="235.0" prefHeight="40.0" promptText="သင်တန်းကြေး" stylesheets="@../css/txt.css">
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -61,17 +61,17 @@
             </TextField>
          </children>
       </VBox>
-      <Button fx:id="savebtn" focusTraversable="false" layoutX="789.0" layoutY="469.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Save">
+      <Button fx:id="savebtn" focusTraversable="false" layoutX="781.0" layoutY="570.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" size="24" />
          </graphic>
       </Button>
-      <Button fx:id="editbtn" focusTraversable="false" layoutX="910.0" layoutY="469.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="102.0" text="Edit">
+      <Button fx:id="editbtn" focusTraversable="false" layoutX="924.0" layoutY="570.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="138.0" styleClass="success-button" stylesheets="@../css/btn.css" text="ပြုပြင်မည်။">
          <graphic>
             <FontAwesomeIconView glyphName="EDIT" size="24" />
          </graphic>
       </Button>
-      <MenuBar layoutX="11.0" layoutY="6.0" prefHeight="25.0" prefWidth="1059.0">
+      <MenuBar layoutX="11.0" layoutY="6.0" prefHeight="32.0" prefWidth="1059.0" stylesheets="@../css/menubar.css">
         <menus>
           <Menu mnemonicParsing="false" text="File Options">
             <items>
@@ -81,7 +81,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="totaltlb" layoutX="677.0" layoutY="515.0" prefHeight="25.0" prefWidth="73.0" text="Label" textFill="RED" />
-      <Label layoutX="585.0" layoutY="515.0" prefHeight="25.0" prefWidth="92.0" text="Total Teachers :" />
+      <Label fx:id="totaltlb" layoutX="919.0" layoutY="93.0" prefHeight="25.0" prefWidth="73.0" text="Label" textFill="RED" />
+      <Label layoutX="827.0" layoutY="93.0" prefHeight="25.0" prefWidth="92.0" text="Total Teachers :" />
    </children>
 </AnchorPane>

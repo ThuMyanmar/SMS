@@ -4,15 +4,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="374.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.TableviewController">
+<AnchorPane prefHeight="374.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.TableviewController">
    <children>
-      <TableView fx:id="coursetable" layoutX="8.0" prefHeight="374.0" prefWidth="575.0">
+      <TableView fx:id="coursetable" layoutX="8.0" layoutY="10.0" prefHeight="352.0" prefWidth="656.0" stylesheets="@../css/tableview.css">
         <columns>
-          <TableColumn fx:id="courseidCol" prefWidth="63.0" text="Course ID" />
-          <TableColumn fx:id="coursenameCol" minWidth="1.0" prefWidth="161.0" text="Course Name" />
-            <TableColumn fx:id="descriptionCol" minWidth="1.0" prefWidth="135.0" text="Description" />
-            <TableColumn fx:id="durationCol" minWidth="1.0" prefWidth="113.0" text="Duration" />
-            <TableColumn fx:id="feeCol" prefWidth="130.0" text="Fee" />
+          <TableColumn fx:id="courseidCol" prefWidth="46.0" text="ကုဒ်" />
+          <TableColumn fx:id="coursenameCol" minWidth="1.0" prefWidth="203.0" text="သင်ခန်းစာ အမည်" />
+            <TableColumn fx:id="descriptionCol" minWidth="1.0" prefWidth="193.0" text="အချက်အလက်" />
+            <TableColumn fx:id="durationCol" minWidth="1.0" prefWidth="84.0" text="ကြာချိန်" />
+            <TableColumn fx:id="feeCol" prefWidth="129.0" text="သင်တန်းကြေး" />
         </columns>
       </TableView>
    </children>

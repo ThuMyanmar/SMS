@@ -13,7 +13,7 @@
    <children>
       <Pane prefHeight="49.0" prefWidth="967.0" style="-fx-background-color: #29B6F6;">
          <children>
-            <Label layoutX="-4.0" layoutY="-1.0" prefHeight="49.0" prefWidth="969.0" style="-fx-alignment: center;" text="Class has Teacher" textFill="WHITE">
+            <Label layoutX="-4.0" layoutY="-1.0" prefHeight="49.0" prefWidth="969.0" style="-fx-alignment: center;" stylesheets="@../css/lb.css" text="Class has Teacher" textFill="WHITE">
                <font>
                   <Font name="CG Times Bold" size="26.0" />
                </font>
@@ -28,23 +28,26 @@
             <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="teachertable" layoutX="6.0" layoutY="108.0" prefHeight="429.0" prefWidth="542.0">
+      <TableView fx:id="teachertable" layoutX="6.0" layoutY="108.0" prefHeight="429.0" prefWidth="542.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="nameCol" prefWidth="178.0" text="Teacher Name" />
-            <TableColumn fx:id="DesCol" prefWidth="339.0" text="Qualication" />
+            <TableColumn fx:id="nameCol" prefWidth="178.0" text="ဆရာ ၊ ဆရာမ အမည်" />
+            <TableColumn fx:id="DesCol" prefWidth="363.0" text="ပညာ အရည်အချင်း" />
          </columns>
       </TableView>
-      <TableView fx:id="setteachertable" layoutX="681.0" layoutY="109.0" prefHeight="429.0" prefWidth="272.0">
+      <TableView fx:id="setteachertable" layoutX="681.0" layoutY="109.0" prefHeight="429.0" prefWidth="272.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="subCol" prefWidth="251.0" text="Teacher Name" />
+            <TableColumn fx:id="subCol" prefWidth="270.0" text="ဆရာ ၊ ဆရာမ အမည်များ" />
          </columns>
       </TableView>
-      <Button fx:id="addbtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="247.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Add">
+      <Button fx:id="addbtn" alignment="CENTER" focusTraversable="false" layoutX="558.0" layoutY="247.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" styleClass="secondary-button" stylesheets="@../css/btn.css" text="တိုးမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: Green;" size="18" strokeType="OUTSIDE" />
          </graphic>
+         <font>
+            <Font name="Pyidaungsu Bold" size="13.0" />
+         </font>
       </Button>
-      <Label fx:id="teachersublb" layoutX="681.0" layoutY="54.0" prefHeight="50.0" prefWidth="272.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" text="Label" textFill="#d9ff00">
+      <Label fx:id="teachersublb" layoutX="681.0" layoutY="54.0" prefHeight="50.0" prefWidth="272.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" stylesheets="@../css/lb.css" text="Label" textFill="#d9ff00">
          <font>
             <Font name="Pyidaungsu Bold" size="15.0" />
          </font>
@@ -52,7 +55,7 @@
             <FontAwesomeIconView glyphName="DATABASE" glyphStyle="-fx-fill: Green;" pickOnBounds="true" size="40" stroke="WHITE" />
          </graphic>
       </Label>
-      <Button fx:id="removebtn" alignment="CENTER" focusTraversable="false" layoutX="563.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="99.0" text="Remove">
+      <Button fx:id="removebtn" alignment="CENTER" focusTraversable="false" layoutX="558.0" layoutY="294.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="111.0" styleClass="secondary-button" stylesheets="@../css/btn.css" text="လျော့ချမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="REMOVE" glyphStyle="-fx-fill: Green;" size="18" />
          </graphic>

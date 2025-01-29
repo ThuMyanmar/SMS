@@ -1,0 +1,65 @@
+/* imageview.css */
+
+/* Base ImageView Style */
+.image-view {
+    -fx-border-color: #e0e0e0;       /* Border color */
+    -fx-border-width: 2px;          /* Border thickness */
+    -fx-border-radius: 8px;         /* Rounded corners */
+    -fx-background-radius: 8px;     /* Background rounded */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 2, 2); /* Soft shadow */
+    -fx-transition: all 0.3s ease;  /* Smooth transitions */
+}
+
+/* Hover Effect */
+.image-view:hover {
+    -fx-scale-x: 1.02;             /* Slight zoom */
+    -fx-scale-y: 1.02;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 4, 4);
+    -fx-cursor: hand;              /* Pointer cursor */
+}
+
+/* Focused State (for interactive images) */
+.image-view:focused {
+    -fx-border-color: #4CAF50;      /* Green border */
+    -fx-border-width: 3px;
+}
+
+/* Circular Avatar Style */
+.image-view.avatar {
+    -fx-border-radius: 50%;        /* Perfect circle */
+    -fx-background-radius: 50%;
+    -fx-border-width: 3px;
+    -fx-border-color: #ffffff;     /* White border */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+/* Thumbnail Gallery Style */
+.image-view.thumbnail {
+    -fx-border-radius: 4px;
+    -fx-background-color: #ffffff; /* White background */
+    -fx-padding: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 1, 1);
+}
+
+/* Disabled/Grayscale Effect */
+.image-view:disabled {
+    -fx-opacity: 0.7;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 0, 0, 0, 0);
+    -fx-filter: grayscale(100%);   /* Grayscale effect */
+}
+
+/* Overlay Text Container */
+.image-view .overlay {
+    -fx-background-color: rgba(0,0,0,0.6); /* Dark overlay */
+    -fx-padding: 10px;
+    -fx-alignment: bottom-center;
+}
+
+/* Overlay Text Style */
+.image-view .overlay-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 1);
+}
+
