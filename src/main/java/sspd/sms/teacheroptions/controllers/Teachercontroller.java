@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,7 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,12 +19,8 @@ import javafx.stage.StageStyle;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import sspd.sms.Launch;
-import sspd.sms.config.AppConfig;
-import sspd.sms.config.SpringContextHelper;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.model.Teacher;
@@ -40,12 +34,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 @org.springframework.stereotype.Controller
-public class Controller implements Initializable {
+public class Teachercontroller implements Initializable {
 
     @FXML
     private TableColumn<Teacher, String> contactCol;
@@ -126,12 +119,18 @@ public class Controller implements Initializable {
     @FXML
     private Label totaltlb;
 
-    private ApplicationContext context = SpringContextHelper.getContext();
+  //  private ApplicationContext context = SpringContextHelper.getContext();
 
 
-    private Timpls tdb = context.getBean(Timpls.class);
+  //  private Timpls tdb = context.getBean(Timpls.class);
 
-    private TeacherServices tservice = new TeacherServices();
+  //  private TeacherServices tservice = new TeacherServices();
+
+    @Autowired
+    private Timpls tdb;
+
+    @Autowired
+    TeacherServices tservice;
 
 
 

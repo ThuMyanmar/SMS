@@ -57,7 +57,7 @@
                 <FontAwesomeIconView glyphName="USERS" size="24" />
             </graphic>
         </Button>
-        <CheckBox fx:id="opencheckbox" layoutX="672.0" layoutY="514.0" mnemonicParsing="false" styleClass="material" stylesheets="@../css/checkbox.css" text="မဖွင့်ပါ။" />
+        <CheckBox fx:id="opencheckbox" layoutX="672.0" layoutY="514.0" mnemonicParsing="false" styleClass="material" stylesheets="@../css/checkbox.css" text="ဖွင့်မည်။" />
         <CheckBox fx:id="notopencheckbox" layoutX="770.0" layoutY="514.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="102.0" styleClass="material" stylesheets="@../css/checkbox.css" text="မဖွင့်ပါ။" />
         <TextField fx:id="nametxt" layoutX="14.0" layoutY="509.0" prefHeight="45.0" prefWidth="338.0" promptText="Enter Class Name" styleClass="text-field" stylesheets="@../css/txt.css">
             <font>

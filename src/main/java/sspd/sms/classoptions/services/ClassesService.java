@@ -2,8 +2,10 @@ package sspd.sms.classoptions.services;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Service;
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
@@ -16,10 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ClassesService {
 
-    private  ApplicationContext context = SpringContextHelper.getContext();
-    Classimpls classimpls =  context.getBean(Classimpls.class);
+   // private  ApplicationContext context = SpringContextHelper.getContext();
+   // Classimpls classimpls =  context.getBean(Classimpls.class);
+
+    @Autowired
+    Classimpls classimpls;
 
 
     List<Classview> classviews = new ArrayList<>();
@@ -59,7 +65,7 @@ public class ClassesService {
 
     public int countClasses() {
 
-        return classviews.size();
+        return classes.size();
     }
 
 
@@ -113,7 +119,7 @@ public class ClassesService {
 
     public void classUpdate(Classes classes) {
 
-        classes.setClass_id(getClassIdd(classes.getClass_name()));
+
 
         classimpls.updateTask(classes);
 
@@ -124,6 +130,9 @@ public class ClassesService {
 
 
     public int getClassIdd(String classname){
+
+       getAllClasses();
+
       return   classes.stream()
                 .filter(classes1 -> classes1.getClass_name().equals(classname))
                 .map(Classes::getClass_id)

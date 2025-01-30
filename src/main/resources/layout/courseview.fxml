@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="631.0" prefWidth="1079.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Controller">
+<AnchorPane prefHeight="631.0" prefWidth="1079.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.courseoptions.controllers.Coursecontroller">
    <children>
       <TableView fx:id="coursetable" layoutX="14.0" layoutY="56.0" prefHeight="560.0" prefWidth="736.0" stylesheets="@../css/tableview.css">
         <columns>

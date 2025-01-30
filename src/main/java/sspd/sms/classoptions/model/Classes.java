@@ -51,6 +51,7 @@ public class Classes {
         this.status = status;
     }
 
+
     public Classes() {}
 
     public Classes(String class_name, Date date, Course course, int scedule, int limit_stu, int status) {

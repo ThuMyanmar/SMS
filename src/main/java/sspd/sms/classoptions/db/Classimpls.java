@@ -95,6 +95,12 @@ public class Classimpls implements Taskdao<Classes> {
 
         } else {
 
+            System.out.println(task.getClass_id());
+            System.out.println(task.getClass_name());
+            System.out.println(task.getDate());
+            System.out.println(task.getCourse().getCourse_id());
+            System.out.println(task.getCourse().getCourse_name());
+
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.merge(task);

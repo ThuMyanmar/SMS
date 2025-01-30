@@ -14,14 +14,9 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Service;
-import sspd.sms.config.AppConfig;
-import sspd.sms.courseoptions.db.Courseimpl;
+import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.services.Services;
-import sspd.sms.teacheroptions.model.Teacher;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +25,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+@Controller
+public class Coursecontroller implements Initializable {
 
     @FXML
     private TableColumn<Course, String> DesCol;
@@ -74,7 +70,9 @@ public class Controller implements Initializable {
     @FXML
     private MenuItem importbtn;
 
-    private Services services = new Services();
+
+    @Autowired
+    Services services;
 
 
     @Override

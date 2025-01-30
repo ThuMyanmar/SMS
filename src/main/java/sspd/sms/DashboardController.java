@@ -10,7 +10,9 @@ import javafx.scene.shape.Polygon;
 import javafx.stage.Stage;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Controller;
 import sspd.sms.config.AppConfig;
+import sspd.sms.courseoptions.db.Courseimpl;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.services.TeacherServices;
 
@@ -18,6 +20,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static sspd.sms.Launch.context;
+import static sspd.sms.Launch.getContext;
+
+@Controller
 public class DashboardController implements Initializable {
 
     @FXML
@@ -86,7 +92,7 @@ public class DashboardController implements Initializable {
 
 
             FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/teacherview.fxml"));
-
+            fxmlLoader.setControllerFactory(context::getBean);
 
             try {
 
@@ -112,7 +118,7 @@ public class DashboardController implements Initializable {
             teacherNotic.setStyle("-fx-fill: #1E88E5; -fx-stroke:#1E88E5");
 
             FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/courseview.fxml"));
-
+            fxmlLoader.setControllerFactory(context::getBean);
 
             try {
 
@@ -138,7 +144,7 @@ public class DashboardController implements Initializable {
             courseNotic.setStyle("-fx-fill: #1E88E5; -fx-stroke:#1E88E5");
 
             FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/classview.fxml"));
-
+            fxmlLoader.setControllerFactory(context::getBean);
 
             try {
 

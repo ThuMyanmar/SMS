@@ -15,9 +15,15 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScans({
+        @ComponentScan(basePackages = "sspd.sms"),
         @ComponentScan(basePackages = "sspd.sms.teacheroptions.db"),
+        @ComponentScan(basePackages = "sspd.sms.teacheroptions.services"),
+        @ComponentScan(basePackages = "sspd.sms.teacheroptions.controllers"),
         @ComponentScan(basePackages = "sspd.sms.courseoptions.db"),
-        @ComponentScan(basePackages = "sspd.sms.classoptions.db")
+        @ComponentScan(basePackages = "sspd.sms.courseoptions.services"),
+        @ComponentScan(basePackages = "sspd.sms.classoptions.db"),
+        @ComponentScan(basePackages = "sspd.sms.classoptions.services"),
+        @ComponentScan(basePackages = "sspd.sms.classoptions.controllers")
 })
 public class AppConfig {
 

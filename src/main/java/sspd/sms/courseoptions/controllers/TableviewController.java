@@ -7,6 +7,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.hibernate.validator.internal.engine.messageinterpolation.InterpolationTerm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.model.CourseDTO;
 import sspd.sms.courseoptions.services.Services;
@@ -15,6 +17,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+@Controller
 public class TableviewController implements Initializable {
 
     @FXML
@@ -35,7 +38,10 @@ public class TableviewController implements Initializable {
     @FXML
     private TableColumn<Course, Integer> feeCol;
 
-    Services services = new Services();
+    //Services services = new Services();
+
+    @Autowired
+    Services services;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

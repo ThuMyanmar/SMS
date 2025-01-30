@@ -8,16 +8,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.model.CourseDTO;
 import sspd.sms.courseoptions.services.Services;
+import sspd.sms.teacheroptions.model.Teacher;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +29,9 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static sspd.sms.Launch.context;
+
+@org.springframework.stereotype.Controller
 public class Controller implements Initializable {
 
 
@@ -90,9 +96,11 @@ public class Controller implements Initializable {
     @FXML
     private TableColumn<Classview, Integer> totalTeacher;
 
+    @Autowired
+    ClassesService classesService;
 
-
-    ClassesService classesService = new ClassesService();
+    @Autowired
+    Services cservice ;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -101,6 +109,8 @@ public class Controller implements Initializable {
         getLoadData();
 
         actionEvent();
+
+        classtable.setEditable(true);
 
     }
 
@@ -117,6 +127,7 @@ public class Controller implements Initializable {
                     Stage stage = new Stage();
 
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/layout/coursetableview.fxml"));
+                    fxmlLoader.setControllerFactory(context::getBean);
                     Scene scene = new Scene(fxmlLoader.load());
                     stage.setScene(scene);
                     Stage mainstage = (Stage) savebtn.getScene().getWindow();
@@ -233,7 +244,10 @@ public class Controller implements Initializable {
                     int sedu = Integer.parseInt(seduletxt.getText());
                     int  limitstu = Integer.parseInt(limitstudenttxt.getText());
 
-                    Classes classes =new Classes(name, Date.valueOf(LocalDate.now()),couserDTO.getCourse(),sedu,limitstu,status.get());
+                    int classID = classesService.getClassIdd(name);
+
+
+                    Classes classes =new Classes(classID,name, Date.valueOf(LocalDate.now()),couserDTO.getCourse(),sedu,limitstu,status.get());
 
                     classesService.classUpdate(classes);
 
@@ -266,6 +280,37 @@ public class Controller implements Initializable {
 
         });
 
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setOnEditCommit(event -> {
+
+
+            String value = String.valueOf(event.getNewValue());
+
+            if(null!=value && !value.isEmpty()){
+
+                CourseDTO couserDTO = CourseDTO.getInstance();
+
+                Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+
+                int classID = classesService.getClassIdd(classview.getClass_name());
+
+                Classes classes = new Classes(classID,value,classview.getDate(),couserDTO.getCourse(),classview.getScedule(),classview.getLimit_stu(),status.get());
+
+                classesService.classUpdate(classes);
+
+                event.getRowValue().setClass_name(value);
+
+                getLoadData();
+                getClear();
+
+
+
+            }
+
+
+
+        });
+
         classtable.setOnMouseClicked(event1 -> {
 
 
@@ -274,17 +319,12 @@ public class Controller implements Initializable {
                 Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
 
                 nametxt.setText(classview.getClass_name());
+                nametxt.setEditable(false);
                 coursetxt.setText(classview.getCourse_name());
                 limitstudenttxt.setText(String.valueOf(classview.getLimit_stu()));
                 seduletxt.setText(String.valueOf(classview.getScedule()));
 
-                Services cservice = new Services();
-
-
-
                 Course course  = cservice.getCourseByName(coursetxt.getText());
-
-
 
                 CourseDTO courseDTO = CourseDTO.getInstance();
                 courseDTO.setCourse(course);
@@ -301,6 +341,16 @@ public class Controller implements Initializable {
                     notopencheckbox.setSelected(true);
                     opencheckbox.setSelected(false);
                 }
+
+            }else {
+
+                Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+
+
+                Course course  = cservice.getCourseByName(classview.getCourse_name());
+
+                CourseDTO courseDTO = CourseDTO.getInstance();
+                courseDTO.setCourse(course);
 
             }
 

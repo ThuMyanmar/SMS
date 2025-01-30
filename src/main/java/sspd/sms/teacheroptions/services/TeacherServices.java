@@ -2,9 +2,11 @@ package sspd.sms.teacheroptions.services;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import sspd.sms.config.AppConfig;
 import sspd.sms.config.SpringContextHelper;
 import sspd.sms.courseoptions.model.Course;
@@ -17,19 +19,28 @@ import sspd.sms.teacheroptions.model.TeacherSubject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class TeacherServices {
 
 
 
 
-    private ApplicationContext context = SpringContextHelper.getContext();
+   // private ApplicationContext context = SpringContextHelper.getContext();
 
-    private Timpls tdb = context.getBean(Timpls.class );
+//    private Timpls tdb = context.getBean(Timpls.class );
+//
+//    private Tsubimpls ts = context.getBean(Tsubimpls.class );
+//
+//    private final Services courseServices = new Services();
 
-    private Tsubimpls ts = context.getBean(Tsubimpls.class );
+    @Autowired
+    Timpls tdb;
 
-    private final Services courseServices = new Services();
+    @Autowired
+    Tsubimpls ts;
+
+    @Autowired
+    Services courseServices;
 
     public List<TeacherSubject> getTeacherSubjects() {
 

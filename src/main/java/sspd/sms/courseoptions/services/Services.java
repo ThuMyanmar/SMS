@@ -16,17 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static sspd.sms.Launch.getContext;
+
 @Service
 public class Services {
 
-//    private ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-//
-//    private Courseimpl cdb = context.getBean(Courseimpl.class);
 
-
-    ApplicationContext context = SpringContextHelper.getContext();
-
-    Courseimpl cdb= context.getBean(Courseimpl.class);
+    @Autowired
+    Courseimpl cdb ;
 
     private List<Course> courseList = new ArrayList<>();
 
