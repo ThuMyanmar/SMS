@@ -20,6 +20,7 @@ module sspd.sms {
     requires de.jensd.fx.glyphs.fontawesome;
     requires com.jfoenix;
     requires java.desktop;
+    requires static lombok;
 
 
     opens sspd.sms;

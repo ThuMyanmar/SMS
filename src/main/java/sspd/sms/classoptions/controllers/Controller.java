@@ -13,7 +13,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import sspd.sms.Launch;
+import sspd.sms.classoptions.model.ClassHasTeacherDTO;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
@@ -362,7 +365,64 @@ public class Controller implements Initializable {
         });
 
 
+        teacherbtn.setOnAction(event -> {
 
+            Classview classview = (Classview) classtable.getSelectionModel().getSelectedItem();
+
+
+            if(classview==null){
+
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No Selection");
+                alert.setHeaderText("No Class Selected");
+                alert.setContentText("Please select a class from the table.");
+                alert.showAndWait();
+                return;
+            }
+
+            int classID = classesService.getClassIdd(classview.getClass_name());
+            if (classID <= 0) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Teacher ID Retrieval Failed");
+                alert.setContentText("Unable to fetch teacher ID for: " + classview.getClass_name());
+                alert.showAndWait();
+                return;
+            }
+
+
+            Classes classes = new Classes();
+            classes.setClass_id(classID);
+
+            ClassHasTeacherDTO classHasTeacherDTO = ClassHasTeacherDTO.getInstance();
+            classHasTeacherDTO.setClasses(classes);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/classteacherview.fxml"));
+
+            Scene scene = null;
+
+            Stage stage = new Stage();
+
+            try{
+
+                scene = new Scene(fxmlLoader.load());
+                stage.initStyle(StageStyle.UTILITY);
+                stage.initModality(Modality.WINDOW_MODAL);
+                Stage mainStage = (Stage) classtable.getScene().getWindow();
+                stage.initOwner(mainStage);
+                stage.setTitle("Teacher Class");
+                stage.setScene(scene);
+                stage.show();
+
+
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        });
 
 
 

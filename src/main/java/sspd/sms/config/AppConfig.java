@@ -24,6 +24,7 @@ import java.util.Properties;
         @ComponentScan(basePackages = "sspd.sms.classoptions.db"),
         @ComponentScan(basePackages = "sspd.sms.classoptions.services"),
         @ComponentScan(basePackages = "sspd.sms.classoptions.controllers")
+
 })
 public class AppConfig {
 
