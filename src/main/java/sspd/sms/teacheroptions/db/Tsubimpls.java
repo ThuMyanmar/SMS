@@ -144,6 +144,7 @@ public class Tsubimpls implements Taskdao<TeacherSubject> {
     private void showInformationDialog(String title, String header, String content) {
         javafx.application.Platform.runLater(() -> {
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);

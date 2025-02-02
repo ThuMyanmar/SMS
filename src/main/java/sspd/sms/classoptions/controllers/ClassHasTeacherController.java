@@ -54,8 +54,6 @@ public class ClassHasTeacherController implements Initializable {
     @FXML
     private TableView<Teacher> teachertable;
 
-
-
     private final TeacherServices teacherServices;
 
     private final ClassHasTeacherService classHasTeacherService;

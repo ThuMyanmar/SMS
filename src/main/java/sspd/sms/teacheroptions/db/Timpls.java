@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -157,6 +158,7 @@ public class Timpls implements Taskdao<Teacher> {
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
@@ -165,12 +167,14 @@ public class Timpls implements Taskdao<Teacher> {
     }
 
     private void showInformationDialog(String title, String header, String content) {
-        javafx.application.Platform.runLater(() -> {
+        Platform.runLater(() -> {
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            alert.initModality(Modality.APPLICATION_MODAL);
             alert.setTitle(title);
             alert.setHeaderText(header);
             alert.setContentText(content);
             alert.showAndWait();
         });
+
     }
 }
