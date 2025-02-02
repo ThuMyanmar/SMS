@@ -6,12 +6,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.hibernate.validator.internal.engine.messageinterpolation.InterpolationTerm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.model.CourseDTO;
-import sspd.sms.courseoptions.services.Services;
+import sspd.sms.courseoptions.services.CourseService;
 
 import java.net.URL;
 import java.util.List;
@@ -41,7 +40,7 @@ public class TableviewController implements Initializable {
     //Services services = new Services();
 
     @Autowired
-    Services services;
+    CourseService courseService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,7 +76,7 @@ public class TableviewController implements Initializable {
 
     public void getLoadData(){
 
-        List<Course> clist = services.getAllCourses();
+        List<Course> clist = courseService.getAllCourses();
         coursetable.getItems().setAll(clist);
 
     }

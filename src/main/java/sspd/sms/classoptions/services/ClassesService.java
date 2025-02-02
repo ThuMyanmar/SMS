@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
 @Service
 public class ClassesService {
 
-   // private  ApplicationContext context = SpringContextHelper.getContext();
-   // Classimpls classimpls =  context.getBean(Classimpls.class);
 
     @Autowired
     Classimpls classimpls;

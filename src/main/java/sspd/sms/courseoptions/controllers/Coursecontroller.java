@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
-import sspd.sms.courseoptions.services.Services;
+import sspd.sms.courseoptions.services.CourseService;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,7 +72,7 @@ public class Coursecontroller implements Initializable {
 
 
     @Autowired
-    Services services;
+    CourseService courseService;
 
 
     @Override
@@ -101,7 +101,7 @@ public class Coursecontroller implements Initializable {
 
 
                     Course course = new Course(name, desc, duration, fee);
-                    int result = services.insertCourse(course);
+                    int result = courseService.insertCourse(course);
 
                     if (result == 1) {
 
@@ -144,7 +144,7 @@ public class Coursecontroller implements Initializable {
 
             Course oldcourse = (Course) coursetable.getSelectionModel().getSelectedItem();
 
-            int courseId = services.findCourseByName(oldcourse.getCourse_name());
+            int courseId = courseService.findCourseByName(oldcourse.getCourse_name());
 
             nametxt.setText(oldcourse.getCourse_name());
             desctxt.setText(oldcourse.getDescription());
@@ -161,7 +161,7 @@ public class Coursecontroller implements Initializable {
 
                 Course course = new Course(courseId, name, desc, duration, feet);
 
-                services.updateCourse(course);
+                courseService.updateCourse(course);
 
                 getClear();
                 getLoadData();
@@ -180,9 +180,9 @@ public class Coursecontroller implements Initializable {
 
 
                 Course course = (Course) coursetable.getSelectionModel().getSelectedItem();
-                course.setCourse_id(services.findCourseByName(course.getCourse_name()));
+                course.setCourse_id(courseService.findCourseByName(course.getCourse_name()));
 
-                services.deleteCourse(course);
+                courseService.deleteCourse(course);
 
                 getLoadData();
 
@@ -195,7 +195,7 @@ public class Coursecontroller implements Initializable {
 
         exportbtn.setOnAction(event -> {
 
-            ObservableList<Course> courses = FXCollections.observableArrayList(services.getAllCourses());
+            ObservableList<Course> courses = FXCollections.observableArrayList(courseService.getAllCourses());
 
             coursetable.setItems(courses);
 
@@ -321,7 +321,7 @@ public class Coursecontroller implements Initializable {
 
 
 
-                services.importCourse(data);
+                courseService.importCourse(data);
 
 
 
@@ -372,10 +372,10 @@ public class Coursecontroller implements Initializable {
     private void getLoadData() {
 
 
-        ObservableList<Course> courses = FXCollections.observableArrayList(services.getAllCourses());
+        ObservableList<Course> courses = FXCollections.observableArrayList(courseService.getAllCourses());
 
         coursetable.setItems(courses);
-        totaltlb.setText(String.valueOf(services.getCoursesCount()));
+        totaltlb.setText(String.valueOf(courseService.getCoursesCount()));
 
 
 

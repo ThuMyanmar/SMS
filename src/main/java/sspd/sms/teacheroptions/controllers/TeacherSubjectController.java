@@ -9,8 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
-import sspd.sms.courseoptions.services.Services;
-import sspd.sms.teacheroptions.model.Teacher;
+import sspd.sms.courseoptions.services.CourseService;
 import sspd.sms.teacheroptions.model.TeacherDTO;
 import sspd.sms.teacheroptions.model.TeacherSubject;
 import sspd.sms.teacheroptions.services.TeacherServices;
@@ -56,7 +55,7 @@ public class TeacherSubjectController implements Initializable {
 
     private TeacherServices teacherServices;
 
-    private Services courseServices;
+    private CourseService courseCourseService;
 
     @Autowired
     public void setTeacherServices(TeacherServices teacherServices) {
@@ -64,17 +63,12 @@ public class TeacherSubjectController implements Initializable {
     }
 
     @Autowired
-    public void setCourseServices(Services courseServices) {
-        this.courseServices = courseServices;
+    public void setCourseServices(CourseService courseCourseService) {
+        this.courseCourseService = courseCourseService;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-      //  System.out.println(teacherServices.getTeacherSubjects().size());
-
-     //   System.out.println(dto.getTeacher().getTeacher_id());
-
 
         getLoad();
         coursetableIni();
@@ -91,7 +85,7 @@ public class TeacherSubjectController implements Initializable {
             try {
 
             Course course = (Course) coursetable.getSelectionModel().getSelectedItem();
-            course.setCourse_id(courseServices.findCourseByName(course.getCourse_name()));
+            course.setCourse_id(courseCourseService.findCourseByName(course.getCourse_name()));
 
             TeacherSubject teacherSubject = new TeacherSubject(dto.getTeacher(), course);
 
@@ -122,7 +116,7 @@ public class TeacherSubjectController implements Initializable {
             try {
 
                 Course course = (Course) subjecttable.getSelectionModel().getSelectedItem();
-                course.setCourse_id(courseServices.findCourseByName(course.getCourse_name()));
+                course.setCourse_id(courseCourseService.findCourseByName(course.getCourse_name()));
 
                 TeacherSubject teacherSubject = new TeacherSubject(dto.getTeacher(), course);
 

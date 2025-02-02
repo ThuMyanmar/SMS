@@ -1,14 +1,10 @@
 package sspd.sms.courseoptions.services;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 
 import org.springframework.stereotype.Service;
-import sspd.sms.config.SpringContextHelper;
 import sspd.sms.courseoptions.db.Courseimpl;
 import sspd.sms.courseoptions.model.Course;
 
@@ -16,10 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static sspd.sms.Launch.getContext;
-
 @Service
-public class Services {
+public class CourseService {
 
 
 

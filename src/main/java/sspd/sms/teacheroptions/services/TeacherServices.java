@@ -3,20 +3,14 @@ package sspd.sms.teacheroptions.services;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import sspd.sms.config.AppConfig;
-import sspd.sms.config.SpringContextHelper;
 import sspd.sms.courseoptions.model.Course;
-import sspd.sms.courseoptions.services.Services;
+import sspd.sms.courseoptions.services.CourseService;
 import sspd.sms.teacheroptions.db.Timpls;
 import sspd.sms.teacheroptions.db.Tsubimpls;
 import sspd.sms.teacheroptions.model.Teacher;
 import sspd.sms.teacheroptions.model.TeacherSubject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +23,7 @@ public class TeacherServices {
 
     private Tsubimpls ts;
 
-
-    private Services courseServices;
+    private CourseService courseService;
 
     @Autowired
     public void setTdb(Timpls tdb) {
@@ -41,8 +34,15 @@ public class TeacherServices {
         this.ts = ts;
     }
     @Autowired
-    public void setCourseServices(Services courseServices) {
-        this.courseServices = courseServices;
+    public void setCourseServices(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    public List<Teacher>getTeachers() {
+
+      return   tdb.getAllTask();
+
+
     }
 
     public List<TeacherSubject> getTeacherSubjects() {
@@ -86,7 +86,7 @@ public class TeacherServices {
     public List<Course> getCourseList(int teacherId) {
 
 
-        List<Course> courseNames = courseServices.getAllCourses();
+        List<Course> courseNames = courseService.getAllCourses();
         List<Course> teacherCourseNames = getSubjectNames(teacherId);
 
         System.out.println(courseNames.size());
@@ -146,6 +146,8 @@ public class TeacherServices {
               .orElse(-1);
 
     }
+
+
 
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {

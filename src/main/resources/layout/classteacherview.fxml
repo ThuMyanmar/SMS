@@ -20,7 +20,7 @@
             </Label>
          </children>
       </Pane>
-      <Label fx:id="teachernamelb" layoutX="7.0" layoutY="54.0" prefHeight="50.0" prefWidth="542.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" text="Label" textFill="#d9ff00">
+      <Label fx:id="teachernamelb" layoutX="7.0" layoutY="54.0" prefHeight="50.0" prefWidth="542.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" text="Label" textFill="#393939">
          <graphic>
             <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: Green;" pickOnBounds="true" size="40" stroke="WHITE" />
          </graphic>
@@ -47,7 +47,7 @@
             <Font name="Pyidaungsu Bold" size="13.0" />
          </font>
       </Button>
-      <Label fx:id="teachersublb" layoutX="681.0" layoutY="54.0" prefHeight="50.0" prefWidth="272.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" stylesheets="@../css/lb.css" text="Label" textFill="#d9ff00">
+      <Label fx:id="teachersublb" layoutX="681.0" layoutY="54.0" prefHeight="50.0" prefWidth="272.0" style="-fx-border-color: #A1887F; -fx-background-radius: 5; -fx-border-radius: 5;" stylesheets="@../css/lb.css" text="Label">
          <font>
             <Font name="Pyidaungsu Bold" size="15.0" />
          </font>

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 import org.springframework.context.ApplicationContext;
 import sspd.sms.config.SpringContextHelper;
 import sspd.sms.courseoptions.db.Courseimpl;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 public class Launch extends Application {
 
+    @Getter
     public static ApplicationContext context = SpringContextHelper.getContext();
     @Override
 
@@ -37,9 +39,5 @@ public class Launch extends Application {
 
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         launch();
-    }
-    public static  ApplicationContext getContext() {
-
-        return context;
     }
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainPane" prefHeight="631.0" prefWidth="1079.0" styleClass="text-field" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.classoptions.controllers.Controller">
+<AnchorPane fx:id="mainPane" prefHeight="631.0" prefWidth="1079.0" styleClass="text-field" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.classoptions.controllers.ClassController">
     <children>
         <TableView fx:id="classtable" layoutX="6.0" layoutY="45.0" prefHeight="440.0" prefWidth="1068.0" stylesheets="@../css/tableview.css">
             <columns>

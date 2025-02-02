@@ -22,8 +22,7 @@ import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.model.CourseDTO;
-import sspd.sms.courseoptions.services.Services;
-import sspd.sms.teacheroptions.model.Teacher;
+import sspd.sms.courseoptions.services.CourseService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +34,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static sspd.sms.Launch.context;
 
 @org.springframework.stereotype.Controller
-public class Controller implements Initializable {
+public class ClassController implements Initializable {
 
 
 
@@ -103,7 +102,9 @@ public class Controller implements Initializable {
     ClassesService classesService;
 
     @Autowired
-    Services cservice ;
+    CourseService cservice ;
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -394,6 +395,11 @@ public class Controller implements Initializable {
 
             Classes classes = new Classes();
             classes.setClass_id(classID);
+            classes.setClass_name(classview.getClass_name());
+
+
+            Course course = cservice.getCourseByName(classview.getCourse_name());
+            classes.setCourse(course);
 
             ClassHasTeacherDTO classHasTeacherDTO = ClassHasTeacherDTO.getInstance();
             classHasTeacherDTO.setClasses(classes);
@@ -405,6 +411,7 @@ public class Controller implements Initializable {
             Stage stage = new Stage();
 
             try{
+                fxmlLoader.setControllerFactory(context::getBean);
 
                 scene = new Scene(fxmlLoader.load());
                 stage.initStyle(StageStyle.UTILITY);

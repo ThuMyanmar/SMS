@@ -3,12 +3,16 @@ package sspd.sms.classoptions.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.*;
 import sspd.sms.courseoptions.model.Course;
 
 import java.sql.Date;
 import java.util.Set;
 
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="classes")
 @Entity
 public class Classes {
@@ -56,8 +60,6 @@ public class Classes {
     }
 
 
-    public Classes() {}
-
     public Classes(String class_name, Date date, Course course, int scedule, int limit_stu, int status) {
         this.class_name = class_name;
         this.date = date;
@@ -67,75 +69,5 @@ public class Classes {
         this.status = status;
     }
 
-    public Classes( String class_name, Course course, int scedule, int limit_stu, int status) {
-        this.class_name = class_name;
-        this.course = course;
-        this.scedule = scedule;
-        this.limit_stu = limit_stu;
-        this.status = status;
-    }
 
-    public Set<ClasshasTeacher> getClasshasTeacherSet() {
-        return classhasTeacherSet;
-    }
-
-    public void setClasshasTeacherSet(Set<ClasshasTeacher> classhasTeacherSet) {
-        this.classhasTeacherSet = classhasTeacherSet;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getClass_id() {
-        return class_id;
-    }
-
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
-    }
-
-    public String getClass_name() {
-        return class_name;
-    }
-
-    public void setClass_name(String class_name) {
-        this.class_name = class_name;
-    }
-
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
-    public int getScedule() {
-        return scedule;
-    }
-
-    public void setScedule(int scedule) {
-        this.scedule = scedule;
-    }
-
-    public int getLimit_stu() {
-        return limit_stu;
-    }
-
-    public void setLimit_stu(int limit_stu) {
-        this.limit_stu = limit_stu;
-    }
 }
