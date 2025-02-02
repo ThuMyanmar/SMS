@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import sspd.sms.courseoptions.model.Course;
 
 import java.sql.Date;
+import java.util.Set;
 
 
 @Table(name="classes")
@@ -40,6 +41,9 @@ public class Classes {
     @Column(name = "status")
     private int status;
 
+    @OneToMany(mappedBy = "classes",fetch = FetchType.LAZY)
+    private Set<ClasshasTeacher> classhasTeacherSet;
+
 
     public Classes(int class_id, String class_name, Date date, Course course, int scedule, int limit_stu, int status) {
         this.class_id = class_id;
@@ -69,6 +73,14 @@ public class Classes {
         this.scedule = scedule;
         this.limit_stu = limit_stu;
         this.status = status;
+    }
+
+    public Set<ClasshasTeacher> getClasshasTeacherSet() {
+        return classhasTeacherSet;
+    }
+
+    public void setClasshasTeacherSet(Set<ClasshasTeacher> classhasTeacherSet) {
+        this.classhasTeacherSet = classhasTeacherSet;
     }
 
     public Date getDate() {

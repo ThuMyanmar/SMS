@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.courseoptions.services.Services;
@@ -51,10 +52,19 @@ public class TeacherSubjectController implements Initializable {
     private final Teacher teacher = dto.getTeacher();
 
 
+    private TeacherServices teacherServices;
 
-    private TeacherServices teacherServices = new TeacherServices();
+    private Services courseServices;
 
-    private  Services courseServices = new Services();
+    @Autowired
+    public void setTeacherServices(TeacherServices teacherServices) {
+        this.teacherServices = teacherServices;
+    }
+
+    @Autowired
+    public void setCourseServices(Services courseServices) {
+        this.courseServices = courseServices;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -151,15 +161,35 @@ public class TeacherSubjectController implements Initializable {
 
         teachernamelb.setText(teacher.getName());
 
-        ObservableList<Course> tlist = FXCollections.observableArrayList( teacherServices.getSubjectNames(teacher.getTeacher_id()));
-
-        System.out.println(tlist.size());
-
         ObservableList<Course> clist = FXCollections.observableArrayList(teacherServices.getCourseList(teacher.getTeacher_id()));
 
-        subjecttable.setItems(tlist);
+
+        try {
+
+
+            ObservableList<Course> tlist = FXCollections.observableArrayList(teacherServices.getSubjectNames(teacher.getTeacher_id()));
+
+            subjecttable.setItems(tlist);
+            coursetable.setItems(clist);
+
+            teachersublb.setText(String.valueOf(tlist.size()));
+
+
+        }catch (NullPointerException ex){
+
+            subjecttable.setItems(null);
+            coursetable.setItems(null);
+            teachersublb.setText(null);
+            coursetable.setItems(null);
+
+        }
+
         coursetable.setItems(clist);
-        teachersublb.setText(String.valueOf(tlist.size()));
+
+
+
+
+
 
 
 

@@ -16,22 +16,12 @@ import sspd.sms.teacheroptions.db.Tsubimpls;
 import sspd.sms.teacheroptions.model.Teacher;
 import sspd.sms.teacheroptions.model.TeacherSubject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TeacherServices {
-
-
-
-
-   // private ApplicationContext context = SpringContextHelper.getContext();
-
-//    private Timpls tdb = context.getBean(Timpls.class );
-//
-//    private Tsubimpls ts = context.getBean(Tsubimpls.class );
-//
-//    private final Services courseServices = new Services();
 
     @Autowired
     Timpls tdb;
@@ -61,18 +51,31 @@ public class TeacherServices {
 
     public List<Course> getSubjectNames(int teacherId) {
 
-        System.out.println("T:"+teacherId);
-        System.out.println(getTeacherSubjects().size());
+        List<Course>getList = new ArrayList<>();
 
-        return getTeacherSubjects().stream()
-                .filter(teacherSubject -> teacherSubject.getTeacher().getTeacher_id()==(teacherId))
-                .map(TeacherSubject::getCourse)
-                .collect(Collectors.toList());
+        try{
+
+            getList.addAll(getTeacherSubjects().stream()
+                    .filter(teacherSubject -> teacherSubject.getTeacher().getTeacher_id()==(teacherId))
+                    .map(TeacherSubject::getCourse)
+                    .collect(Collectors.toList()));
+
+        } catch (NullPointerException exe){
+
+
+
+        }
+
+return null;
+
+
     }
 
     public List<Course> getCourseList(int teacherId) {
         List<Course> courseNames = courseServices.getAllCourses();
         List<Course> teacherCourseNames = getSubjectNames(teacherId);
+
+        System.out.println(courseNames.size());
 
         if (teacherCourseNames.isEmpty()) {
             return courseNames;

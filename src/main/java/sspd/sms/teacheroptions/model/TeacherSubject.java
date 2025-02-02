@@ -1,8 +1,10 @@
 package sspd.sms.teacheroptions.model;
 
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 import sspd.sms.courseoptions.model.Course;
 
+@Component
 @Entity
 @Table(name = "teacher_subjects")
 public class TeacherSubject {
