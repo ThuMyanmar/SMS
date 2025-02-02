@@ -21,6 +21,7 @@ module sspd.sms {
     requires com.jfoenix;
     requires java.desktop;
     requires static lombok;
+    requires org.slf4j;
 
 
     opens sspd.sms;

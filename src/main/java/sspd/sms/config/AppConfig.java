@@ -14,16 +14,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @ComponentScans({
-        @ComponentScan(basePackages = "sspd.sms"),
-        @ComponentScan(basePackages = "sspd.sms.teacheroptions.db"),
-        @ComponentScan(basePackages = "sspd.sms.teacheroptions.services"),
-        @ComponentScan(basePackages = "sspd.sms.teacheroptions.controllers"),
-        @ComponentScan(basePackages = "sspd.sms.courseoptions.db"),
-        @ComponentScan(basePackages = "sspd.sms.courseoptions.services"),
-        @ComponentScan(basePackages = "sspd.sms.classoptions.db"),
-        @ComponentScan(basePackages = "sspd.sms.classoptions.services"),
-        @ComponentScan(basePackages = "sspd.sms.classoptions.controllers")
+        @ComponentScan(basePackages = "sspd.sms")
+
 
 })
 public class AppConfig {
@@ -70,7 +64,7 @@ public class AppConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.format_sql", "true");
         properties.put("hibernate.hbm2ddl.auto", "update");

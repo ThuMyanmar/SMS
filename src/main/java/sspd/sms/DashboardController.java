@@ -21,7 +21,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static sspd.sms.Launch.context;
-import static sspd.sms.Launch.getContext;
 
 @Controller
 public class DashboardController implements Initializable {

@@ -18,6 +18,12 @@ public class GlobalExceptionHandler implements Thread.UncaughtExceptionHandler {
         }
     }
 
+    public static class DataAccessException extends RuntimeException {
+        public DataAccessException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);

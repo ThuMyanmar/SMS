@@ -1,17 +1,14 @@
 package sspd.sms.config;
 
+import lombok.Getter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SpringContextHelper {
+    @Getter
+    private static final ApplicationContext context =
+            new AnnotationConfigApplicationContext(AppConfig.class);
 
-    private SpringContextHelper() {}
-
-    private static final class ContextHolder {
-        private static final ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-    }
-
-    public static ApplicationContext getContext() {
-        return ContextHolder.context;
-    }
 }
