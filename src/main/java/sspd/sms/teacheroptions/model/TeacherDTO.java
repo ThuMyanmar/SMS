@@ -1,5 +1,10 @@
 package sspd.sms.teacheroptions.model;
 
+import lombok.Getter;
+import org.springframework.stereotype.Component;
+
+@Getter
+@Component
 public class TeacherDTO {
     private static volatile TeacherDTO instance;
     private Teacher teacher;
@@ -23,10 +28,6 @@ public class TeacherDTO {
         return instance;
     }
 
-    // Getter for teacher
-    public Teacher getTeacher() {
-        return teacher;
-    }
 
     // Setter for teacher
     public void setTeacher(Teacher teacher) {

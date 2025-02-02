@@ -48,8 +48,10 @@ public class TeacherSubjectController implements Initializable {
     @FXML
     private Label teachersublb;
 
+
+
     private final TeacherDTO dto = TeacherDTO.getInstance();
-    private final Teacher teacher = dto.getTeacher();
+
 
 
     private TeacherServices teacherServices;
@@ -69,6 +71,10 @@ public class TeacherSubjectController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+      //  System.out.println(teacherServices.getTeacherSubjects().size());
+
+     //   System.out.println(dto.getTeacher().getTeacher_id());
+
 
         getLoad();
         coursetableIni();
@@ -87,7 +93,7 @@ public class TeacherSubjectController implements Initializable {
             Course course = (Course) coursetable.getSelectionModel().getSelectedItem();
             course.setCourse_id(courseServices.findCourseByName(course.getCourse_name()));
 
-            TeacherSubject teacherSubject = new TeacherSubject(teacher, course);
+            TeacherSubject teacherSubject = new TeacherSubject(dto.getTeacher(), course);
 
             teacherServices.saveTeacherSubjects(teacherSubject);
 
@@ -118,7 +124,7 @@ public class TeacherSubjectController implements Initializable {
                 Course course = (Course) subjecttable.getSelectionModel().getSelectedItem();
                 course.setCourse_id(courseServices.findCourseByName(course.getCourse_name()));
 
-                TeacherSubject teacherSubject = new TeacherSubject(teacher, course);
+                TeacherSubject teacherSubject = new TeacherSubject(dto.getTeacher(), course);
 
 
                 teacherServices.removeTeacherSubjects(teacherSubject);
@@ -159,15 +165,17 @@ public class TeacherSubjectController implements Initializable {
     private void getLoad() {
 
 
-        teachernamelb.setText(teacher.getName());
+       teachernamelb.setText(dto.getTeacher().getName());
 
-        ObservableList<Course> clist = FXCollections.observableArrayList(teacherServices.getCourseList(teacher.getTeacher_id()));
+
+
+        ObservableList<Course> clist = FXCollections.observableArrayList(teacherServices.getCourseList(dto.getTeacher().getTeacher_id()));
 
 
         try {
 
 
-            ObservableList<Course> tlist = FXCollections.observableArrayList(teacherServices.getSubjectNames(teacher.getTeacher_id()));
+            ObservableList<Course> tlist = FXCollections.observableArrayList(teacherServices.getSubjectNames(dto.getTeacher().getTeacher_id()));
 
             subjecttable.setItems(tlist);
             coursetable.setItems(clist);

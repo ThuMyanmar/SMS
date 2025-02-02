@@ -23,14 +23,27 @@ import java.util.stream.Collectors;
 @Service
 public class TeacherServices {
 
-    @Autowired
-    Timpls tdb;
+
+    private Timpls tdb;
+
+
+    private Tsubimpls ts;
+
+
+    private Services courseServices;
 
     @Autowired
-    Tsubimpls ts;
-
+    public void setTdb(Timpls tdb) {
+        this.tdb = tdb;
+    }
     @Autowired
-    Services courseServices;
+    public void setTs(Tsubimpls ts) {
+        this.ts = ts;
+    }
+    @Autowired
+    public void setCourseServices(Services courseServices) {
+        this.courseServices = courseServices;
+    }
 
     public List<TeacherSubject> getTeacherSubjects() {
 
@@ -51,27 +64,28 @@ public class TeacherServices {
 
     public List<Course> getSubjectNames(int teacherId) {
 
-        List<Course>getList = new ArrayList<>();
-
         try{
 
-            getList.addAll(getTeacherSubjects().stream()
-                    .filter(teacherSubject -> teacherSubject.getTeacher().getTeacher_id()==(teacherId))
-                    .map(TeacherSubject::getCourse)
-                    .collect(Collectors.toList()));
+            List<Course> getList = getTeacherSubjects().stream()
+                    .filter(teacherSubject -> teacherSubject.getTeacher().getTeacher_id() == (teacherId))
+                    .map(TeacherSubject::getCourse).toList();
 
-        } catch (NullPointerException exe){
+            return getList;
+
+        } catch (NullPointerException _){
 
 
 
         }
 
-return null;
+        return null;
 
 
     }
 
     public List<Course> getCourseList(int teacherId) {
+
+
         List<Course> courseNames = courseServices.getAllCourses();
         List<Course> teacherCourseNames = getSubjectNames(teacherId);
 

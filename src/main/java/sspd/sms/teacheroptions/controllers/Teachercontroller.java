@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import sspd.sms.Launch;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 import sspd.sms.teacheroptions.db.Timpls;
@@ -33,11 +34,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Controller
+import static sspd.sms.Launch.context;
+
+@Controller
 public class Teachercontroller implements Initializable {
 
     @FXML
@@ -239,6 +243,8 @@ public class Teachercontroller implements Initializable {
 
             try{
 
+                fxmlLoader.setControllerFactory(context::getBean);
+
                 scene = new Scene(fxmlLoader.load());
                 stage.initStyle(StageStyle.UTILITY);
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -297,6 +303,8 @@ public class Teachercontroller implements Initializable {
 
         savebtn.setOnAction(event -> {
 
+            try {
+
                 String name = teachernametxt.getText();
                 String quali = teacherqualificationtxt.getText();
                 String contact = teachercontacttxt.getText();
@@ -304,6 +312,7 @@ public class Teachercontroller implements Initializable {
                 String address = teacheraddresstxt.getText();
 
                 String orgPath = teacherimg.getImage().getUrl();
+                System.out.println(orgPath);
                 File sourceFile = new File(orgPath.replace("file:",""));
 
                 File destinationFolder = new File("D:/backImage");
@@ -314,7 +323,7 @@ public class Teachercontroller implements Initializable {
 
                 File destinationFile = new File(destinationFolder,name+".jpg");
 
-            try {
+
                 Files.copy(sourceFile.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 String photoPath = destinationFile.getAbsolutePath();
                 Teacher teacher = new Teacher(name, quali, contact, email,address,photoPath);
@@ -322,9 +331,19 @@ public class Teachercontroller implements Initializable {
                 getLoadData();
                 setTextnull();
 
-            } catch (IOException  | org.hibernate.exception.ConstraintViolationException exception) {
+            } catch (NoSuchFileException e){
 
-                showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image");
+
+                showInformationDialog( "Error", "File Not Found","Permission Failed");
+
+            }
+
+
+
+            catch (IOException  | NullPointerException |org.hibernate.exception.ConstraintViolationException exception) {
+
+
+                showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image or Insert Image");
             }
 
 

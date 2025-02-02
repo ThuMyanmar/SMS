@@ -22,8 +22,13 @@ import static sspd.sms.Launch.getContext;
 public class Services {
 
 
+
+    private  Courseimpl cdb ;
+
     @Autowired
-    Courseimpl cdb ;
+    public void setCdb(Courseimpl cdb) {
+        this.cdb = cdb;
+    }
 
     private List<Course> courseList = new ArrayList<>();
 
