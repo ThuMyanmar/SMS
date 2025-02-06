@@ -40,7 +40,7 @@ public class AppConfig {
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         // HikariCP specific settings
-        hikariConfig.setMaximumPoolSize(20);
+        hikariConfig.setMaximumPoolSize(30);
         hikariConfig.setMinimumIdle(5);
         hikariConfig.setIdleTimeout(30000);
         hikariConfig.setConnectionTimeout(30000);
@@ -69,14 +69,10 @@ public class AppConfig {
         properties.put("hibernate.format_sql", "true");
         properties.put("hibernate.hbm2ddl.auto", "update");
         properties.put("hibernate.jdbc.batch_size", "100");
-        properties.put("hibernate.c3p0.min_size", "5");
-        properties.put("hibernate.c3p0.max_size", "20");
-        properties.put("hibernate.c3p0.timeout", "300");
-        properties.put("hibernate.c3p0.max_statements", "50");
-        properties.put("hibernate.c3p0.driverClass", "com.mysql.cj.jdbc.Driver");
         properties.put("hibernate.transaction.jta.platform", "org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform");
         properties.put("hibernate.order_inserts", "true");
         properties.put("hibernate.order_updates", "true");
+
 
 
 

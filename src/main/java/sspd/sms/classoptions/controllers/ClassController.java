@@ -148,6 +148,8 @@ public class ClassController implements Initializable {
                         coursetxt.setText(couserDTO.getCourse().getCourse_name());
 
 
+
+
                     });
 
 
@@ -421,6 +423,10 @@ public class ClassController implements Initializable {
                 stage.setTitle("Teacher Class");
                 stage.setScene(scene);
                 stage.show();
+
+                stage.setOnCloseRequest(event1 -> {
+                    getLoadData();
+                });
 
 
 

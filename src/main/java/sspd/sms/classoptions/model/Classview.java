@@ -36,6 +36,19 @@ public class Classview {
         this.status = status;
     }
 
+    public Classview(int class_id, Date date, String class_name, String course_name, int scedule, int limit_stu, String status, int totalteacher) {
+        this.class_id = class_id;
+        this.date = date;
+        this.class_name = class_name;
+        this.course_name = course_name;
+        this.scedule = scedule;
+        this.limit_stu = limit_stu;
+        this.status = status;
+        this.totalteacher = totalteacher;
+    }
+
+
+
 
     public String getStatus() {
         return status;

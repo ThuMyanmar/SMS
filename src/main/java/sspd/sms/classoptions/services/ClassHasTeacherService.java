@@ -18,10 +18,7 @@ import sspd.sms.teacheroptions.model.TeacherSubject;
 import sspd.sms.teacheroptions.services.TeacherServices;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,51 +52,30 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
 
     public List<Teacher> getAvailableTeachers(int classId) {
 
+
         List<TeacherSubject> teacherList = teacherServices.getTeacherSubjects();
 
-       // List<Classes> classesList = classService.getClasses();
 
-//        Course course = classesList.stream()
-//                .filter(classes -> classes.getClass_id() == classId)
-//                .map(Classes::getCourse)
-//                .findFirst().orElse(null);
+        Set<Integer> assignedTeacherIds = setAssignedTeachers(classId).stream()
+                .map(Teacher::getTeacher_id)
+                .collect(Collectors.toSet());
 
-
-        List<Teacher> assignedTeachers = getAssignedTeachers(classId);
-
-
-        return  teacherList.stream()
-                .map(TeacherSubject::getTeacher) // Teacher ကို mapping
-                .filter(teacher -> assignedTeachers.stream()
-                        .noneMatch(atlist -> atlist.getTeacher_id() == teacher.getTeacher_id()))
-                .distinct() // Duplicate Teachers တွေဖယ်ထုတ်ခြင်း
-                .collect(Collectors.toList());
-
-
-
-//        return teacherList.stream()
-//                .filter(teacherSubject -> {
-//                    assert course != null;
-//                    return teacherSubject.getCourse().getCourse_id() == course.getCourse_id();
-//                })
-//                .map(TeacherSubject::getTeacher).toList();
-
+        return teacherList.stream()
+                .map(TeacherSubject::getTeacher)
+                .filter(teacher -> !assignedTeacherIds.contains(teacher.getTeacher_id())) // O(1) contains check
+                .collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Teacher::getTeacher_id))))
+                .stream().toList();
     }
 
-    public List<Teacher>getAssignedTeachers(int classId) {
+    public List<Teacher>setAssignedTeachers(int classId) {
 
 
         List<ClasshasTeacher> teacherAll =getAllTask();
 
-        List<Teacher> getTeacherLiist = new ArrayList<>(teacherAll.stream()
-                .filter(classhasTeacher -> classhasTeacher.getClasses().getClass_id() == classId)
+
+        return new ArrayList<>(teacherAll.stream()
+                .filter(classhasTeacher1 -> classhasTeacher1.getClasses().getClass_id() == classId)
                 .map(ClasshasTeacher::getTeacher).toList());
-
-
-
-        return getTeacherLiist;
-
-
 
     }
 

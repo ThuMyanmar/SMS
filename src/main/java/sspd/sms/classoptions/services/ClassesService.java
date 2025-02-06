@@ -2,9 +2,11 @@ package sspd.sms.classoptions.services;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
+import sspd.sms.classoptions.model.ClasshasTeacher;
 import sspd.sms.classoptions.model.Classview;
 
 import java.time.LocalDate;
@@ -19,8 +21,17 @@ public class ClassesService {
 
     private final Classimpls classimpls;
 
+
+    private  ClassHasTeacherService classHasTeacherService;
+
+    @Autowired
+    public void setClassHasTeacherService(ClassHasTeacherService classHasTeacherService) {
+        this.classHasTeacherService = classHasTeacherService;
+    }
+
     public ClassesService(Classimpls classimpls) {
         this.classimpls = classimpls;
+
     }
 
     List<Classview> classviews = new ArrayList<>();
@@ -47,7 +58,9 @@ public class ClassesService {
                             courseName,
                             c.getScedule(),
                             c.getLimit_stu(),
-                            c.getStatus()==1?"Open":"Closed"
+                            c.getStatus()==1?"Open":"Closed",
+                            getTotalTeacherForClass(c.getClass_id())
+
                     );
                 })
                 .collect(Collectors.toList());
@@ -57,6 +70,13 @@ public class ClassesService {
         classviews.addAll(classesList);
 
         return classesList;
+    }
+
+    private int getTotalTeacherForClass(int class_id) {
+
+        return  classHasTeacherService.setAssignedTeachers(class_id).size();
+
+
     }
 
     public int countClasses() {

@@ -98,7 +98,7 @@ public class ClassHasTeacherController implements Initializable {
 
             avaliableTeachers.addAll(classHasTeacherService.getAvailableTeachers(classHasTeacherDTO.getClasses().getClass_id()));
 
-            assignedTeacher.addAll(classHasTeacherService.getAssignedTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+            assignedTeacher.addAll(classHasTeacherService.setAssignedTeachers(classHasTeacherDTO.getClasses().getClass_id()));
 
             teachertable.setItems(avaliableTeachers);
             setteachertable.setItems(assignedTeacher);
