@@ -28,6 +28,12 @@ public class ClassesService {
     List<Classes> classes = new ArrayList<>();
 
 
+    public List<Classes>getClasses() {
+
+        return classimpls.getAllTask();
+    }
+
+
     public List<Classview> getAllClasses() {
 
         List<Classview> classesList = classimpls.getAllTask().stream()

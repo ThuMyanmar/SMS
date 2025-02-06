@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.classoptions.db.ClasshasTeacherimpls;
+import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.ClasshasTeacher;
+import sspd.sms.courseoptions.model.Course;
 import sspd.sms.errorHandler.DataAccessException;
 import sspd.sms.errorHandler.ServiceException;
 import sspd.sms.teacheroptions.model.Teacher;
@@ -31,14 +33,18 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
     private final TeacherServices teacherServices;
 
     private final Validator validator;
+
     private final ClasshasTeacher classhasTeacher;
 
-    public ClassHasTeacherService(ClasshasTeacherimpls ctdb, TeacherServices teacherServices, Validator validator, ClasshasTeacher classhasTeacher) {
+    private final ClassesService classService;
+
+    public ClassHasTeacherService(ClasshasTeacherimpls ctdb, TeacherServices teacherServices, Validator validator, ClasshasTeacher classhasTeacher,ClassesService classService) {
 
         this.ctdb = ctdb;
         this.teacherServices = teacherServices;
         this.validator = validator;
         this.classhasTeacher = classhasTeacher;
+        this.classService = classService;
     }
 
 
@@ -47,21 +53,29 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
         return ctdb.getAllTask();
     }
 
-    public List<Teacher> getclassFilterTeacher(int classId) {
+    public List<Teacher> getAvailableTeachers(int classId) {
 
-        List<ClasshasTeacher> teacherAll = getAllTask();
+        List<TeacherSubject> teacherList = teacherServices.getTeacherSubjects();
+
+        List<Classes> classesList = classService.getClasses();
+
+        Course course = classesList.stream()
+                .filter(classes -> classes.getClass_id() == classId)
+                .map(Classes::getCourse)
+                .findFirst().orElse(null);
 
 
-        return teacherAll.stream()
-                .filter(classhasTeacher -> classhasTeacher.getClasses().getClass_id() == classId
-                        && getclassFilterTeacherList(classId).stream()
-                        .noneMatch(ct -> ct.getTeacher_id() == classhasTeacher.getTeacher().getTeacher_id()))
-                .map(ClasshasTeacher::getTeacher)
-                .collect(Collectors.toList());
+        return teacherList.stream()
+                .filter(teacherSubject -> {
+                    assert course != null;
+                    return teacherSubject.getCourse().getCourse_id() == course.getCourse_id();
+                })
+                .map(TeacherSubject::getTeacher).toList();
+
     }
 
 
-    public List<Teacher>getclassFilterTeacherList(int classId) {
+    public List<Teacher>getAssignedTeachers(int classId) {
 
 
         List<ClasshasTeacher> teacherAll =getAllTask();

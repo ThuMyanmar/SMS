@@ -87,14 +87,12 @@ public class ClassHasTeacherController implements Initializable {
     private void getLoadData() {
         try {
             int courseId = classHasTeacherDTO.getClasses().getCourse().getCourse_id();
-            ObservableList<Teacher> teachers = FXCollections.observableArrayList(
-                    classHasTeacherService.getFilteredTeachers(courseId)
-            );
 
-            ObservableList<Teacher>teacherList = FXCollections.observableArrayList(classHasTeacherService.getclassFilterTeacher(classHasTeacherDTO.getClasses().getClass_id()));
-            ObservableList<Teacher>addTeacherList = FXCollections.observableArrayList(classHasTeacherService.getclassFilterTeacherList(classHasTeacherDTO.getClasses().getClass_id()));
-            teachertable.setItems(teachers);
-            setteachertable.setItems(addTeacherList);
+
+            ObservableList<Teacher>avaliableTeachers = FXCollections.observableArrayList(classHasTeacherService.getAvailableTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+            ObservableList<Teacher>assignedTeacher = FXCollections.observableArrayList(classHasTeacherService.getAssignedTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+            teachertable.setItems(avaliableTeachers);
+            setteachertable.setItems(assignedTeacher);
         } catch (NullPointerException e) {
             showErrorAlert("Data not found", "Course or class information is missing");
         } catch (Exception e) {
