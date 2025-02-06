@@ -7,8 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
 import sspd.sms.classoptions.model.ClassHasTeacherDTO;
+import sspd.sms.classoptions.model.Classes;
+import sspd.sms.classoptions.model.ClasshasTeacher;
 import sspd.sms.classoptions.services.ClassHasTeacherService;
 import sspd.sms.teacheroptions.model.Teacher;
 import sspd.sms.teacheroptions.services.TeacherServices;
@@ -87,7 +90,11 @@ public class ClassHasTeacherController implements Initializable {
             ObservableList<Teacher> teachers = FXCollections.observableArrayList(
                     classHasTeacherService.getFilteredTeachers(courseId)
             );
+
+            ObservableList<Teacher>teacherList = FXCollections.observableArrayList(classHasTeacherService.getclassFilterTeacher(classHasTeacherDTO.getClasses().getClass_id()));
+            ObservableList<Teacher>addTeacherList = FXCollections.observableArrayList(classHasTeacherService.getclassFilterTeacherList(classHasTeacherDTO.getClasses().getClass_id()));
             teachertable.setItems(teachers);
+            setteachertable.setItems(addTeacherList);
         } catch (NullPointerException e) {
             showErrorAlert("Data not found", "Course or class information is missing");
         } catch (Exception e) {
@@ -104,6 +111,35 @@ public class ClassHasTeacherController implements Initializable {
 
     private void handleAddTeacher() {
 
+
+        Teacher teacher = teachertable.getSelectionModel().getSelectedItem();
+        if (teacher == null) {
+            showErrorAlert("No Teacher Selected", "Please select a teacher from the table");
+            return;
+        }
+
+
+
+        int teacherId = teacherServices.getTeacherId(teacher.getName());
+        teacher.setTeacher_id(teacherId);
+
+        Classes classes  = new Classes();
+        classes.setClass_id(classHasTeacherDTO.getClasses().getClass_id());
+
+
+        ClasshasTeacher association = new ClasshasTeacher();
+        association.setClasses(classes);
+        association.setTeacher(teacher);
+
+        classHasTeacherService.insertTask(association);
+
+        getLoadData();
+
+        showInformationAlert("Teacher Added", "Successfully added teacher");
+
+
+
+
     }
 
     private void handleRemoveTeacher() {
@@ -115,7 +151,7 @@ public class ClassHasTeacherController implements Initializable {
 
 
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        DesCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        DesCol.setCellValueFactory(new PropertyValueFactory<>("qualification"));
         subCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
 
@@ -128,5 +164,11 @@ public class ClassHasTeacherController implements Initializable {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }private void showInformationAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
+
 }

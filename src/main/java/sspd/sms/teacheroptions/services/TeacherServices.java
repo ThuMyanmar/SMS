@@ -89,7 +89,6 @@ public class TeacherServices {
         List<Course> courseNames = courseService.getAllCourses();
         List<Course> teacherCourseNames = getSubjectNames(teacherId);
 
-        System.out.println(courseNames.size());
 
         if (teacherCourseNames.isEmpty()) {
             return courseNames;

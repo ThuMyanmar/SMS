@@ -16,6 +16,7 @@ import sspd.sms.teacheroptions.model.TeacherSubject;
 import sspd.sms.teacheroptions.services.TeacherServices;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -30,19 +31,51 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
     private final TeacherServices teacherServices;
 
     private final Validator validator;
+    private final ClasshasTeacher classhasTeacher;
 
-    public ClassHasTeacherService(ClasshasTeacherimpls ctdb, TeacherServices teacherServices, Validator validator) {
+    public ClassHasTeacherService(ClasshasTeacherimpls ctdb, TeacherServices teacherServices, Validator validator, ClasshasTeacher classhasTeacher) {
 
         this.ctdb = ctdb;
         this.teacherServices = teacherServices;
         this.validator = validator;
-
+        this.classhasTeacher = classhasTeacher;
     }
 
 
     @Override
     public List<ClasshasTeacher> getAllTask() {
         return ctdb.getAllTask();
+    }
+
+    public List<Teacher> getclassFilterTeacher(int classId) {
+
+        List<ClasshasTeacher> teacherAll = getAllTask();
+
+
+        return teacherAll.stream()
+                .filter(classhasTeacher -> classhasTeacher.getClasses().getClass_id() == classId
+                        && getclassFilterTeacherList(classId).stream()
+                        .noneMatch(ct -> ct.getTeacher_id() == classhasTeacher.getTeacher().getTeacher_id()))
+                .map(ClasshasTeacher::getTeacher)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Teacher>getclassFilterTeacherList(int classId) {
+
+
+        List<ClasshasTeacher> teacherAll =getAllTask();
+
+        List<Teacher> getTeacherLiist = new ArrayList<>(teacherAll.stream()
+                .filter(classhasTeacher -> classhasTeacher.getClasses().getClass_id() == classId)
+                .map(ClasshasTeacher::getTeacher).toList());
+
+
+
+        return getTeacherLiist;
+
+
+
     }
 
     @Override

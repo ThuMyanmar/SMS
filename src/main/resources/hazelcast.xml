@@ -1,0 +1,9 @@
+<!-- src/main/resources/hazelcast.xml -->
+<hazelcast>
+    <network>
+        <port auto-increment="true">5701</port>
+    </network>
+    <map name="default">
+        <time-to-live-seconds>3600</time-to-live-seconds>
+    </map>
+</hazelcast>

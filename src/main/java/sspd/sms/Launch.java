@@ -7,7 +7,6 @@ import javafx.stage.Stage;
 import lombok.Getter;
 import org.springframework.context.ApplicationContext;
 import sspd.sms.config.SpringContextHelper;
-import sspd.sms.courseoptions.db.Courseimpl;
 import sspd.sms.errorHandler.GlobalExceptionHandler;
 
 import java.io.IOException;
@@ -31,8 +30,6 @@ public class Launch extends Application {
     public void init() throws Exception {
         context = SpringContextHelper.getContext();
     }
-
-
 
 
     public static void main(String[] args) {

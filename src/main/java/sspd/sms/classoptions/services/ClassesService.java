@@ -2,15 +2,10 @@ package sspd.sms.classoptions.services;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
-import sspd.sms.config.AppConfig;
-import sspd.sms.config.SpringContextHelper;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,21 +17,18 @@ import java.util.stream.Collectors;
 public class ClassesService {
 
 
-    @Autowired
-    Classimpls classimpls;
+    private final Classimpls classimpls;
 
+    public ClassesService(Classimpls classimpls) {
+        this.classimpls = classimpls;
+    }
 
     List<Classview> classviews = new ArrayList<>();
 
     List<Classes> classes = new ArrayList<>();
 
 
-
-
-
     public List<Classview> getAllClasses() {
-
-
 
         List<Classview> classesList = classimpls.getAllTask().stream()
                 .map(c -> {
