@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="631.0" prefWidth="1079.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layout.Registerstudentview">
+   <children>
+      <TableView fx:id="classtable" layoutX="14.0" layoutY="20.0" prefHeight="600.0" prefWidth="561.0" stylesheets="@../css/tableview.css">
+         <columns>
+            <TableColumn fx:id="nameCol" prefWidth="191.0" text="အတန်း အမည်" />
+            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="258.0" text="သင်ကြားမည့် ဘာသာရပ်" />
+            <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="112.0" text="ကန့်သတ်ဦးရေ" />
+         </columns>
+      </TableView>
+      <Label layoutX="705.0" layoutY="31.0" text="Student Registration Form">
+         <font>
+            <Font name="1st Sortie" size="22.0" />
+         </font>
+      </Label>
+      <Separator layoutX="579.0" layoutY="65.0" prefHeight="4.0" prefWidth="484.0" />
+      <Label layoutX="589.0" layoutY="93.0" text="အမည်">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="589.0" layoutY="121.0" prefHeight="45.0" prefWidth="289.0" stylesheets="@../css/txt.css">
+         <font>
+            <Font name="Pyidaungsu" size="11.0" />
+         </font>
+      </TextField>
+      <DatePicker layoutX="891.0" layoutY="121.0" prefHeight="42.0" prefWidth="174.0" stylesheets="@../css/datepicker.css" />
+      <Label layoutX="891.0" layoutY="93.0" text="မွေးနေ့">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="891.0" layoutY="218.0" prefHeight="39.0" prefWidth="174.0" stylesheets="@../css/conbox.css" />
+      <Label layoutX="891.0" layoutY="195.0" text="လိင်">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="589.0" layoutY="186.0" text="ဆက်သွယ်ရန်">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="589.0" layoutY="214.0" prefHeight="45.0" prefWidth="289.0" stylesheets="@../css/txt.css">
+         <font>
+            <Font name="Pyidaungsu" size="11.0" />
+         </font>
+      </TextField>
+      <Label layoutX="589.0" layoutY="282.0" text="အီးမေးလ်">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="589.0" layoutY="310.0" prefHeight="45.0" prefWidth="475.0" stylesheets="@../css/txt.css">
+         <font>
+            <Font name="Pyidaungsu" size="11.0" />
+         </font>
+      </TextField>
+      <TextArea layoutX="589.0" layoutY="409.0" prefHeight="110.0" prefWidth="475.0" styleClass="text-area" stylesheets="@../css/textarea.css" />
+      <Label layoutX="589.0" layoutY="374.0" text="နေရပ်လိပ်စာ">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
