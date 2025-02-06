@@ -52,7 +52,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="addtutorbtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Register">
+            <Button fx:id="addtutorbtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Show">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="addcoursebtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Register">
+            <Button fx:id="addcoursebtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Show">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
@@ -98,7 +98,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="addclassbtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Register">
+            <Button fx:id="addclassbtn" layoutX="105.0" layoutY="87.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="98.0" styleClass="success-button" stylesheets="@../css/btn.css" text="Show">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>

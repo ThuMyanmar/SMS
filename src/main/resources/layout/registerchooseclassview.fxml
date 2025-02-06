@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="535.0" prefWidth="1079.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layout.Registerchooseclassview">
+   <children>
+      <TableView fx:id="classtable" layoutX="14.0" layoutY="76.0" prefHeight="440.0" prefWidth="699.0" stylesheets="@../css/tableview.css">
+         <columns>
+            <TableColumn fx:id="nameCol" prefWidth="170.0" text="အတန်း အမည်" />
+            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="223.0" text="သင်ကြားမည့် ဘာသာရပ်" />
+            <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="110.0" text="ကန့်သတ်ဦးရေ" />
+            <TableColumn fx:id="totalTeacher" minWidth="0.0" prefWidth="88.0" text="ဆရာမများ" />
+            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="108.0" text="အခြေအနေ" />
+         </columns>
+      </TableView>
+      <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="22.0" prefHeight="45.0" prefWidth="699.0" stylesheets="@../css/txt.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="681.0" layoutY="54.0" size="24" text="" />
+   </children>
+</AnchorPane>
