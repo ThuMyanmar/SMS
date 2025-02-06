@@ -24,6 +24,7 @@ module sspd.sms {
     requires org.slf4j;
 
 
+
     opens sspd.sms;
     exports sspd.sms;
 
@@ -66,5 +67,8 @@ module sspd.sms {
 
     opens  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
     exports  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
+
+   opens sspd.sms.registeroptions.controllers to javafx.fxml;
+   exports sspd.sms.registeroptions.controllers to javafx.fxml;
 
 }

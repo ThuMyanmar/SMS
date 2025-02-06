@@ -40,11 +40,11 @@ public class AppConfig {
         hikariConfig.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
         // HikariCP specific settings
-        hikariConfig.setMaximumPoolSize(30);
+        hikariConfig.setMaximumPoolSize(100);
         hikariConfig.setMinimumIdle(5);
         hikariConfig.setIdleTimeout(30000);
         hikariConfig.setConnectionTimeout(30000);
-        hikariConfig.setMaxLifetime(600000);
+        hikariConfig.setMaxLifetime(1800000);
 
         return new HikariDataSource(hikariConfig);
     }

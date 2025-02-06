@@ -1,0 +1,63 @@
+/* Target the entire DatePicker */
+.date-picker {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #a0a0a0;
+    -fx-border-radius: 4px;
+}
+
+/* Text field inside the DatePicker */
+.date-picker .text-field {
+    -fx-background-color: white;
+    -fx-prompt-text-fill: #808080; /* Placeholder text color */
+    -fx-font-size: 14px;
+}
+
+/* Arrow button (to open the calendar) */
+.date-picker .arrow-button {
+    -fx-background-color: #4CAF50;
+    -fx-background-radius: 0 4px 4px 0;
+}
+.date-picker .arrow-button:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Calendar popup */
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-border-color: #a0a0a0;
+}
+
+/* Month/year header in the popup */
+.date-picker-popup .month-year-pane {
+    -fx-background-color: #4CAF50;
+}
+.date-picker-popup .month-year-pane .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Day cells in the calendar */
+.date-picker-popup .calendar-grid .day-cell {
+    -fx-background-color: white;
+    -fx-text-fill: #333;
+    -fx-border-color: transparent;
+}
+.date-picker-popup .calendar-grid .day-cell:hover {
+    -fx-background-color: #e0e0e0;
+}
+.date-picker-popup .calendar-grid .day-cell:selected {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Today's date cell */
+.date-picker-popup .calendar-grid .today {
+    -fx-background-color: #ffeb3b;
+    -fx-text-fill: #333;
+}
+
+/* Disabled dates */
+.date-picker-popup .calendar-grid .disabled {
+    -fx-text-fill: #a0a0a0;
+    -fx-opacity: 1; /* Override default opacity */
+}

@@ -463,7 +463,7 @@ public class ClassController implements Initializable {
 
         ObservableList<Classview> list = FXCollections.observableArrayList(classesService.getAllClasses());
 
-        countlb.setText(String.valueOf(classesService.countClasses()));
+        countlb.setText(String.valueOf(classesService.getAllClasses().size()));
 
         classtable.setItems(list);
 
