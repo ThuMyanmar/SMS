@@ -65,12 +65,21 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
                 .findFirst().orElse(null);
 
 
+        List<Teacher> assignedTeachers = getAssignedTeachers(classId);
+
+
         return teacherList.stream()
-                .filter(teacherSubject -> {
-                    assert course != null;
-                    return teacherSubject.getCourse().getCourse_id() == course.getCourse_id();
-                })
-                .map(TeacherSubject::getTeacher).toList();
+                .map(TeacherSubject::getTeacher)
+                .filter(teacher ->assignedTeachers.stream()
+                .noneMatch(atlist->atlist.getTeacher_id()== teacher.getTeacher_id())).toList();
+
+
+//        return teacherList.stream()
+//                .filter(teacherSubject -> {
+//                    assert course != null;
+//                    return teacherSubject.getCourse().getCourse_id() == course.getCourse_id();
+//                })
+//                .map(TeacherSubject::getTeacher).toList();
 
     }
 
