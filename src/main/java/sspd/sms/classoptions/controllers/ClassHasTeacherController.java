@@ -86,13 +86,24 @@ public class ClassHasTeacherController implements Initializable {
     @FXML
     private void getLoadData() {
         try {
-            int courseId = classHasTeacherDTO.getClasses().getCourse().getCourse_id();
 
 
-            ObservableList<Teacher>avaliableTeachers = FXCollections.observableArrayList(classHasTeacherService.getAvailableTeachers(classHasTeacherDTO.getClasses().getClass_id()));
-            ObservableList<Teacher>assignedTeacher = FXCollections.observableArrayList(classHasTeacherService.getAssignedTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+
+
+            ObservableList<Teacher>avaliableTeachers = FXCollections.observableArrayList();
+            ObservableList<Teacher>assignedTeacher = FXCollections.observableArrayList();
+
+            assignedTeacher.clear();
+            avaliableTeachers.clear();
+
+            avaliableTeachers.addAll(classHasTeacherService.getAvailableTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+
+            assignedTeacher.addAll(classHasTeacherService.getAssignedTeachers(classHasTeacherDTO.getClasses().getClass_id()));
+
             teachertable.setItems(avaliableTeachers);
             setteachertable.setItems(assignedTeacher);
+
+
         } catch (NullPointerException e) {
             showErrorAlert("Data not found", "Course or class information is missing");
         } catch (Exception e) {
@@ -140,7 +151,59 @@ public class ClassHasTeacherController implements Initializable {
 
     }
 
+    private Teacher getSelectedTeacherForDelete() {
+
+
+        return setteachertable.getSelectionModel().getSelectedItem();
+
+
+    }
+
+    private boolean validateTeacherSelection(Teacher teacher) {
+        if (teacher == null) {
+            showErrorAlert("No Teacher Selected", "Please select a teacher from the table");
+            return false;
+        }
+        return true;
+    }
+
     private void handleRemoveTeacher() {
+
+        Teacher teacher = getSelectedTeacherForDelete();
+        if (!validateTeacherSelection(teacher)) {
+            return;
+        }
+
+        ClasshasTeacher association = createClasshasTeacherAssociation(teacher);
+        classHasTeacherService.deleteTask(association);
+
+        getLoadData();
+        showInformationAlert("Teacher Removed", "Successfully removed teacher");
+    }
+
+    private ClasshasTeacher createClasshasTeacherAssociation(Teacher teacher) {
+
+        int teacherId = getTeacherId(teacher);
+
+        teacher.setTeacher_id(teacherId);
+
+        Classes classes = new Classes();
+        classes.setClass_id(classHasTeacherDTO.getClasses().getClass_id());
+
+        ClasshasTeacher association = new ClasshasTeacher();
+        association.setClasses(classes);
+        association.setTeacher(teacher);
+
+        int id = classHasTeacherService.getTeacherhasClassID(classes.getClass_id(),teacher.getTeacher_id());
+
+        association.setTeacher_classid(id);
+
+        return association;
+    }
+
+    private int getTeacherId(Teacher teacher) {
+
+        return teacherServices.getTeacherId(teacher.getName());
 
     }
 

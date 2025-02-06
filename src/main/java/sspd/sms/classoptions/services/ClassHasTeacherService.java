@@ -57,21 +57,24 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
 
         List<TeacherSubject> teacherList = teacherServices.getTeacherSubjects();
 
-        List<Classes> classesList = classService.getClasses();
+       // List<Classes> classesList = classService.getClasses();
 
-        Course course = classesList.stream()
-                .filter(classes -> classes.getClass_id() == classId)
-                .map(Classes::getCourse)
-                .findFirst().orElse(null);
+//        Course course = classesList.stream()
+//                .filter(classes -> classes.getClass_id() == classId)
+//                .map(Classes::getCourse)
+//                .findFirst().orElse(null);
 
 
         List<Teacher> assignedTeachers = getAssignedTeachers(classId);
 
 
-        return teacherList.stream()
-                .map(TeacherSubject::getTeacher)
-                .filter(teacher ->assignedTeachers.stream()
-                .noneMatch(atlist->atlist.getTeacher_id()== teacher.getTeacher_id())).toList();
+        return  teacherList.stream()
+                .map(TeacherSubject::getTeacher) // Teacher ကို mapping
+                .filter(teacher -> assignedTeachers.stream()
+                        .noneMatch(atlist -> atlist.getTeacher_id() == teacher.getTeacher_id()))
+                .distinct() // Duplicate Teachers တွေဖယ်ထုတ်ခြင်း
+                .collect(Collectors.toList());
+
 
 
 //        return teacherList.stream()
@@ -82,7 +85,6 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
 //                .map(TeacherSubject::getTeacher).toList();
 
     }
-
 
     public List<Teacher>getAssignedTeachers(int classId) {
 
@@ -97,6 +99,17 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
 
         return getTeacherLiist;
 
+
+
+    }
+
+    public int getTeacherhasClassID(int classId , int teacherId) {
+
+        List<ClasshasTeacher> teacherAll = getAllTask();
+
+       return teacherAll.stream()
+                .filter(classhasTeacher -> classhasTeacher.getClasses().getClass_id() == classId && classhasTeacher.getTeacher().getTeacher_id() == teacherId)
+                .map(ClasshasTeacher::getTeacher_classid).findFirst().orElse(-1);
 
 
     }
@@ -139,7 +152,26 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
     @Override
     public void deleteTask(ClasshasTeacher task) {
 
-        ctdb.deleteTask(task);
+        Set<ConstraintViolation<ClasshasTeacher>> violations = validator.validate(task);
+        if (!violations.isEmpty()) {
+            String errors = violations.stream()
+                    .map(v -> v.getPropertyPath() + ": " + v.getMessage())
+                    .collect(Collectors.joining("\n"));
+            throw new ServiceException("Validation errors:" + errors);
+        }
+
+        else {
+
+
+            try {
+                ctdb.deleteTask(task);
+            } catch (ConstraintViolationException e) {
+                throw new ServiceException("Validation failed for: " + e.getConstraintName(), e);
+            } catch (DataAccessException e) {
+                throw new ServiceException("Database error", e);
+            }
+
+        }
 
     }
 
@@ -147,20 +179,8 @@ public class ClassHasTeacherService implements Taskdao<ClasshasTeacher> {
     public void bactchTask(List<ClasshasTeacher> list) {
 
     }
-    public List<Teacher>getFilteredTeachers(int courseId) {
-
-        return teacherServices.getTeacherSubjects().stream()
-                .filter(
-                        teacherSubject -> teacherSubject!=null &&
-                        teacherSubject.getCourse()!=null &&
-                        teacherSubject.getCourse().getCourse_id()==courseId)
-                .map(TeacherSubject::getTeacher)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
 
 
-
-    }
 
 
 
