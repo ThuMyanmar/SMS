@@ -45,7 +45,7 @@ public class Classimpls implements Taskdao<Classes> {
             String hql = """
                     
                     SELECT c.class_name,c.limit_stu, co.course_name FROM Classes c
-                    JOIN Course co ON c.course.id = co.course_id WHERE c.status = 1
+                    JOIN Course co ON c.course.course_id = co.course_id WHERE c.status = 1
                     
                     
                     """;
@@ -59,8 +59,9 @@ public class Classimpls implements Taskdao<Classes> {
             for(Object[] row : results){
 
                 String class_name = (String) row[0];
-                String course_name = (String) row[1];
-                int limit_stu = (Integer) row[2];
+                int limit_stu = (Integer) row[1];
+                String course_name = (String) row[2];
+
 
                 Classview classview = new Classview();
                 classview.setClass_name(class_name);
@@ -74,10 +75,8 @@ public class Classimpls implements Taskdao<Classes> {
             return classviews;
 
         }catch (Exception e) {
-
-            return null;
-
-
+            e.printStackTrace();
+            return List.of();
         }
 
     }
