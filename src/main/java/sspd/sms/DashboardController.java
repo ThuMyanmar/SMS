@@ -77,7 +77,7 @@ public class DashboardController implements Initializable {
             courseNotic.setStyle("-fx-fill: #1E88E5;-fx-stroke:#1E88E5");
 
             FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/registerview.fxml"));
-            //fxmlLoader.setControllerFactory(context::getBean);
+            fxmlLoader.setControllerFactory(context::getBean);
 
             try {
 

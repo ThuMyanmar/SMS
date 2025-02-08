@@ -89,8 +89,8 @@ module sspd.sms {
     opens sspd.sms.registeroptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
     exports sspd.sms.registeroptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
 
-    opens sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
-    exports sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    opens sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,javafx.base;
+    exports sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,javafx.base;
 
     opens sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
     exports sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;

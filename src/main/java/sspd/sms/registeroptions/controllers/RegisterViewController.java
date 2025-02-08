@@ -16,8 +16,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import sspd.sms.Launch;
+import sspd.sms.classoptions.services.ClassesService;
+import sspd.sms.courseoptions.services.CourseService;
 import sspd.sms.registeroptions.model.RegisterView;
 import sspd.sms.registeroptions.service.RegisterService;
+import sspd.sms.teacheroptions.services.TeacherServices;
 
 import java.io.IOException;
 import java.net.URL;
@@ -78,8 +81,17 @@ public class RegisterViewController implements Initializable {
 
     private RegisterService registerService;
 
+    private TeacherServices teacherServices;
 
-    public RegisterViewController(RegisterService registerService) {
+    private CourseService courseService;
+
+    private ClassesService classesService;
+
+
+    public RegisterViewController(ClassesService classesService, CourseService courseService, TeacherServices teacherServices, RegisterService registerService) {
+        this.classesService = classesService;
+        this.courseService = courseService;
+        this.teacherServices = teacherServices;
         this.registerService = registerService;
     }
 
@@ -96,8 +108,12 @@ public class RegisterViewController implements Initializable {
     private void getLoadTableDate() {
 
         ObservableList<RegisterView> data = FXCollections.observableArrayList(registerService.getAllRegisterView());
-
         registertable.setItems(data);
+        countlb.setText(String.valueOf(data.size()));
+        stucountlb.setText(String.valueOf(data.size()));
+        tutorcountlb.setText(String.valueOf(teacherServices.getTeachers().size()));
+        coursecountlb.setText(String.valueOf(courseService.getAllCourses().size()));
+        classcountlb.setText(String.valueOf(classesService.getAllClasses().size()));
     }
 
     private void iniTable() {

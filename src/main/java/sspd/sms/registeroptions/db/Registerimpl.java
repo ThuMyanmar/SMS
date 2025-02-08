@@ -8,6 +8,8 @@ import sspd.sms.DAO.Taskdao;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.model.RegisterView;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -35,14 +37,34 @@ public class Registerimpl implements Taskdao<Register> {
 
         try (Session session = sessionFactory.openSession()) {
 
-            String hql = "SELECT r.re_date, s.stu_id, s.stu_name, c.class_name, co.course_name " +
-                    "FROM register r " +
-                    "JOIN student s ON r.student.id= s.stu_id " +
-                    "JOIN Classes c ON r.classes.id= c.class_id " +
-                    "JOIN Course co ON c.course.id = co.course_id";
+            String hql = """
+                    
+                    SELECT r.re_date, s.stu_id, s.stu_name, c.class_name, co.course_name 
+                                        FROM register r JOIN student s ON r.student.id= s.stu_id
+                                        JOIN Classes c ON r.classes.id= c.class_id
+                                        JOIN Course co ON c.course.id = co.course_id
+                    
+                    """;
+
+            List<Object[]> results = session.createQuery(hql).list();
+
+            List<RegisterView> registerViews = new ArrayList<>();
+
+            for(Object[] row : results){
+
+                Date re_date = (Date)row[0];
+                String stu_id = (String) row[1];
+                String stu_name = (String) row[2];
+                String class_name = (String) row[3];
+                String course_name = (String) row[4];
+                RegisterView registerView = new RegisterView(re_date, stu_id, stu_name, class_name, course_name);
+                registerViews.add(registerView);
 
 
-            return session.createQuery(hql).list();
+            }
+
+            return  registerViews;
+
 
         } catch (Exception e) {
             e.printStackTrace();
