@@ -37,6 +37,10 @@ public class RegisterChooseController implements Initializable {
 
 
     @FXML
+    private TableColumn<Classview, Integer> reg_stuCol;
+
+
+    @FXML
     private TextField searchboxtxt;
 
 
@@ -70,6 +74,7 @@ public class RegisterChooseController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("class_name"));
         courseCol.setCellValueFactory(new PropertyValueFactory<>("course_name"));
         limitstudentCol.setCellValueFactory(new PropertyValueFactory<>("limit_stu"));
+        reg_stuCol.setCellValueFactory(new PropertyValueFactory<>("registered_student"));
 
 
 

@@ -38,48 +38,53 @@ public class Classimpls implements Taskdao<Classes> {
     }
 
 
-    public List<Classview>getAllClassView() {
+    public List<Classview> getAllClassView() {
 
         try (Session session = sessionFactory.openSession()) {
 
             String hql = """
-                    
-                    SELECT c.class_name,c.limit_stu, co.course_name FROM Classes c
-                    JOIN Course co ON c.course.course_id = co.course_id WHERE c.status = 1
-                    
-                    
-                    """;
-
-
+            SELECT c.class_name, 
+                   c.limit_stu, 
+                   co.course_name, 
+                   COUNT(r.re_id) AS registered_students 
+            FROM Classes c
+            JOIN Course co ON c.course.course_id = co.course_id
+            LEFT JOIN register r ON r.classes.class_id = c.class_id
+            WHERE c.status = 1
+            GROUP BY c.class_name, c.limit_stu, co.course_name
+        """;
 
             List<Object[]> results = session.createQuery(hql).list();
 
-            List<Classview>classviews = new ArrayList<Classview>();
+            List<Classview> classviews = new ArrayList<>();
 
-            for(Object[] row : results){
+            for (Object[] row : results) {
 
                 String class_name = (String) row[0];
                 int limit_stu = (Integer) row[1];
                 String course_name = (String) row[2];
 
+                // Casting COUNT result to Long and converting it to Integer
+                Long registered_studentsLong = (Long) row[3];
+                int registered_students = registered_studentsLong.intValue();
 
                 Classview classview = new Classview();
                 classview.setClass_name(class_name);
                 classview.setLimit_stu(limit_stu);
                 classview.setCourse_name(course_name);
+                classview.setRegistered_student(registered_students);
                 classviews.add(classview);
 
             }
 
-            System.out.println(classviews.size());
             return classviews;
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return List.of();
         }
-
     }
+
 
     @Override
     public List<Classes> getAllTask() {

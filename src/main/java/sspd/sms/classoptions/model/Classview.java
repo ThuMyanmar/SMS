@@ -30,6 +30,8 @@ public class Classview {
 
     private int totalteacher;
 
+    private  int registered_student;
+
 
     public Classview(int class_id, Date date, String class_name, String course_name, int scedule, int limit_stu, String status) {
         this.class_id = class_id;
