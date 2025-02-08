@@ -2,10 +2,9 @@ package sspd.sms.classoptions.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import sspd.sms.courseoptions.model.Course;
-import sspd.sms.registeroptions.Models.Register;
+import sspd.sms.registeroptions.model.Register;
 
 import java.sql.Date;
 import java.util.Set;

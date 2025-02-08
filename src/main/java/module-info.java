@@ -69,8 +69,7 @@ module sspd.sms {
     opens  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
     exports  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
-   opens sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
-   exports sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
+
 
    opens sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
    exports sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
@@ -80,5 +79,20 @@ module sspd.sms {
 
     opens sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
     exports sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.studentoptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.studentoptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.registeroptions.controllers to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.registeroptions.controllers to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.registeroptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.registeroptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.registeroptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
 
 }

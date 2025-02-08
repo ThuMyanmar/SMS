@@ -1,4 +1,4 @@
-package sspd.sms.registeroptions.Models;
+package sspd.sms.registeroptions.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;

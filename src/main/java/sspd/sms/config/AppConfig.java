@@ -57,7 +57,8 @@ public class AppConfig {
                 "sspd.sms.teacheroptions",
                 "sspd.sms.courseoptions",
                 "sspd.sms.classoptions",
-                "sspd.sms.studentoptions"
+                "sspd.sms.studentoptions",
+                "sspd.sms.registeroptions"
         );
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;

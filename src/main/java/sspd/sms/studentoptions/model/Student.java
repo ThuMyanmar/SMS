@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
-import sspd.sms.registeroptions.Models.Register;
+import sspd.sms.registeroptions.model.Register;
 
 import java.sql.Date;
 import java.util.Set;
