@@ -80,7 +80,7 @@ create table teacher_class(
 
 create table register(
 
-	re_id VARCHAR (20) PRIMARY Key,
+	re_id int  PRIMARY Key Auto_Increment,
 	re_date DATE not null,
 	class_id int not null,
 	stu_id VARCHAR(20)not null,

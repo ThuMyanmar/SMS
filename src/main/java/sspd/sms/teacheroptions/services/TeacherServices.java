@@ -72,7 +72,7 @@ public class TeacherServices {
 
             return getList;
 
-        } catch (NullPointerException _){
+        } catch (NullPointerException e){
 
 
 

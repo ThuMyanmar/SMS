@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="535.0" prefWidth="1079.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="layout.Registerchooseclassview">
+<AnchorPane prefHeight="535.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.registeroptions.controllers.RegisterChooseController">
    <children>
       <TableView fx:id="classtable" layoutX="14.0" layoutY="76.0" prefHeight="440.0" prefWidth="699.0" stylesheets="@../css/tableview.css">
          <columns>
@@ -18,7 +18,12 @@
             <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="108.0" text="အခြေအနေ" />
          </columns>
       </TableView>
-      <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="22.0" prefHeight="45.0" prefWidth="699.0" stylesheets="@../css/txt.css" />
-      <FontAwesomeIconView glyphName="SEARCH" layoutX="681.0" layoutY="54.0" size="24" text="" />
+      <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="22.0" prefHeight="45.0" prefWidth="585.0" stylesheets="@../css/txt.css" />
+      <FontAwesomeIconView glyphName="SEARCH" layoutX="559.0" layoutY="53.0" size="24" text="" />
+      <Button fx:id="addStudent" layoutX="611.0" layoutY="24.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="103.0" styleClass="success-button" stylesheets="@../css/btn.css" text="အပ်မည်။">
+         <graphic>
+            <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: #5D4037;" size="24" wrappingWidth="30.285715103149414" />
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

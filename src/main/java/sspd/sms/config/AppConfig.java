@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
@@ -13,8 +14,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+@EnableTransactionManagement(proxyTargetClass = true)
 @ComponentScans({
         @ComponentScan(basePackages = "sspd.sms")
 

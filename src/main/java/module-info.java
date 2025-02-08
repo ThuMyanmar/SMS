@@ -2,7 +2,6 @@ module sspd.sms {
     requires javafx.controls;
     requires javafx.fxml;
     requires mysql.connector.j;
-    requires junit;
     requires spring.context;
     requires org.hibernate.orm.core;
     requires spring.beans;
@@ -22,6 +21,8 @@ module sspd.sms {
     requires java.desktop;
     requires static lombok;
     requires org.slf4j;
+    requires jakarta.transaction;
+    requires jakarta.cdi;
 
 
 
@@ -68,7 +69,7 @@ module sspd.sms {
     opens  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
     exports  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
-   opens sspd.sms.registeroptions.controllers to javafx.fxml;
-   exports sspd.sms.registeroptions.controllers to javafx.fxml;
+   opens sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
+   exports sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
 
 }

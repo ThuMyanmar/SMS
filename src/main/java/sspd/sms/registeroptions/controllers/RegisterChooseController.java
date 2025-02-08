@@ -1,4 +1,4 @@
 package sspd.sms.registeroptions.controllers;
 
-public class RegisterController {
+public class RegisterChooseController {
 }

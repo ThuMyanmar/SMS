@@ -41,6 +41,7 @@
 
 
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+    <tx:annotation-driven/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <tx:annotation-driven proxy-target-class="true"/>
