@@ -1,8 +1,6 @@
-package sspd.sms.studentoptions;
+package sspd.sms.studentoptions.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,8 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
+import sspd.sms.registeroptions.Models.Register;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -66,6 +66,11 @@ public class Student {
     @Column(name = "photo_path")
     private String photo_path;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Register> registerSet;
+
+
+
 
     public Student(String stu_name, Date stu_dob, String gender, String contact, String email, String address, String photo_path) {
         this.stu_name = stu_name;
@@ -76,6 +81,9 @@ public class Student {
         this.address = address;
         this.photo_path = photo_path;
     }
+
+
+
 
 
 }

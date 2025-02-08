@@ -72,4 +72,13 @@ module sspd.sms {
    opens sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
    exports sspd.sms.registeroptions.controllers to javafx.fxml,spring.beans;
 
+   opens sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+   exports sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.studentoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.studentoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
+    opens sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+    exports sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+
 }

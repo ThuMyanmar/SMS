@@ -56,7 +56,8 @@ public class AppConfig {
         sessionFactory.setPackagesToScan(
                 "sspd.sms.teacheroptions",
                 "sspd.sms.courseoptions",
-                "sspd.sms.classoptions"
+                "sspd.sms.classoptions",
+                "sspd.sms.studentoptions"
         );
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;

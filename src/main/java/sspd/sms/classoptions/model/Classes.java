@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import sspd.sms.courseoptions.model.Course;
+import sspd.sms.registeroptions.Models.Register;
 
 import java.sql.Date;
 import java.util.Set;
@@ -47,6 +48,9 @@ public class Classes {
 
     @OneToMany(mappedBy = "classes",fetch = FetchType.LAZY)
     private Set<ClasshasTeacher> classhasTeacherSet;
+
+    @OneToMany(mappedBy = "classes", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private Set<Register> registerSet;
 
 
     public Classes(int class_id, String class_name, Date date, Course course, int scedule, int limit_stu, int status) {

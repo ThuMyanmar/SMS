@@ -1,10 +1,9 @@
 package sspd.sms.registeroptions.Models;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import sspd.sms.classoptions.model.Classes;
-import sspd.sms.studentoptions.Student;
+import sspd.sms.studentoptions.model.Student;
 
 import java.sql.Date;
 import java.time.LocalDate;
