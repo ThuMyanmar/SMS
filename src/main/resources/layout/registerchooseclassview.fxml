@@ -11,11 +11,9 @@
    <children>
       <TableView fx:id="classtable" layoutX="14.0" layoutY="76.0" prefHeight="440.0" prefWidth="699.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="nameCol" prefWidth="170.0" text="အတန်း အမည်" />
-            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="223.0" text="သင်ကြားမည့် ဘာသာရပ်" />
-            <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="110.0" text="ကန့်သတ်ဦးရေ" />
-            <TableColumn fx:id="totalTeacher" minWidth="0.0" prefWidth="88.0" text="ဆရာမများ" />
-            <TableColumn fx:id="statusCol" minWidth="0.0" prefWidth="108.0" text="အခြေအနေ" />
+            <TableColumn fx:id="nameCol" prefWidth="209.0" text="အတန်း အမည်" />
+            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="380.0" text="သင်ကြားမည့် ဘာသာရပ်" />
+            <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="109.0" text="ကန့်သတ်ဦးရေ" />
          </columns>
       </TableView>
       <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="22.0" prefHeight="45.0" prefWidth="585.0" stylesheets="@../css/txt.css" />

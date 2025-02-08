@@ -27,6 +27,8 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
+import static sspd.sms.Launch.context;
+
 @Controller
 public class RegisterViewController implements Initializable {
 
@@ -143,6 +145,7 @@ public class RegisterViewController implements Initializable {
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/registerchooseclassview.fxml"));
+            fxmlLoader.setControllerFactory(context::getBean);
             Scene scene = new Scene(fxmlLoader.load());
 
 

@@ -11,7 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.classoptions.model.Classes;
+import sspd.sms.classoptions.model.Classview;
+import sspd.sms.registeroptions.model.RegisterView;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,6 +26,8 @@ public class Classimpls implements Taskdao<Classes> {
     private SessionFactory sessionFactory;
     private Validator validator;
 
+
+
     @Autowired
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
@@ -29,6 +35,51 @@ public class Classimpls implements Taskdao<Classes> {
     @Autowired
     public void setValidator(Validator validator) {
         this.validator = validator;
+    }
+
+
+    public List<Classview>getAllClassView() {
+
+        try (Session session = sessionFactory.openSession()) {
+
+            String hql = """
+                    
+                    SELECT c.class_name,c.limit_stu, co.course_name FROM Classes c
+                    JOIN Course co ON c.course.id = co.course_id WHERE c.status = 1
+                    
+                    
+                    """;
+
+
+
+            List<Object[]> results = session.createQuery(hql).list();
+
+            List<Classview>classviews = new ArrayList<Classview>();
+
+            for(Object[] row : results){
+
+                String class_name = (String) row[0];
+                String course_name = (String) row[1];
+                int limit_stu = (Integer) row[2];
+
+                Classview classview = new Classview();
+                classview.setClass_name(class_name);
+                classview.setLimit_stu(limit_stu);
+                classview.setCourse_name(course_name);
+                classviews.add(classview);
+
+            }
+
+            System.out.println(classviews.size());
+            return classviews;
+
+        }catch (Exception e) {
+
+            return null;
+
+
+        }
+
     }
 
     @Override

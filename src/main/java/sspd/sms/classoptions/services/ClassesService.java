@@ -44,6 +44,11 @@ public class ClassesService {
         return classimpls.getAllTask();
     }
 
+    public List<Classview>getClassviews() {
+
+        return classimpls.getAllClassView();
+    }
+
 
     public List<Classview> getAllClasses() {
 
