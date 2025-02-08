@@ -9,16 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="631.0" prefWidth="1079.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.registeroptions.controllers.RegisterViewController">
    <children>
       <TableView fx:id="registertable" layoutX="14.0" layoutY="222.0" prefHeight="400.0" prefWidth="1046.0" stylesheets="@../css/tableview.css">
          <columns>
-            <TableColumn fx:id="nameCol" prefWidth="190.0" text="လက်ခံသည့်ရက်စွဲ" />
-            <TableColumn fx:id="courseCol1" minWidth="0.0" prefWidth="115.0" text="အိုင်ဒီ" />
-            <TableColumn fx:id="courseCol11" minWidth="0.0" prefWidth="238.0" text="အမည်" />
-            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="233.0" text="အတန်း" />
-            <TableColumn fx:id="sceduleCol" minWidth="0.0" prefWidth="269.0" text="သင်ကြားမည့်ဘာသာရပ်" />
+            <TableColumn fx:id="dateCol" prefWidth="190.0" text="လက်ခံသည့်ရက်စွဲ" />
+            <TableColumn fx:id="idCol" minWidth="0.0" prefWidth="115.0" text="အိုင်ဒီ" />
+            <TableColumn fx:id="nameCol" minWidth="0.0" prefWidth="238.0" text="အမည်" />
+            <TableColumn fx:id="classCol" minWidth="0.0" prefWidth="233.0" text="အတန်း" />
+            <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="269.0" text="သင်ကြားမည့်ဘာသာရပ်" />
          </columns>
       </TableView>
       <AnchorPane layoutX="23.0" layoutY="14.0" prefHeight="137.0" prefWidth="226.0" style="-fx-background-color: #E0E0E0; -fx-background-radius: 15; -fx-border-radius: 15;">

@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.registeroptions.model.Register;
+import sspd.sms.registeroptions.model.RegisterView;
 
 import java.util.List;
 
@@ -28,6 +29,31 @@ public class Registerimpl implements Taskdao<Register> {
             return List.of();
         }
     }
+
+    public List<RegisterView>getRegisterView(){
+
+
+        try (Session session = sessionFactory.openSession()) {
+
+            String hql = "SELECT r.re_date, s.stu_id, s.stu_name, c.class_name, co.course_name " +
+                    "FROM register r " +
+                    "JOIN student s ON r.student.id= s.stu_id " +
+                    "JOIN Classes c ON r.classes.id= c.class_id " +
+                    "JOIN Course co ON c.course.id = co.course_id";
+
+
+            return session.createQuery(hql).list();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return List.of();
+        }
+
+
+
+    }
+
+
 
     @Override
     public void insertTask(Register task) {

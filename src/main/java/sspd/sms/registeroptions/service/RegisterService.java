@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.db.Registerimpl;
+import sspd.sms.registeroptions.model.RegisterView;
 
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,12 @@ public class RegisterService implements Taskdao<Register> {
     @Override
     public List<Register> getAllTask() {
         return registerimpl.getAllTask();
+    }
+
+    public List<RegisterView>getAllRegisterView(){
+
+        return registerimpl.getRegisterView();
+
     }
 
     @Override
