@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Controller;
+import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.Classview;
 import sspd.sms.classoptions.services.ClassesService;
 
@@ -56,6 +57,40 @@ public class RegisterChooseController implements Initializable {
 
         tableIni();
         getLoadData();
+
+        actionEvent();
+
+    }
+    @FXML
+    private void actionEvent() {
+
+        tableClickAction();
+
+
+
+    }
+
+    private void tableClickAction(){
+
+        classtable.setOnMouseClicked(event -> {
+
+            if(event.getClickCount() == 2){
+
+                Classview classview= classtable.getSelectionModel().getSelectedItem();
+
+
+
+            }
+
+
+
+
+
+        });
+
+
+
+
 
     }
 

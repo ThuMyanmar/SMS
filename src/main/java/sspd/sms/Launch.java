@@ -33,9 +33,6 @@ public class Launch extends Application {
 
 
     public static void main(String[] args) {
-
-
-
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
         launch();
     }
