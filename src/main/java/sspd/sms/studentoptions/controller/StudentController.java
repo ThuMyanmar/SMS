@@ -147,8 +147,8 @@ public class StudentController implements Initializable {
                 String name = stunametxt.getText();
                 Date dob = Date.valueOf(studof.getValue());
                 String gender = stugender.getValue();
-                String email = stuaddresstxt.getText();
-                String phone = stunametxt.getText();
+                String email = stuemailtxt.getText();
+                String phone = stuphonetxt.getText();
                 String address = stuaddresstxt.getText();
 
                 // Fix: Decode URL-encoded file path
