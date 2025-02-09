@@ -159,29 +159,40 @@ public class RegisterService implements Taskdao<Register> {
 
     }
 
-    public void insertTaskStudentAndRegister(Student student , Register register) {
-
+    public void insertTaskStudentAndRegister(Student student, Register register) {
         Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
+        Session session = null;
+
+        try {
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
 
-                    studentService.insertTask(student,session);
-                    insertTask(register,session);
+            // Student ကို session ထဲသို့ insert လုပ်ခြင်း
+            studentService.insertTask(student, session);
 
+            // Register ကို session ထဲသို့ insert လုပ်ခြင်း
+            insertTask(register, session);
 
+            // Information dialog အတိုင်ပင်ခံ
+            showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
 
-
+            // Transaction commit
             transaction.commit();
         } catch (Exception e) {
+            // Error ဖြစ်ရင် rollback
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-            showErrorDialog("Error","Data Insertion Error", "Register record inserted failed.");
-
+            // Error Dialog ထုတ်ပြောခြင်း
+            showErrorDialog("Error", "Data Insertion Error", "Register record insertion failed.");
+        } finally {
+            // session ပိတ်ဖို့လို
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
-
-
-
     }
+
+
 
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {

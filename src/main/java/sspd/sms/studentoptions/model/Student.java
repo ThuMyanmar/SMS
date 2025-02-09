@@ -1,10 +1,7 @@
 package sspd.sms.studentoptions.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,23 +28,16 @@ public class Student {
     private String stu_name;
 
     @Column(name = "stu_dob")
-    @NotBlank(message = " Date of Birth required")
     private Date stu_dob;
 
     @Column(name = "gender")
     @NotBlank(message = "gender required")
     private String gender;
 
-    @Column(name = "contact")
-    @NotBlank
-    @Pattern(
-            regexp = "^09[0-9]{7,9}$",
-            message = "Phone number must start with 09 and have 9 to 11 digits"
-    )
-    @Size(min = 5, max = 11)
+    @Column(name = "contact",length = 100)
     private String contact;
 
-    @Column(name = "email")
+
     @Email(
             regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$",
             message = "Invalid email format"
@@ -57,6 +47,7 @@ public class Student {
             message = "Only Gmail, Yahoo, or Outlook addresses are allowed"
     )
     @NotBlank(message = "Email required")
+    @Column(name = "email",length = 100)
     private String email;
 
     @Column(name = "address")

@@ -42,9 +42,9 @@ public class Teacher {
             regexp = "^[A-Za-z0-9._%+-]+@(gmail\\.com|yahoo\\.com|outlook\\.com)$",
             message = "Only Gmail, Yahoo, or Outlook addresses are allowed"
     )
-        @NotBlank(message = "Email required")
-        @Column(name = "email",length = 100)
-        private String email;
+    @NotBlank(message = "Email required")
+    @Column(name = "email",length = 100)
+    private String email;
 
     @Column(name = "address",length = 255)
     private String address;

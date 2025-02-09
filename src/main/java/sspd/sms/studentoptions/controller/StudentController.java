@@ -17,6 +17,8 @@ import sspd.sms.classoptions.services.ClassesService;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
@@ -141,59 +143,51 @@ public class StudentController implements Initializable {
     private void addStudent() {
 
         stusavebtn.setOnAction(event -> {
-
             try {
-
                 String name = stunametxt.getText();
-
                 Date dob = Date.valueOf(studof.getValue());
-
                 String gender = stugender.getValue();
-
                 String email = stuaddresstxt.getText();
-
                 String phone = stunametxt.getText();
+                String address = stuaddresstxt.getText();
 
-                String address  = stuaddresstxt.getText();
+                // Fix: Decode URL-encoded file path
+                String orgimgPath = stuimage.getImage().getUrl().replace("file:", "");
+                String decodedPath = URLDecoder.decode(orgimgPath, StandardCharsets.UTF_8.toString()); // ✅ Fix `%20`
+                File sourceFile = new File(decodedPath);
 
-                String orgimgPath = stuimage.getImage().getUrl();
-
-                File sourceFile = new File(orgimgPath.replace("file", ""));
+                System.out.println("Decoded Source Image Path: " + sourceFile.getAbsolutePath());
 
                 File destinationFolder = new File("D:/backImage/StudentImage");
-
                 if (!destinationFolder.exists()) {
-                    destinationFolder.mkdir();
+                    destinationFolder.mkdirs();
                 }
 
                 File destinationFile = new File(destinationFolder, name + ".jpg");
-
                 Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
                 String photoPath = destinationFile.getAbsolutePath();
 
-                Student student = new Student(generator.getStudentIDGenerate(),name, dob,gender,phone, email,address, photoPath);
+                Student student = new Student(generator.getStudentIDGenerate(), name, dob, gender, phone, email, address, photoPath);
 
                 Classes classes = new Classes();
                 classes.setClass_id(classesService.getClassesDTO().getClass_id());
 
-                Register register = new Register(classes,student);
+                Register register = new Register(classes, student);
 
-                registerService.insertTaskStudentAndRegister(student,register);
+                registerService.insertTaskStudentAndRegister(student, register);
 
-                showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
+
                 Stage stage = (Stage) stusavebtn.getScene().getWindow();
                 getResetDataClassDTO();
-                stage.close();
+              //  stage.close();
 
-            }catch (IOException | NullPointerException | ConstraintViolationException e){
-
-                showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image or Insert Image");
+            } catch (IOException | NullPointerException | ConstraintViolationException e) {
+                e.printStackTrace(); // Debugging
+                showInformationDialog("Error", "Failed to save the image.", "Failed to Save the image or Insert Image");
             }
-
-
-
-
         });
+
 
     }
 
