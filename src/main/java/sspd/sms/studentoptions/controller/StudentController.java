@@ -180,19 +180,15 @@ public class StudentController implements Initializable {
                 String decodedPath = URLDecoder.decode(orgimgPath, StandardCharsets.UTF_8);
                 File sourceFile = new File(decodedPath);
 
-                System.out.println("Decoded Source Image Path: " + sourceFile.getAbsolutePath());
 
                 File destinationFolder = new File("D:/backImage/StudentImage");
                 if (!destinationFolder.exists()) {
                     destinationFolder.mkdirs();
                 }
 
-                File destinationFile = new File(destinationFolder, name + ".jpg");
-                Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                String photoPath = destinationFile.getAbsolutePath();
 
-                Student student = new Student(generator.getStudentIDGenerate(), name, dob, gender, phone, email, address, photoPath);
+                Student student = new Student(generator.getStudentIDGenerate(), name, dob, gender, phone, email, address);
 
                 boolean bo = validate.testValidator(student);
 
@@ -208,6 +204,13 @@ public class StudentController implements Initializable {
                   boolean bo1 = validateregister.testValidator(register);
 
                   if(bo1){
+
+                      File destinationFile = new File(destinationFolder, name + ".jpg");
+                      Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                      String photoPath = destinationFile.getAbsolutePath();
+
+                     student.setPhoto_path(photoPath);
 
                       registerService.insertTaskStudentAndRegister(student, register);
 
