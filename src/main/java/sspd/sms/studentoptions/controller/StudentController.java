@@ -145,15 +145,31 @@ public class StudentController implements Initializable {
         stusavebtn.setOnAction(event -> {
             try {
                 String name = stunametxt.getText();
-                Date dob = Date.valueOf(studof.getValue());
+
+                Date dob = null;
+                if (studof.getValue() != null) {
+                    dob = Date.valueOf(studof.getValue());
+                } else {
+                    showInformationDialog("Error", "Date of Birth required", "Please select a valid Date of Birth.");
+                    return;
+                }
+
                 String gender = stugender.getValue();
                 String email = stuemailtxt.getText();
                 String phone = stuphonetxt.getText();
                 String address = stuaddresstxt.getText();
 
-                // Fix: Decode URL-encoded file path
-                String orgimgPath = stuimage.getImage().getUrl().replace("file:", "");
-                String decodedPath = URLDecoder.decode(orgimgPath, StandardCharsets.UTF_8.toString()); // ✅ Fix `%20`
+
+                String orgimgPath = null;
+
+                if (stuimage.getImage() != null) {
+                    orgimgPath = stuimage.getImage().getUrl().replace("file:", "");
+                } else {
+                    showInformationDialog("Error", "Image Not Found", "Please select an image before proceeding.");
+                    return;
+                }
+
+                String decodedPath = URLDecoder.decode(orgimgPath, StandardCharsets.UTF_8);
                 File sourceFile = new File(decodedPath);
 
                 System.out.println("Decoded Source Image Path: " + sourceFile.getAbsolutePath());
@@ -170,21 +186,29 @@ public class StudentController implements Initializable {
 
                 Student student = new Student(generator.getStudentIDGenerate(), name, dob, gender, phone, email, address, photoPath);
 
-                Classes classes = new Classes();
-                classes.setClass_id(classesService.getClassesDTO().getClass_id());
+                studentService.testValidator(student);
 
-                Register register = new Register(classes, student);
+//                Classes classes = new Classes();
+//                classes.setClass_id(classesService.getClassesDTO().getClass_id());
 
-                registerService.insertTaskStudentAndRegister(student, register);
+               // Register register = new Register(classes, student);
+
+               // registerService.insertTaskStudentAndRegister(student, register);
+
+                //showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
 
 
-                Stage stage = (Stage) stusavebtn.getScene().getWindow();
-                getResetDataClassDTO();
-              //  stage.close();
+//                Stage stage = (Stage) stusavebtn.getScene().getWindow();
+//                getResetDataClassDTO();
+//                stage.close();
 
-            } catch (IOException | NullPointerException | ConstraintViolationException e) {
-                e.printStackTrace(); // Debugging
-                showInformationDialog("Error", "Failed to save the image.", "Failed to Save the image or Insert Image");
+            } catch ( IOException | NullPointerException | ConstraintViolationException e) {
+
+                showErrorDialog("Error", "Failed to save the image.", "Failed to Save the image or Insert Image");
+            }
+            catch (IllegalStateException e){
+
+                showErrorDialog("Error", "Failed ", "Failed to Save Register");
             }
         });
 

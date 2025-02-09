@@ -13,7 +13,7 @@ create table student (
     stu_dob DATE,
     gender ENUM('Male', 'Female') DEFAULT 'Male',
     contact VARCHAR(30) NOT NULL,
-    email VARCHAR(100)UNIQUE,  -- Increased length for email
+    email VARCHAR(100),
     address TEXT,
     photo_path VARCHAR(255)
 );

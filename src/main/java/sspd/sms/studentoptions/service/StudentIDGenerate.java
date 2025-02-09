@@ -21,6 +21,7 @@ public class StudentIDGenerate {
     private static final String prefix = "S";
 
     public String getStudentIDGenerate() {
+
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd"));
         String endID = getLastID();
 

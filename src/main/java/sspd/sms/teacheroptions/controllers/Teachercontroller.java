@@ -311,52 +311,46 @@ public class Teachercontroller implements Initializable {
                 String email = teacheremailtxt.getText();
                 String address = teacheraddresstxt.getText();
 
-                String orgPath = teacherimg.getImage().getUrl();
 
-                File sourceFile = new File(orgPath.replace("file:",""));
+                String orgPath = teacherimg.getImage().getUrl();
+                if (orgPath != null && orgPath.startsWith("file:")) {
+                    orgPath = orgPath.substring(5); // Remove the 'file:' prefix
+
+
+                    orgPath = java.net.URLDecoder.decode(orgPath, java.nio.charset.StandardCharsets.UTF_8);
+                }
+
+                File sourceFile = new File(orgPath);
+
+
+                if (!sourceFile.exists()) {
+                    showInformationDialog("Error", "File Not Found", "The specified image file could not be found.");
+                    return;
+                }
 
                 File destinationFolder = new File("D:/backImage");
-
-                if(!destinationFolder.exists()){
+                if (!destinationFolder.exists()) {
                     destinationFolder.mkdir();
                 }
 
-                File destinationFile = new File(destinationFolder,name+".jpg");
+                File destinationFile = new File(destinationFolder, name + ".jpg");
 
 
-                Files.copy(sourceFile.toPath(),destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(sourceFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+
                 String photoPath = destinationFile.getAbsolutePath();
-                Teacher teacher = new Teacher(name, quali, contact, email,address,photoPath);
+                Teacher teacher = new Teacher(name, quali, contact, email, address, photoPath);
                 tdb.insertTask(teacher);
                 getLoadData();
                 setTextnull();
 
-            } catch (NoSuchFileException e){
-
-
-                showInformationDialog( "Error", "File Not Found","Permission Failed");
-
+            } catch (IOException | NullPointerException | org.hibernate.exception.ConstraintViolationException exception) {
+                showInformationDialog("Error", "Failed to save the image.", "Failed to save the image or insert image.");
             }
-
-
-
-            catch (IOException  | NullPointerException |org.hibernate.exception.ConstraintViolationException exception) {
-
-
-                showInformationDialog( "Error", "Failed to save the image.","Failded to Save the image or Insert Image");
-            }
-
-
-
-
-
-
-
-
-
-
 
         });
+
 
         teachertable.setOnKeyPressed(event -> {
           //

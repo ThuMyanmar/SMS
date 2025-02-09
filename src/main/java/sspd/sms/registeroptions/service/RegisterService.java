@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
@@ -90,7 +91,16 @@ public class RegisterService implements Taskdao<Register> {
         }
         else {
 
-            session.persist(task);
+            try {
+                session.persist(task);
+            }
+            catch (IllegalStateException e) {
+
+                showErrorDialog("Database Error","Data Insertion Error", "Register record not inserted successfully.");
+
+            }
+
+
 
 
 
@@ -160,8 +170,11 @@ public class RegisterService implements Taskdao<Register> {
     }
 
     public void insertTaskStudentAndRegister(Student student, Register register) {
+
         Transaction transaction = null;
         Session session = null;
+
+
 
         try {
             session = sessionFactory.openSession();
@@ -170,15 +183,12 @@ public class RegisterService implements Taskdao<Register> {
 
             studentService.insertTask(student, session);
 
-
             insertTask(register, session);
 
-
-            showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
-
-
             transaction.commit();
-        } catch (Exception e) {
+          //  showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
+
+        } catch (ConstraintViolationException e) {
 
             if (transaction != null) transaction.rollback();
             e.printStackTrace();

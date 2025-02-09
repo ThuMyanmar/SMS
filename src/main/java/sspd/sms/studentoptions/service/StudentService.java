@@ -65,6 +65,26 @@ public class StudentService implements Taskdao<Student> {
 
     }
 
+    public void  testValidator(Student task) {
+
+
+        Set<ConstraintViolation<Student>> violations = validator.validate(task);
+
+
+//        String name = null;
+//
+//        if (!violations.isEmpty()) {
+//            StringBuilder errorMessages = new StringBuilder();
+//            for (ConstraintViolation<Student> violation : violations) {
+//                errorMessages.append(violation.getMessage()).append("\n");
+//                name = String.valueOf(violation.getPropertyPath());
+//            }
+//           // showErrorDialog("Database Error","Data Insertion Error",errorMessages.toString()+"\n"+name);
+//
+//        }
+
+    }
+
     @Override
     public void updateTask(Student task) {
 
