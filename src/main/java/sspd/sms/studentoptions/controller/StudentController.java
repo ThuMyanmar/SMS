@@ -133,8 +133,6 @@ public class StudentController implements Initializable {
                     e.printStackTrace();
 
                 }
-            } else {
-
             }
 
 
@@ -215,11 +213,9 @@ public class StudentController implements Initializable {
                       registerService.insertTaskStudentAndRegister(student, register);
 
                       showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
+                      resetForm();
+                      getLoadData();
 
-
-                      Stage stage = (Stage) stusavebtn.getScene().getWindow();
-                      getResetDataClassDTO();
-                      stage.close();
                   }
 
 
@@ -242,6 +238,16 @@ public class StudentController implements Initializable {
 
     }
 
+    private void resetForm() {
+        stunametxt.clear();
+        studof.setValue(null);
+        stugender.setValue(null);
+        stuphonetxt.clear();
+        stuemailtxt.clear();
+        stuaddresstxt.clear();
+        stuimage.setImage(null);
+    }
+
     private void getResetDataClassDTO(){
 
         classesService.setClassesDTO(null);
@@ -254,6 +260,7 @@ public class StudentController implements Initializable {
         gender.setItems(options);
 
     }
+
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);

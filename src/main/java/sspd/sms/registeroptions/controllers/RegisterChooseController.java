@@ -97,11 +97,12 @@ public class RegisterChooseController implements Initializable {
 
                     stage.setTitle("သင်တန်းအပ်ခြင်း");
                     stage.setScene(scene);
-                    stage.showAndWait();
+                    stage.show();
 
                     stage.setOnCloseRequest(event1 -> {
 
                         getLoadData();
+                        getResetDataClassDTO();
 
                     });
 
@@ -127,6 +128,12 @@ public class RegisterChooseController implements Initializable {
 
 
 
+
+    }
+
+    private void getResetDataClassDTO(){
+
+        classesService.setClassesDTO(null);
 
     }
 

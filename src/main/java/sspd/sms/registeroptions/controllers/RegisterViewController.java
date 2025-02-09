@@ -159,7 +159,15 @@ public class RegisterViewController implements Initializable {
 
             stage.setTitle("အတန်းရွေးချယ်ခြင်း");
             stage.setScene(scene);
-            stage.showAndWait();
+            stage.show();
+
+            stage.setOnCloseRequest(event1 -> {
+
+                getLoadTableDate();
+
+            });
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
