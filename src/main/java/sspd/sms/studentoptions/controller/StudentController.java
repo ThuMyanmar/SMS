@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import sspd.sms.classoptions.DTO.ClassesDTO;
 import sspd.sms.classoptions.model.Classes;
@@ -27,6 +28,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
+import sspd.sms.errorHandler.Validation;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.service.RegisterService;
 import sspd.sms.studentoptions.model.Student;
@@ -73,6 +75,12 @@ public class StudentController implements Initializable {
     private StudentIDGenerate generator;
 
     private RegisterService registerService;
+
+    @Autowired
+    private Validation<Student> validate;
+
+    @Autowired
+    private Validation<Register> validateregister;
 
     public StudentController(ClassesService classesService, StudentService studentService, StudentIDGenerate generator, RegisterService registerService) {
         this.classesService = classesService;
@@ -186,23 +194,39 @@ public class StudentController implements Initializable {
 
                 Student student = new Student(generator.getStudentIDGenerate(), name, dob, gender, phone, email, address, photoPath);
 
-                studentService.testValidator(student);
+                boolean bo = validate.testValidator(student);
 
-//                Classes classes = new Classes();
-//                classes.setClass_id(classesService.getClassesDTO().getClass_id());
-
-               // Register register = new Register(classes, student);
-
-               // registerService.insertTaskStudentAndRegister(student, register);
-
-                //showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
+                Classes classes = new Classes();
+                classes.setClass_id(classesService.getClassesDTO().getClass_id());
 
 
-//                Stage stage = (Stage) stusavebtn.getScene().getWindow();
-//                getResetDataClassDTO();
-//                stage.close();
+
+                if(bo){
+
+                  Register register = new Register(classes, student);
+
+                  boolean bo1 = validateregister.testValidator(register);
+
+                  if(bo1){
+
+                      registerService.insertTaskStudentAndRegister(student, register);
+
+                      showInformationDialog("Success", "Register Completed", "Register record inserted successfully.");
+
+
+                      Stage stage = (Stage) stusavebtn.getScene().getWindow();
+                      getResetDataClassDTO();
+                      stage.close();
+                  }
+
+
+                }
+
+
+//
 
             } catch ( IOException | NullPointerException | ConstraintViolationException e) {
+                e.printStackTrace();
 
                 showErrorDialog("Error", "Failed to save the image.", "Failed to Save the image or Insert Image");
             }

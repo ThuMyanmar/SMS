@@ -97,4 +97,7 @@ module sspd.sms {
     opens sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
     exports sspd.sms.registeroptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
 
+    opens sspd.sms.errorHandler to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
+    exports sspd.sms.errorHandler to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
+
 }
