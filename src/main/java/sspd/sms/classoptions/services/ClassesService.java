@@ -66,18 +66,10 @@ public class ClassesService {
                 .forEach(classimpls::updateStatus);
     }
 
-
-
-
-
-
     public void UpdateLimit(){
 
-        //classimpls.updateStatus(classimpls.studentLimitUpdate());
         studentLimitUpdate();
     }
-
-
 
     public List<Classview> getAllClasses() {
 
@@ -113,12 +105,6 @@ public class ClassesService {
 
     }
 
-    public int countClasses() {
-
-        return classes.size();
-    }
-
-
     public void SaveClass(Classes classes) {
 
             int oldSize = classimpls.getAllTask().size();
@@ -146,27 +132,6 @@ public class ClassesService {
         return endDate.format(formatter);
     }
 
-
-    public int getStatus(int class_id) {
-        return classes.stream()
-                .filter(classes1 -> classes1.getClass_id() == class_id)
-                .map(Classes::getStatus)
-                .findFirst()
-                .orElse(-1);
-    }
-
-    public int  getLimitStu(int class_id) {
-
-        return classes.stream()
-                .filter(classes1 -> classes1.getClass_id() == class_id)
-                .map(Classes::getLimit_stu)
-                .findFirst()
-                .orElse(-1);
-
-
-    }
-
-
     public void classUpdate(Classes classes) {
 
 
@@ -175,9 +140,6 @@ public class ClassesService {
 
 
     }
-
-
-
 
     public int getClassIdd(String classname){
 
@@ -206,7 +168,6 @@ public class ClassesService {
 
         }
     }
-
 
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {

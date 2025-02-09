@@ -205,8 +205,6 @@ public class Classimpls implements Taskdao<Classes> {
         }
     }
 
-
-
     @Override
     public void deleteTask(Classes task) {
         Set<ConstraintViolation<Classes>> violations = validator.validate(task);
