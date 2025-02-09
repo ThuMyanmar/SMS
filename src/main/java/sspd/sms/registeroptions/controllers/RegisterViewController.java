@@ -101,6 +101,8 @@ public class RegisterViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+        iniUpdate();
+
         iniTable();
         actionEvent();
         getLoadTableDate();
@@ -126,6 +128,12 @@ public class RegisterViewController implements Initializable {
         classCol.setCellValueFactory(new PropertyValueFactory<>("class_name"));
         courseCol.setCellValueFactory(new PropertyValueFactory<>("course_name"));
 
+
+    }
+
+    private void iniUpdate(){
+
+        classesService.UpdateLimit();
 
     }
 

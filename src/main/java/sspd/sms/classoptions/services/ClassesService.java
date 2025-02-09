@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import sspd.sms.classoptions.DTO.ClassesDTO;
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
-import sspd.sms.classoptions.model.ClasshasTeacher;
 import sspd.sms.classoptions.model.Classview;
 
 import java.time.LocalDate;
@@ -54,6 +53,30 @@ public class ClassesService {
 
         return classimpls.getAllClassView();
     }
+
+    public void studentLimitUpdate() {
+        getClassviews().stream()
+                .filter(c -> c.getRegistered_student() == c.getLimit_stu())
+                .map(c -> {
+                    Classes classes1 = new Classes();
+                    classes1.setClass_id(getClassIdd(c.getClass_name()));
+                    classes1.setStatus(0);
+                    return classes1;
+                })
+                .forEach(classimpls::updateStatus);
+    }
+
+
+
+
+
+
+    public void UpdateLimit(){
+
+        //classimpls.updateStatus(classimpls.studentLimitUpdate());
+        studentLimitUpdate();
+    }
+
 
 
     public List<Classview> getAllClasses() {

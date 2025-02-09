@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import sspd.sms.DAO.Taskdao;
@@ -86,6 +87,10 @@ public class Classimpls implements Taskdao<Classes> {
     }
 
 
+
+
+
+
     @Override
     public List<Classes> getAllTask() {
 
@@ -151,6 +156,8 @@ public class Classimpls implements Taskdao<Classes> {
         } else {
 
 
+
+
             Session session = sessionFactory.openSession();
             session.beginTransaction();
             session.merge(task);
@@ -162,6 +169,43 @@ public class Classimpls implements Taskdao<Classes> {
         }
 
     }
+
+    public void updateStatus(Classes task) {
+        String hql = """
+            UPDATE Classes c
+            SET c.status = :status
+            WHERE c.class_id = :class_id
+            """;
+
+        Session session = null;
+        try {
+            session = sessionFactory.openSession();
+            session.beginTransaction();
+
+
+            Query query = session.createQuery(hql);
+            query.setParameter("status", task.getStatus());
+            query.setParameter("class_id", task.getClass_id());
+
+            query.executeUpdate();
+
+            session.getTransaction().commit();
+
+
+        } catch (Exception e) {
+            if (session != null && session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            showErrorDialog("Error", "Data Update Failed", "An error occurred while updating the course data.");
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
+
 
     @Override
     public void deleteTask(Classes task) {
