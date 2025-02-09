@@ -4,6 +4,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
@@ -36,6 +37,11 @@ public class StudentService implements Taskdao<Student> {
 
     @Override
     public void insertTask(Student task) {
+
+    }
+
+    public void insertTask(Student task, Session session) {
+
         Set<ConstraintViolation<Student>> violations = validator.validate(task);
 
         String name = null;
@@ -51,11 +57,10 @@ public class StudentService implements Taskdao<Student> {
         }
         else {
 
-            studentimpl.insertTask(task);
-            showInformationDialog("Success", "Insertion Completed", "Student record inserted successfully.");
-
+           studentimpl.insertTask(task, session);
 
         }
+
 
 
     }

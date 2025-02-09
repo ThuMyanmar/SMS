@@ -1,15 +1,13 @@
 package sspd.sms.registeroptions.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -94,16 +92,30 @@ public class RegisterChooseController implements Initializable {
 
 
                     Stage mainStage = (Stage) addStudent.getScene().getWindow();
-                    stage.initOwner(mainStage); // Set owner to main stage
+                    stage.initOwner(mainStage);
 
 
-                    stage.setTitle("အတန်းရွေးချယ်ခြင်း");
+                    stage.setTitle("သင်တန်းအပ်ခြင်း");
                     stage.setScene(scene);
                     stage.showAndWait();
+
+                    stage.setOnCloseRequest(event1 -> {
+
+                        getLoadData();
+
+                    });
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
+            }
+
+            else {
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                showErrorDialog("Class","Class အမှား","Class ရွေးချယ်ပါ။");
             }
 
 
@@ -137,10 +149,6 @@ public class RegisterChooseController implements Initializable {
 
             }
 
-
-
-
-
         });
 
 
@@ -170,4 +178,25 @@ public class RegisterChooseController implements Initializable {
 
 
     }
+
+    private void showErrorDialog(String title, String header, String content) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        });
+    }
+
+    private void showInformationDialog(String title, String header, String content) {
+        javafx.application.Platform.runLater(() -> {
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        });
+    }
+
 }

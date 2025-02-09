@@ -26,18 +26,18 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="14.0" layoutY="168.0" prefHeight="45.0" prefWidth="655.0" promptText="Eng လိုသာရေးပေးပါ။" stylesheets="@../css/txt.css">
+      <TextField fx:id="stunametxt" layoutX="14.0" layoutY="168.0" prefHeight="45.0" prefWidth="655.0" promptText="Eng လိုသာရေးပေးပါ။" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
       </TextField>
-      <DatePicker layoutX="18.0" layoutY="254.0" prefHeight="53.0" prefWidth="340.0" promptText="မွေးနေ့" stylesheets="@../css/datepicker.css" />
+      <DatePicker fx:id="studof" layoutX="18.0" layoutY="254.0" prefHeight="53.0" prefWidth="340.0" promptText="မွေးနေ့" stylesheets="@../css/datepicker.css" />
       <Label layoutX="18.0" layoutY="226.0" text="မွေးနေ့">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox layoutX="376.0" layoutY="260.0" prefHeight="45.0" prefWidth="289.0" promptText="ယောကျာ်း" stylesheets="@../css/conbox.css" />
+      <ComboBox fx:id="stugender" layoutX="376.0" layoutY="260.0" prefHeight="45.0" prefWidth="289.0" promptText="ယောကျာ်း" stylesheets="@../css/conbox.css" />
       <Label layoutX="377.0" layoutY="236.0" text="လိင်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
@@ -48,7 +48,7 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="18.0" layoutY="363.0" prefHeight="45.0" prefWidth="340.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuphonetxt" layoutX="18.0" layoutY="363.0" prefHeight="45.0" prefWidth="340.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
@@ -58,18 +58,18 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="376.0" layoutY="363.0" prefHeight="45.0" prefWidth="459.0" promptText="hlainghtun2018@gmail.com" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuemailtxt" layoutX="376.0" layoutY="363.0" prefHeight="45.0" prefWidth="459.0" promptText="hlainghtun2018@gmail.com" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
       </TextField>
-      <TextArea layoutX="19.0" layoutY="464.0" prefHeight="211.0" prefWidth="818.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area" stylesheets="@../css/textarea.css" />
+      <TextArea fx:id="stuaddresstxt" layoutX="19.0" layoutY="464.0" prefHeight="211.0" prefWidth="818.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area" stylesheets="@../css/textarea.css" />
       <Label layoutX="21.0" layoutY="427.0" text="နေရပ်လိပ်စာ">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="21.0" layoutY="686.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="174.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
+      <Button fx:id="stusavebtn" layoutX="21.0" layoutY="686.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="174.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: #5D4037;" size="24" wrappingWidth="30.285715103149414" />
          </graphic>
@@ -81,7 +81,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="61.0" layoutY="13.0" text="stu0001" textFill="WHITE">
+            <Label fx:id="stuidtxt" layoutX="61.0" layoutY="13.0" text="stu0001" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -98,7 +98,7 @@
       </Button>
       <Pane layoutX="686.0" layoutY="127.0" prefHeight="172.0" prefWidth="145.0" styleClass="image-view" stylesheets="@../style/imageview.css">
          <children>
-            <ImageView fx:id="teacherimg" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
+            <ImageView fx:id="stuimage" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
          </children>
       </Pane>
    </children>

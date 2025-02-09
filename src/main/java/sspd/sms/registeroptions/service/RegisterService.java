@@ -1,14 +1,22 @@
 package sspd.sms.registeroptions.service;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
+import sspd.sms.classoptions.model.Classes;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.db.Registerimpl;
 import sspd.sms.registeroptions.model.RegisterView;
+import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.service.StudentService;
 
 import java.util.List;
 import java.util.Set;
@@ -18,12 +26,15 @@ public class RegisterService implements Taskdao<Register> {
 
     private final Validator validator;
     private final Registerimpl registerimpl;
+    private final StudentService studentService;
+    private final SessionFactory sessionFactory;
 
-    public RegisterService(Validator validator, Registerimpl registerimpl) {
+    public RegisterService(Validator validator, Registerimpl registerimpl, StudentService studentService, SessionFactory sessionFactory) {
         this.validator = validator;
         this.registerimpl = registerimpl;
+        this.studentService = studentService;
+        this.sessionFactory = sessionFactory;
     }
-
 
     @Override
     public List<Register> getAllTask() {
@@ -59,6 +70,34 @@ public class RegisterService implements Taskdao<Register> {
 
 
         }
+
+    }
+
+    public void insertTask(Register task,Session session) {
+
+        Set<ConstraintViolation<Register>> violations = validator.validate(task);
+
+        String name = null;
+
+        if (!violations.isEmpty()) {
+            StringBuilder errorMessages = new StringBuilder();
+            for (ConstraintViolation<Register> violation : violations) {
+                errorMessages.append(violation.getMessage()).append("\n");
+                name = String.valueOf(violation.getPropertyPath());
+            }
+            showErrorDialog("Database Error","Data Insertion Error", errorMessages +"\n"+name);
+
+        }
+        else {
+
+            session.persist(task);
+
+
+
+
+
+        }
+
 
     }
 
@@ -117,6 +156,30 @@ public class RegisterService implements Taskdao<Register> {
 
     @Override
     public void bactchTask(List<Register> list) {
+
+    }
+
+    public void insertTaskStudentAndRegister(Student student , Register register) {
+
+        Transaction transaction = null;
+        try (Session session = sessionFactory.openSession()) {
+            transaction = session.beginTransaction();
+
+                    studentService.insertTask(student,session);
+                    insertTask(register,session);
+
+
+
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+            showErrorDialog("Error","Data Insertion Error", "Register record inserted failed.");
+
+        }
+
+
 
     }
 

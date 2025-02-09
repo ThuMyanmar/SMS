@@ -312,7 +312,7 @@ public class Teachercontroller implements Initializable {
                 String address = teacheraddresstxt.getText();
 
                 String orgPath = teacherimg.getImage().getUrl();
-                System.out.println(orgPath);
+
                 File sourceFile = new File(orgPath.replace("file:",""));
 
                 File destinationFolder = new File("D:/backImage");

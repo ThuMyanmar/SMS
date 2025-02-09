@@ -79,19 +79,28 @@ public class Registerimpl implements Taskdao<Register> {
 
     @Override
     public void insertTask(Register task) {
-        Transaction transaction = null;
-        try (Session session = sessionFactory.openSession()) {
-            transaction = session.beginTransaction();
-            session.persist(task);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
 
+    }
+
+    public void insertTask(Register task,Session session){
+
+
+        if(session ==null){
+
+            try (Session newSession = sessionFactory.openSession()) {
+                Transaction tx = newSession.beginTransaction();
+                newSession.persist(task);
+                tx.commit();
+            }
+
+        }else {
+            session.persist(task);
         }
 
 
     }
+
+
 
     @Override
     public void updateTask(Register task) {
