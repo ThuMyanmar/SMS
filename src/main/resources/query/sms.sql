@@ -128,6 +128,32 @@ CREATE TABLE users (
     email VARCHAR(100) UNIQUE
 );
 
+CREATE TABLE student_schedule (
+schedule_id INT AUTO_INCREMENT PRIMARY KEY,
+stu_id VARCHAR(20) NOT NULL,
+class_id INT NOT NULL,
+day_of_week ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
+FOREIGN KEY (stu_id) REFERENCES student(stu_id),
+FOREIGN KEY (class_id) REFERENCES classes(class_id)
+);
+
+CREATE TABLE holidays (
+holiday_id INT AUTO_INCREMENT PRIMARY KEY,
+holiday_date DATE NOT NULL,
+holiday_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE dropout_students (
+dropout_id INT AUTO_INCREMENT PRIMARY KEY,
+stu_id VARCHAR(20) NOT NULL,
+dropout_date DATE NOT NULL DEFAULT CURDATE(),
+reason TEXT NOT NULL,
+FOREIGN KEY (stu_id) REFERENCES student(stu_id) ON DELETE CASCADE
+);
+
+
+
+
 
 
 
