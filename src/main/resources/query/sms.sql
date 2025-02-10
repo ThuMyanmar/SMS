@@ -25,7 +25,7 @@ create table course(
 	description TEXT,
 	duration DOUBLE,
 	fee int
-	
+
 );
 
 create table teacher(
@@ -38,7 +38,7 @@ create table teacher(
     address VARCHAR (255),
     photo VARCHAR(255)
 
-	
+
 
 );
 
@@ -49,7 +49,7 @@ create table teacher_subjects(
     course_id int not null,
 	FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id),
     FOREIGN KEY (course_id) REFERENCES course(course_id)
-	
+
 );
 
 create table classes(
@@ -96,7 +96,7 @@ create table attendance(
 	class_id int not null,
 	status ENUM('Present','Absent')DEFAULT 'Absent',
 	FOREIGN Key (stu_id)REFERENCES student (stu_id),
-	FOREIGN Key (class_id) REFERENCES classes(class_id)	
+	FOREIGN Key (class_id) REFERENCES classes(class_id)
 );
 
 create table certificate_templates(
@@ -133,9 +133,12 @@ schedule_id INT AUTO_INCREMENT PRIMARY KEY,
 stu_id VARCHAR(20) NOT NULL,
 class_id INT NOT NULL,
 day_of_week ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') NOT NULL,
+start_time TIME NOT NULL,
+end_time TIME NOT NULL,
 FOREIGN KEY (stu_id) REFERENCES student(stu_id),
 FOREIGN KEY (class_id) REFERENCES classes(class_id)
 );
+
 
 CREATE TABLE holidays (
 holiday_id INT AUTO_INCREMENT PRIMARY KEY,
