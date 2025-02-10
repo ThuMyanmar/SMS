@@ -66,6 +66,9 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Register> registerSet;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<StudentSchedule> studentScheduleSet;
+
     public Student(String stu_id, String stu_name, Date stu_dob, String gender, String contact, String email, String address, String photo_path) {
         this.stu_id = stu_id;
         this.stu_name = stu_name;

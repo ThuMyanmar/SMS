@@ -17,6 +17,7 @@ import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.db.Registerimpl;
 import sspd.sms.registeroptions.model.RegisterView;
 import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.service.StudentScheduleService;
 import sspd.sms.studentoptions.service.StudentService;
 
 import java.util.List;
@@ -29,12 +30,15 @@ public class RegisterService implements Taskdao<Register> {
     private final Registerimpl registerimpl;
     private final StudentService studentService;
     private final SessionFactory sessionFactory;
+    private final StudentScheduleService studentScheduleService;
 
-    public RegisterService(Validator validator, Registerimpl registerimpl, StudentService studentService, SessionFactory sessionFactory) {
+
+    public RegisterService(Validator validator, Registerimpl registerimpl, StudentService studentService, SessionFactory sessionFactory, StudentScheduleService studentScheduleService) {
         this.validator = validator;
         this.registerimpl = registerimpl;
         this.studentService = studentService;
         this.sessionFactory = sessionFactory;
+        this.studentScheduleService = studentScheduleService;
     }
 
     @Override
@@ -182,6 +186,9 @@ public class RegisterService implements Taskdao<Register> {
 
 
             studentService.insertTask(student, session);
+
+
+
 
             insertTask(register, session);
 
