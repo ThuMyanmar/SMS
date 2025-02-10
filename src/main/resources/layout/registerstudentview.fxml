@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXCheckBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -26,45 +27,45 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stunametxt" layoutX="14.0" layoutY="168.0" prefHeight="45.0" prefWidth="655.0" promptText="Eng လိုသာရေးပေးပါ။" stylesheets="@../css/txt.css">
+      <TextField fx:id="stunametxt" layoutX="14.0" layoutY="168.0" prefHeight="45.0" prefWidth="346.0" promptText="Eng လိုသာရေးပေးပါ။" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="studof" layoutX="18.0" layoutY="254.0" prefHeight="53.0" prefWidth="340.0" promptText="မွေးနေ့" stylesheets="@../css/datepicker.css" />
-      <Label layoutX="18.0" layoutY="226.0" text="မွေးနေ့">
+      <DatePicker fx:id="studof" layoutX="376.0" layoutY="162.0" prefHeight="53.0" prefWidth="289.0" promptText="မွေးနေ့" stylesheets="@../css/datepicker.css" />
+      <Label layoutX="376.0" layoutY="134.0" text="မွေးနေ့">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="stugender" layoutX="376.0" layoutY="260.0" prefHeight="45.0" prefWidth="289.0" promptText="ယောကျာ်း" stylesheets="@../css/conbox.css" />
-      <Label layoutX="377.0" layoutY="236.0" text="လိင်">
+      <ComboBox fx:id="stugender" layoutX="18.0" layoutY="254.0" prefHeight="45.0" prefWidth="230.0" promptText="ယောကျာ်း" stylesheets="@../css/conbox.css" />
+      <Label layoutX="19.0" layoutY="227.0" text="ကျား/မ">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="18.0" layoutY="335.0" text="ဆက်သွယ်ရန်">
+      <Label layoutX="25.0" layoutY="315.0" text="ဆက်သွယ်ရန်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stuphonetxt" layoutX="18.0" layoutY="363.0" prefHeight="45.0" prefWidth="340.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuphonetxt" layoutX="25.0" layoutY="343.0" prefHeight="45.0" prefWidth="223.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
       </TextField>
-      <Label layoutX="376.0" layoutY="335.0" text="အီးမေးလ်">
+      <Label layoutX="264.0" layoutY="229.0" text="အီးမေးလ်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stuemailtxt" layoutX="376.0" layoutY="363.0" prefHeight="45.0" prefWidth="459.0" promptText="hlainghtun2018@gmail.com" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuemailtxt" layoutX="263.0" layoutY="254.0" prefHeight="45.0" prefWidth="401.0" promptText="hlainghtun2018@gmail.com" stylesheets="@../css/txt.css">
          <font>
             <Font name="Pyidaungsu" size="11.0" />
          </font>
       </TextField>
-      <TextArea fx:id="stuaddresstxt" layoutX="19.0" layoutY="464.0" prefHeight="211.0" prefWidth="818.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area" stylesheets="@../css/textarea.css" />
-      <Label layoutX="21.0" layoutY="427.0" text="နေရပ်လိပ်စာ">
+      <TextArea fx:id="stuaddresstxt" layoutX="22.0" layoutY="523.0" prefHeight="118.0" prefWidth="330.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area" stylesheets="@../css/textarea.css" />
+      <Label layoutX="24.0" layoutY="486.0" text="နေရပ်လိပ်စာ">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
@@ -101,5 +102,11 @@
             <ImageView fx:id="stuimage" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
          </children>
       </Pane>
+      <AnchorPane layoutX="274.0" layoutY="425.0" prefHeight="53.0" prefWidth="401.0" style="-fx-border-color: #651FFF;">
+         <children>
+            <JFXCheckBox layoutX="18.0" layoutY="19.0" />
+            <JFXCheckBox layoutX="110.0" layoutY="19.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
