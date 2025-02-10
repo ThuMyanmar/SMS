@@ -2,8 +2,11 @@ package sspd.sms.classoptions.services;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sspd.sms.classoptions.DTO.ClassesDTO;
 import sspd.sms.classoptions.db.Classimpls;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.model.ClasshasTeacher;
@@ -23,6 +26,9 @@ public class ClassesService {
 
 
     private  ClassHasTeacherService classHasTeacherService;
+
+    @Getter@Setter
+    private ClassesDTO classesDTO;
 
     @Autowired
     public void setClassHasTeacherService(ClassHasTeacherService classHasTeacherService) {

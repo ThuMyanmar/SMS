@@ -69,6 +69,8 @@ module sspd.sms {
     opens  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
     exports  sspd.sms.classoptions.services to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
+    opens  sspd.sms.classoptions.DTO to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
+    exports  sspd.sms.classoptions.DTO to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
 
    opens sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;

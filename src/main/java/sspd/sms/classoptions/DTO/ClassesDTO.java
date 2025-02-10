@@ -1,28 +1,17 @@
 package sspd.sms.classoptions.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import sspd.sms.classoptions.model.Classes;
+import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter@Setter
+@Component
 public class ClassesDTO {
-    private static volatile ClassesDTO instance;
-    private Classes classes;
 
-    private ClassesDTO() {}
-
-    public static ClassesDTO getInstance() {
-        if (instance == null) {
-            synchronized (ClassesDTO.class) {
-                if (instance == null) {
-                    instance = new ClassesDTO();
-                }
-
-            }
-        }
-        return instance;
-    }
-
+    private int class_id;
 
 }

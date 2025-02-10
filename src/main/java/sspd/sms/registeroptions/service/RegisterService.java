@@ -119,6 +119,7 @@ public class RegisterService implements Taskdao<Register> {
     public void bactchTask(List<Register> list) {
 
     }
+
     private void showErrorDialog(String title, String header, String content) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);

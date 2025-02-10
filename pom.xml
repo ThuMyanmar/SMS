@@ -14,6 +14,7 @@
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
     <dependencies>
+
         <!-- JavaFX Dependencies -->
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -144,7 +145,6 @@
             <artifactId>hibernate-jcache</artifactId>
             <version>6.6.6.Final</version>
         </dependency>
-
 
     </dependencies>
 
