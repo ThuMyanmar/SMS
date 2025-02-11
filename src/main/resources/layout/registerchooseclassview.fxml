@@ -1,41 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1043.0" stylesheets="@../css/tapPane.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="1043.0" stylesheets="@../css/tapPane.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.registeroptions.controllers.RegisterChooseController">
   <tabs>
     <Tab text="အတန်းအပ်နှံခြင်း">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="506.0" prefWidth="739.0">
                <children>
-                  <TableView fx:id="classtable" layoutX="14.0" layoutY="74.0" prefHeight="389.0" prefWidth="853.0" stylesheets="@../css/tableview.css">
+                  <TableView fx:id="classtable" layoutX="12.0" layoutY="76.0" prefHeight="389.0" prefWidth="944.0" stylesheets="@../css/tableview.css">
                      <columns>
                         <TableColumn fx:id="nameCol" prefWidth="163.0" text="အတန်း အမည်" />
                         <TableColumn fx:id="courseCol" minWidth="0.0" prefWidth="418.0" text="သင်ကြားမည့် ဘာသာရပ်" />
-                        <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="129.0" text="ကန့်သတ်ဦးရေ" />
-                        <TableColumn fx:id="reg_stuCol" minWidth="0.0" prefWidth="142.0" text="တက်ရောက်သူ ဦးရေ" />
+                        <TableColumn fx:id="limitstudentCol" minWidth="0.0" prefWidth="143.0" text="ကန့်သတ်ဦးရေ" />
+                        <TableColumn fx:id="reg_stuCol" minWidth="0.0" prefWidth="219.0" text="တက်ရောက်သူ ဦးရေ" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="4.0" prefHeight="45.0" prefWidth="736.0" stylesheets="@../css/txt.css" />
-                  <FontAwesomeIconView glyphName="SEARCH" layoutX="717.0" layoutY="34.0" size="24" text="" />
-                  <Button fx:id="addStudent" layoutX="762.0" layoutY="5.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="114.0" styleClass="success-button" stylesheets="@../css/btn.css" text="အပ်မည်။">
-                     <graphic>
-                        <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: #5D4037;" size="24" wrappingWidth="30.285715103149414" />
-                     </graphic>
-                  </Button>
+                  <TextField fx:id="searchboxtxt" layoutX="14.0" layoutY="13.0" prefHeight="45.0" prefWidth="939.0" promptText="ရှာဖွေပါ။" stylesheets="@../css/txt.css" />
+                  <FontAwesomeIconView glyphName="SEARCH" layoutX="920.0" layoutY="42.0" size="24" text="" />
                </children></AnchorPane>
       </content>
     </Tab>
-    <Tab text="Untitled Tab 2">
+    <Tab text="ကျောင်းသားဆိုင်ရာပြုပြင်ခြင်း">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutX="6.0" layoutY="73.0" prefHeight="384.0" prefWidth="944.0" stylesheets="@../css/tableview.css">
+                     <columns>
+                        <TableColumn fx:id="nameCol1" prefWidth="147.0" text="အိုင်ဒီ" />
+                        <TableColumn fx:id="courseCol1" minWidth="0.0" prefWidth="241.0" text="အမည်" />
+                        <TableColumn fx:id="limitstudentCol1" minWidth="0.0" prefWidth="336.0" text="အတန်း" />
+                        <TableColumn fx:id="reg_stuCol1" minWidth="0.0" prefWidth="219.0" text="သင်ကြားမည့်ဘာသာရပ်" />
+                     </columns>
+                  </TableView>
+                  <TextField layoutX="8.0" layoutY="14.0" prefHeight="45.0" prefWidth="938.0" promptText="ရှာဖွေပါ။" stylesheets="@../css/txt.css" />
+                  <FontAwesomeIconView glyphName="SEARCH" layoutX="919.0" layoutY="45.0" size="24" text="" />
+                  <Label fx:id="countlb" layoutX="873.0" layoutY="460.0" prefHeight="27.0" prefWidth="92.0" textFill="RED">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="813.0" layoutY="460.0" prefHeight="27.0" prefWidth="60.0" text="Count :">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
       </content>
     </Tab>
   </tabs>

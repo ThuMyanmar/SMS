@@ -19,4 +19,11 @@ public class RegisterView {
     private String class_name;
     private String course_name;
 
+
+    public RegisterView(String stu_id, String stu_name, String class_name, String course_name) {
+        this.stu_id = stu_id;
+        this.stu_name = stu_name;
+        this.class_name = class_name;
+        this.course_name = course_name;
+    }
 }

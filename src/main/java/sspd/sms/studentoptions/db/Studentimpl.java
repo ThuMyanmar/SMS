@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import sspd.sms.DAO.Taskdao;
+import sspd.sms.registeroptions.model.RegisterView;
 import sspd.sms.studentoptions.model.Student;
 import java.util.List;
 
@@ -15,6 +16,21 @@ public class Studentimpl implements Taskdao<Student> {
 
     public Studentimpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
+
+    }
+
+
+    public List<RegisterView> getActiveStudents(){
+
+            String hql = """
+                    
+                
+                    
+                    
+                    
+                    
+                    """;
+
 
     }
 

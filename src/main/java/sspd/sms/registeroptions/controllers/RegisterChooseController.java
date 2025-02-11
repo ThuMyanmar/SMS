@@ -76,52 +76,7 @@ public class RegisterChooseController implements Initializable {
 
 
 
-        addStudent.setOnAction(event -> {
 
-            if(classesService.getClassesDTO()!=null){
-
-                try {
-
-                    FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/registerstudentview.fxml"));
-                    fxmlLoader.setControllerFactory(context::getBean);
-                    Scene scene = new Scene(fxmlLoader.load());
-
-
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.WINDOW_MODAL);
-
-
-                    Stage mainStage = (Stage) addStudent.getScene().getWindow();
-                    stage.initOwner(mainStage);
-
-
-                    stage.setTitle("သင်တန်းအပ်ခြင်း");
-                    stage.setScene(scene);
-                    stage.show();
-
-                    stage.setOnCloseRequest(event1 -> {
-
-                        getLoadData();
-                        getResetDataClassDTO();
-
-                    });
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            else {
-
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                showErrorDialog("Class","Class အမှား","Class ရွေးချယ်ပါ။");
-            }
-
-
-
-        });
 
 
 
@@ -151,6 +106,47 @@ public class RegisterChooseController implements Initializable {
                 classesDTO.setClass_id(classesService.getClassIdd(classview.getClass_name()));
 
                 classesService.setClassesDTO(classesDTO);
+
+                if(classesService.getClassesDTO()!=null){
+
+                    try {
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(Launch.class.getResource("/layout/registerstudentview.fxml"));
+                        fxmlLoader.setControllerFactory(context::getBean);
+                        Scene scene = new Scene(fxmlLoader.load());
+
+
+                        Stage stage = new Stage();
+                        stage.initModality(Modality.WINDOW_MODAL);
+
+
+                        Stage mainStage = (Stage) addStudent.getScene().getWindow();
+                        stage.initOwner(mainStage);
+
+
+                        stage.setTitle("သင်တန်းအပ်ခြင်း");
+                        stage.setScene(scene);
+                        stage.show();
+
+                        stage.setOnCloseRequest(event1 -> {
+
+                            getLoadData();
+                            getResetDataClassDTO();
+
+                        });
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                else {
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    showErrorDialog("Class","Class အမှား","Class ရွေးချယ်ပါ။");
+                }
 
 
 
