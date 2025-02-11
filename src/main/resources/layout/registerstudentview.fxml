@@ -7,6 +7,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
@@ -27,45 +28,48 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stunametxt" layoutX="14.0" layoutY="168.0" prefHeight="45.0" prefWidth="346.0" promptText="Eng လိုသာရေးပေးပါ။" stylesheets="@../css/txt.css">
+      <TextField fx:id="stunametxt" layoutX="14.0" layoutY="168.0" prefHeight="40.0" prefWidth="306.0" promptText="Eng လိုသာရေးပေးပါ။">
          <font>
-            <Font name="Pyidaungsu" size="11.0" />
+            <Font name="Pyidaungsu" size="13.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="studof" layoutX="376.0" layoutY="162.0" prefHeight="53.0" prefWidth="289.0" promptText="မွေးနေ့" stylesheets="@../css/datepicker.css" />
-      <Label layoutX="376.0" layoutY="134.0" text="မွေးနေ့">
+      <DatePicker fx:id="studof" layoutX="331.0" layoutY="167.0" prefHeight="42.0" prefWidth="163.0" promptText="မွေးနေ့" />
+      <Label layoutX="331.0" layoutY="140.0" text="မွေးနေ့">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="stugender" layoutX="18.0" layoutY="254.0" prefHeight="45.0" prefWidth="230.0" promptText="ယောကျာ်း" stylesheets="@../css/conbox.css" />
-      <Label layoutX="19.0" layoutY="227.0" text="ကျား/မ">
+      <ComboBox fx:id="stugender" layoutX="505.0" layoutY="167.0" prefHeight="42.0" prefWidth="163.0" promptText="ယောကျာ်း" />
+      <Label layoutX="506.0" layoutY="140.0" text="ကျား/မ">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="315.0" text="ဆက်သွယ်ရန်">
+      <Label layoutX="332.0" layoutY="218.0" text="ဆက်သွယ်ရန်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stuphonetxt" layoutX="25.0" layoutY="343.0" prefHeight="45.0" prefWidth="223.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuphonetxt" layoutX="331.0" layoutY="251.0" prefHeight="40.0" prefWidth="338.0" promptText="ဆက်သွယ်ရန် ဖုန်းနံပါတ်">
          <font>
-            <Font name="Pyidaungsu" size="11.0" />
+            <Font name="Pyidaungsu" size="13.0" />
          </font>
       </TextField>
-      <Label layoutX="264.0" layoutY="229.0" text="အီးမေးလ်">
+      <Label layoutX="15.0" layoutY="219.0" text="အီးမေးလ်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="stuemailtxt" layoutX="263.0" layoutY="254.0" prefHeight="45.0" prefWidth="401.0" promptText="hlainghtun2018@gmail.com" stylesheets="@../css/txt.css">
+      <TextField fx:id="stuemailtxt" layoutX="14.0" layoutY="251.0" prefHeight="40.0" prefWidth="306.0" promptText="hlainghtun2018@gmail.com">
          <font>
-            <Font name="Pyidaungsu" size="11.0" />
+            <Font name="Pyidaungsu" size="13.0" />
          </font>
       </TextField>
-      <TextArea fx:id="stuaddresstxt" layoutX="22.0" layoutY="523.0" prefHeight="118.0" prefWidth="330.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area" stylesheets="@../css/textarea.css" />
-      <Label layoutX="24.0" layoutY="486.0" text="နေရပ်လိပ်စာ">
+      <TextArea fx:id="stuaddresstxt" layoutX="15.0" layoutY="338.0" prefHeight="118.0" prefWidth="330.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area">
+         <font>
+            <Font name="Pyidaungsu" size="13.0" />
+         </font></TextArea>
+      <Label layoutX="17.0" layoutY="307.0" text="နေရပ်လိပ်စာ">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
@@ -77,6 +81,8 @@
       </Button>
       <AnchorPane layoutX="18.0" layoutY="66.0" prefHeight="53.0" prefWidth="826.0" style="-fx-background-color: #651FFF;">
          <children>
+
+
             <Label layoutX="14.0" layoutY="13.0" text="ကုဒ် -" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -102,11 +108,12 @@
             <ImageView fx:id="stuimage" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
          </children>
       </Pane>
-      <AnchorPane layoutX="274.0" layoutY="425.0" prefHeight="53.0" prefWidth="401.0" style="-fx-border-color: #651FFF;">
+      <AnchorPane layoutX="352.0" layoutY="338.0" prefHeight="118.0" prefWidth="319.0" style="-fx-border-color: #651FFF;">
          <children>
-            <JFXCheckBox layoutX="18.0" layoutY="19.0" />
-            <JFXCheckBox layoutX="110.0" layoutY="19.0" />
+            <Spinner fx:id="startTimepicker" editable="true" layoutX="27.0" layoutY="25.0" prefHeight="29.0" prefWidth="114.0" />
          </children>
       </AnchorPane>
+      <JFXCheckBox layoutX="331.0" layoutY="544.0" />
+      <JFXCheckBox layoutX="423.0" layoutY="544.0" />
    </children>
 </AnchorPane>

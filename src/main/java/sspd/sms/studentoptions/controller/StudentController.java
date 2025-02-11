@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -34,6 +35,8 @@ import sspd.sms.registeroptions.service.RegisterService;
 import sspd.sms.studentoptions.model.Student;
 import sspd.sms.studentoptions.service.StudentIDGenerate;
 import sspd.sms.studentoptions.service.StudentService;
+
+import static sspd.sms.conponents.Time.setupTimePicker;
 
 @Controller
 public class StudentController implements Initializable {
@@ -68,6 +71,9 @@ public class StudentController implements Initializable {
     @FXML
     private Button uploadimgbtn;
 
+    @FXML
+    private Spinner<LocalTime> startTimepicker;
+
     private ClassesService classesService;
 
     private StudentService studentService;
@@ -93,7 +99,7 @@ public class StudentController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-
+        setupTimePicker(startTimepicker);
        getLoadData();
        actionEvent();
 
