@@ -152,11 +152,13 @@
             <version>11.1.2</version>
         </dependency>
 
+
         <dependency>
-            <groupId>io.github.bajins</groupId>
-            <artifactId>datetime-picker-javafx</artifactId>
-            <version>1.0.0</version>
+            <groupId>org.jfxtras</groupId>
+            <artifactId>jfxtras-controls</artifactId>
+            <version>17-r1</version>
         </dependency>
+
 
 
     </dependencies>

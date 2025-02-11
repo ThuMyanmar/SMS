@@ -136,8 +136,7 @@ day_of_week ENUM('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday
 start_time TIME NOT NULL,
 end_time TIME NOT NULL,
 FOREIGN KEY (stu_id) REFERENCES student(stu_id),
-FOREIGN KEY (class_id) REFERENCES classes(class_id)
-);
+FOREIGN KEY (class_id) REFERENCES classes(class_id));
 
 
 CREATE TABLE holidays (

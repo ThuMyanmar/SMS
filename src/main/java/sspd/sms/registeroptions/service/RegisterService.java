@@ -1,6 +1,5 @@
 package sspd.sms.registeroptions.service;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import javafx.application.Platform;
@@ -9,10 +8,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
-import sspd.sms.classoptions.model.Classes;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.db.Registerimpl;
 import sspd.sms.registeroptions.model.RegisterView;
@@ -29,6 +26,7 @@ public class RegisterService implements Taskdao<Register> {
     private final Registerimpl registerimpl;
     private final StudentService studentService;
     private final SessionFactory sessionFactory;
+
 
     public RegisterService(Validator validator, Registerimpl registerimpl, StudentService studentService, SessionFactory sessionFactory) {
         this.validator = validator;
@@ -182,6 +180,9 @@ public class RegisterService implements Taskdao<Register> {
 
 
             studentService.insertTask(student, session);
+
+
+
 
             insertTask(register, session);
 

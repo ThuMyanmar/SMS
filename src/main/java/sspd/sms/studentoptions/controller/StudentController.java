@@ -1,5 +1,6 @@
 package sspd.sms.studentoptions.controller;
 
+import com.jfoenix.controls.JFXCheckBox;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import jfxtras.scene.control.LocalTimeTextField;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,8 +26,9 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalTime;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
@@ -33,6 +36,7 @@ import sspd.sms.errorHandler.Validation;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.service.RegisterService;
 import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.model.StudentSchedule;
 import sspd.sms.studentoptions.service.StudentIDGenerate;
 import sspd.sms.studentoptions.service.StudentService;
 
@@ -72,7 +76,33 @@ public class StudentController implements Initializable {
     private Button uploadimgbtn;
 
     @FXML
-    private Spinner<LocalTime> startTimepicker;
+    private JFXCheckBox day1;
+
+    @FXML
+    private JFXCheckBox day2;
+
+    @FXML
+    private JFXCheckBox day3;
+
+    @FXML
+    private JFXCheckBox day4;
+
+    @FXML
+    private JFXCheckBox day5;
+
+    @FXML
+    private JFXCheckBox day6;
+
+    @FXML
+    private JFXCheckBox day7;
+
+    @FXML
+    private LocalTimeTextField endTime;
+
+    @FXML
+    private LocalTimeTextField startTime;
+
+
 
     private ClassesService classesService;
 
@@ -99,7 +129,7 @@ public class StudentController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        setupTimePicker(startTimepicker);
+
        getLoadData();
        actionEvent();
 
@@ -151,6 +181,21 @@ public class StudentController implements Initializable {
         stuidtxt.setText(generator.getStudentIDGenerate());
 
     }
+
+    private List<String> getSelectedDays() {
+        List<String> selectedDays = new ArrayList<>();
+
+        if (day1.isSelected()) selectedDays.add("Sunday");
+        if (day2.isSelected()) selectedDays.add("Monday");
+        if (day3.isSelected()) selectedDays.add("Tuesday");
+        if (day4.isSelected()) selectedDays.add("Wednesday");
+        if (day5.isSelected()) selectedDays.add("Thursday");
+        if (day6.isSelected()) selectedDays.add("Friday");
+        if (day7.isSelected()) selectedDays.add("Saturday");
+
+        return selectedDays;
+    }
+
 
     private void addStudent() {
 
@@ -214,7 +259,29 @@ public class StudentController implements Initializable {
 
                       String photoPath = destinationFile.getAbsolutePath();
 
-                     student.setPhoto_path(photoPath);
+                      student.setPhoto_path(photoPath);
+
+                     Set<StudentSchedule> schedule = new HashSet<>();
+
+                      for(String s :getSelectedDays()){
+
+                          LocalTime starttime = startTime.getLocalTime();
+                          LocalTime endtime = endTime.getLocalTime();
+
+                          StudentSchedule studentSchedule = new StudentSchedule();
+                          studentSchedule.setStudent(student);
+                          studentSchedule.setDay_of_week(s);
+                          studentSchedule.setClasses(classes);
+                          studentSchedule.setStart_time(Time.valueOf(starttime));
+                          studentSchedule.setEnd_time(Time.valueOf(endtime));
+
+                          schedule.add(studentSchedule);
+
+                      }
+
+                      student.setStudentScheduleSet(schedule);
+
+
 
                       registerService.insertTaskStudentAndRegister(student, register);
 
@@ -239,6 +306,13 @@ public class StudentController implements Initializable {
 
                 showErrorDialog("Error", "Failed ", "Failed to Save Register");
             }
+
+
+
+
+
+
+
         });
 
 

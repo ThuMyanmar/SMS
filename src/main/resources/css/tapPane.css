@@ -1,0 +1,83 @@
+
+/* beautiful-tabpane.css */
+
+/* Main Container */
+.tab-pane {
+    -fx-background-color: linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%);
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+/* Tab Header Area */
+.tab-pane > .tab-header-area {
+    -fx-padding: 0 0 10px 0;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+}
+
+/* Individual Tabs */
+.tab {
+    -fx-background-color: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+    -fx-background-insets: 0 1px 0 0, 1px 1px 0 0, 2px 0 0 0;
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-padding: 10px 25px;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1px 1px 0 1px;
+    -fx-border-radius: 5px 5px 0 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 3, 0, 0, 1);
+    -fx-cursor: hand;
+    -fx-font-family: 'Segoe UI';
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* Selected Tab */
+.tab:selected {
+    -fx-background-color: linear-gradient(to bottom, #4dabf7 0%, #228be6 100%);
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(72, 113, 255, 0.3), 8, 0, 0, 2);
+}
+
+/* Hover Effect */
+.tab:hover {
+    -fx-background-color: linear-gradient(to bottom, #e9ecef 0%, #dee2e6 100%);
+    -fx-text-fill: #228be6;
+}
+
+/* Disabled Tab */
+.tab:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: #f8f9fa;
+}
+
+/* Tab Content Area */
+.tab-pane > .tab-content-area {
+    -fx-background-color: white;
+    -fx-border-color: #dee2e6;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0 5px 5px 5px;
+    -fx-padding: 20px;
+    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+/* Close Button */
+.tab .tab-close-button {
+    -fx-background-color: #adb5bd;
+    -fx-shape: "M 4 4 L 12 12 M 12 4 L 4 12";
+    -fx-scale-shape: false;
+    -fx-padding: 4px;
+}
+
+.tab .tab-close-button:hover {
+    -fx-background-color: #ff6b6b;
+}
+
+/* Add Icon to Tabs (requires FontAwesomeFX) */
+.tab .ikonli-font-icon {
+    -fx-icon-color: currentColor;
+    -fx-icon-size: 16px;
+}

@@ -23,7 +23,7 @@ module sspd.sms {
     requires org.slf4j;
     requires jakarta.transaction;
     requires jakarta.cdi;
-
+    requires jfxtras.controls;
 
 
     opens sspd.sms;

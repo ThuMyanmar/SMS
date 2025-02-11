@@ -7,22 +7,22 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import jfxtras.scene.control.LocalTimeTextField?>
 
-<AnchorPane prefHeight="740.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.studentoptions.controller.StudentController">
+<AnchorPane prefHeight="482.0" prefWidth="844.0" style="-fx-background-color: #F5F5F5;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sspd.sms.studentoptions.controller.StudentController">
    <children>
       <Label layoutX="299.0" layoutY="14.0" text="Student Registration Form">
          <font>
             <Font name="1st Sortie" size="29.0" />
          </font>
       </Label>
-      <Separator layoutX="14.0" layoutY="127.0" prefHeight="4.0" prefWidth="484.0" />
+      <Separator layoutX="11.0" layoutY="125.0" prefHeight="5.0" prefWidth="826.0" />
       <Label layoutX="18.0" layoutY="140.0" text="အမည်">
          <font>
             <Font name="Pyidaungsu Book Bold" size="15.0" />
@@ -65,7 +65,7 @@
             <Font name="Pyidaungsu" size="13.0" />
          </font>
       </TextField>
-      <TextArea fx:id="stuaddresstxt" layoutX="15.0" layoutY="338.0" prefHeight="118.0" prefWidth="330.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area">
+      <TextArea fx:id="stuaddresstxt" layoutX="15.0" layoutY="338.0" prefHeight="131.0" prefWidth="330.0" promptText="ဆက်သွယ်ရန်နေရပ်လိပ်စာ" styleClass="text-area">
          <font>
             <Font name="Pyidaungsu" size="13.0" />
          </font></TextArea>
@@ -74,12 +74,12 @@
             <Font name="Pyidaungsu Book Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="stusavebtn" layoutX="21.0" layoutY="686.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="174.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
+      <Button fx:id="stusavebtn" layoutX="700.0" layoutY="421.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="125.0" styleClass="success-button" stylesheets="@../css/btn.css" text="သိမ်းမည်။">
          <graphic>
             <FontAwesomeIconView glyphName="SAVE" glyphStyle="-fx-fill: #5D4037;" size="24" wrappingWidth="30.285715103149414" />
          </graphic>
       </Button>
-      <AnchorPane layoutX="18.0" layoutY="66.0" prefHeight="53.0" prefWidth="826.0" style="-fx-background-color: #651FFF;">
+      <AnchorPane layoutX="10.0" layoutY="66.0" prefHeight="53.0" prefWidth="826.0" style="-fx-background-color: #651FFF;">
          <children>
 
 
@@ -95,7 +95,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="uploadimgbtn" focusTraversable="false" layoutX="700.0" layoutY="315.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" styleClass="success-button" stylesheets="@../css/btn.css" text="ပုံထည့်မည်။">
+      <Button fx:id="uploadimgbtn" focusTraversable="false" layoutX="700.0" layoutY="356.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="125.0" styleClass="success-button" stylesheets="@../css/btn.css" text="ပုံထည့်မည်။">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -103,24 +103,32 @@
             <FontAwesomeIconView glyphName="PHOTO" size="24" />
          </graphic>
       </Button>
-      <Pane layoutX="686.0" layoutY="127.0" prefHeight="172.0" prefWidth="145.0" styleClass="image-view" stylesheets="@../style/imageview.css">
+      <Pane layoutX="686.0" layoutY="167.0" prefHeight="172.0" prefWidth="145.0" styleClass="image-view" stylesheets="@../style/imageview.css">
          <children>
             <ImageView fx:id="stuimage" fitHeight="156.0" fitWidth="125.0" layoutX="9.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" style="-fx-smooth: true;" styleClass="/style/imageview" />
          </children>
       </Pane>
-      <AnchorPane layoutX="352.0" layoutY="338.0" prefHeight="118.0" prefWidth="319.0" style="-fx-border-color: #651FFF;" />
-      <JFXCheckBox layoutX="331.0" layoutY="544.0" />
-      <JFXCheckBox layoutX="423.0" layoutY="544.0" />
-      <Spinner fx:id="startTimepicker" editable="true" layoutX="551.0" layoutY="517.0" prefHeight="29.0" prefWidth="114.0" />
-      <Pane layoutX="56.0" layoutY="497.0" prefHeight="40.0" prefWidth="199.0" style="-fx-border-color: #651FFF;">
+      <AnchorPane layoutX="352.0" layoutY="339.0" prefHeight="82.0" prefWidth="319.0" style="-fx-border-color: #651FFF; -fx-background-color: #FAFAFA;">
          <children>
-            <TextField layoutX="2.0" layoutY="6.0" prefHeight="29.0" prefWidth="45.0" promptText="Hour" style="-fx-background-color: #FAFAFA;" />
-            <Label layoutX="52.0" layoutY="5.0" text="/">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
+            <JFXCheckBox fx:id="day2" layoutX="77.0" layoutY="11.0" prefHeight="18.0" prefWidth="77.0" text="တနင်္လာ" />
+            <JFXCheckBox fx:id="day3" layoutX="177.0" layoutY="11.0" text="အင်္ဂါ" />
+            <JFXCheckBox fx:id="day4" layoutX="5.0" layoutY="50.0" text="ဗုဒ္ဓဟူး" />
+            <JFXCheckBox fx:id="day5" layoutX="77.0" layoutY="50.0" prefHeight="4.0" prefWidth="90.0" text="ကြာသပတေး" />
+            <JFXCheckBox fx:id="day6" layoutX="177.0" layoutY="50.0" text="သောကြာ" />
+            <JFXCheckBox fx:id="day7" layoutX="258.0" layoutY="30.0" text="စနေ" />
+            <JFXCheckBox fx:id="day1" layoutX="5.0" layoutY="11.0" text="တနင်္ဂနွေ" />
          </children>
-      </Pane>
+      </AnchorPane>
+      <Label layoutX="353.0" layoutY="307.0" text="တက်ရောက်မည့် အချိန် နှင့်နေ့ရက်">
+         <font>
+            <Font name="Pyidaungsu Book Bold" size="15.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="352.0" layoutY="427.0" prefHeight="40.0" prefWidth="319.0" style="-fx-border-color: #651FFF; -fx-background-color: #FAFAFA;">
+         <children>
+            <LocalTimeTextField fx:id="startTime" layoutX="25.0" layoutY="9.0" prefHeight="18.0" prefWidth="119.0" promptText="စတင်မည့်အချိန်" />
+            <LocalTimeTextField fx:id="endTime" layoutX="161.0" layoutY="9.0" prefHeight="18.0" prefWidth="119.0" promptText="ရပ်မည့်အချိန်" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

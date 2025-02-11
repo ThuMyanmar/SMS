@@ -1,0 +1,34 @@
+/* Style the root LocalTimeTextField */
+.local-time-field {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #999;
+}
+
+/* Style the hour/minute/second text fields */
+.time-field {
+    -fx-font-size: 14px;
+    -fx-background-radius: 3px;
+}
+
+/* Style the AM/PM toggle button */
+.toggle-meridiem-button {
+    -fx-background-color: #e0e0e0;
+    -fx-border-color: #999;
+}
+
+/* Style the spinner buttons (if enabled) */
+.spinner-button {
+    -fx-background-color: #ddd;
+}
+.spinner-button:hover {
+    -fx-background-color: #ccc;
+}
+/* Focused state */
+.local-time-field:focused {
+    -fx-border-color: #2196F3;
+}
+
+/* Disabled state */
+.local-time-field:disabled {
+    -fx-opacity: 0.5;
+}
