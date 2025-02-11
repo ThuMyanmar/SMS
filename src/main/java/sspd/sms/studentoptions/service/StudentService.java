@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.studentoptions.db.Studentimpl;
-import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.model.register.Student;
 
 import java.util.List;
 import java.util.Set;

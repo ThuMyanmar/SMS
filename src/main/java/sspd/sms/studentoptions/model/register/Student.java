@@ -1,4 +1,4 @@
-package sspd.sms.studentoptions.model;
+package sspd.sms.studentoptions.model.register;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 import sspd.sms.registeroptions.model.Register;
+import sspd.sms.studentoptions.model.dropout.DropoutStudent;
 
 import java.sql.Date;
 import java.util.Set;
@@ -68,6 +69,12 @@ public class Student {
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<StudentSchedule> studentScheduleSet;
+
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private DropoutStudent dropoutStudent;
+
+
+
 
     public Student(String stu_id, String stu_name, Date stu_dob, String gender, String contact, String email, String address, String photo_path) {
         this.stu_id = stu_id;

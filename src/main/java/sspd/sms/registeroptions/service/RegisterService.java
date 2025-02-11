@@ -13,7 +13,7 @@ import sspd.sms.DAO.Taskdao;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.db.Registerimpl;
 import sspd.sms.registeroptions.model.RegisterView;
-import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.model.register.Student;
 import sspd.sms.studentoptions.service.StudentService;
 
 import java.util.List;

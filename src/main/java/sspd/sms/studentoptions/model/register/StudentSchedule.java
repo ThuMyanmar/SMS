@@ -1,4 +1,4 @@
-package sspd.sms.studentoptions.model;
+package sspd.sms.studentoptions.model.register;
 
 
 import jakarta.persistence.*;
@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import sspd.sms.classoptions.model.Classes;
+
 import java.sql.Time;
 
 @Data

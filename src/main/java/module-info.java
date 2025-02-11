@@ -73,14 +73,14 @@ module sspd.sms {
     exports  sspd.sms.classoptions.DTO to java.base, spring.core, spring.beans, org.hibernate.orm.core,javafx.fxml,org.hibernate.validator;
 
 
-   opens sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
-   exports sspd.sms.studentoptions.controller to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+   opens sspd.sms.studentoptions.controller.register to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
+   exports sspd.sms.studentoptions.controller.register to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
 
     opens sspd.sms.studentoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
     exports sspd.sms.studentoptions.db to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml;
 
-    opens sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
-    exports sspd.sms.studentoptions.model to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
+    opens sspd.sms.studentoptions.model.register to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
+    exports sspd.sms.studentoptions.model.register to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
 
     opens sspd.sms.studentoptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
     exports sspd.sms.studentoptions.service to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
@@ -99,5 +99,11 @@ module sspd.sms {
 
     opens sspd.sms.errorHandler to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
     exports sspd.sms.errorHandler to java.base, spring.core, spring.beans, org.hibernate.orm.core, javafx.fxml,org.hibernate.validator;
+    exports sspd.sms.studentoptions.controller.register to java.base, javafx.fxml, org.hibernate.orm.core, spring.beans, spring.core;
+    opens sspd.sms.studentoptions.controller.register to java.base, javafx.fxml, org.hibernate.orm.core, spring.beans, spring.core;
+    exports sspd.sms.studentoptions.controller.edit to java.base, javafx.fxml, org.hibernate.orm.core, spring.beans, spring.core;
+    opens sspd.sms.studentoptions.controller.edit to java.base, javafx.fxml, org.hibernate.orm.core, spring.beans, spring.core;
+    exports sspd.sms.studentoptions.model.register to java.base, javafx.fxml, org.hibernate.orm.core, org.hibernate.validator, spring.beans, spring.core;
+    opens sspd.sms.studentoptions.model.register to java.base, javafx.fxml, org.hibernate.orm.core, org.hibernate.validator, spring.beans, spring.core;
 
 }

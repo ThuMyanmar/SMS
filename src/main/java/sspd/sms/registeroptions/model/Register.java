@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import sspd.sms.classoptions.model.Classes;
-import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.model.register.Student;
 
 import java.sql.Date;
 import java.time.LocalDate;

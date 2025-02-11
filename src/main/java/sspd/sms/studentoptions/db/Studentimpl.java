@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 import sspd.sms.DAO.Taskdao;
 import sspd.sms.registeroptions.model.RegisterView;
-import sspd.sms.studentoptions.model.Student;
+import sspd.sms.studentoptions.model.register.Student;
 import java.util.List;
 
 @Repository
@@ -30,7 +30,7 @@ public class Studentimpl implements Taskdao<Student> {
                     
                     
                     """;
-
+    return null;
 
     }
 

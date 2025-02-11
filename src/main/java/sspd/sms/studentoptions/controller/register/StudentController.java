@@ -1,4 +1,4 @@
-package sspd.sms.studentoptions.controller;
+package sspd.sms.studentoptions.controller.register;
 
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.application.Platform;
@@ -8,12 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import jfxtras.scene.control.LocalTimeTextField;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import sspd.sms.classoptions.DTO.ClassesDTO;
 import sspd.sms.classoptions.model.Classes;
 import sspd.sms.classoptions.services.ClassesService;
 
@@ -23,7 +21,6 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.sql.Time;
@@ -35,12 +32,10 @@ import javafx.scene.image.ImageView;
 import sspd.sms.errorHandler.Validation;
 import sspd.sms.registeroptions.model.Register;
 import sspd.sms.registeroptions.service.RegisterService;
-import sspd.sms.studentoptions.model.Student;
-import sspd.sms.studentoptions.model.StudentSchedule;
+import sspd.sms.studentoptions.model.register.Student;
+import sspd.sms.studentoptions.model.register.StudentSchedule;
 import sspd.sms.studentoptions.service.StudentIDGenerate;
 import sspd.sms.studentoptions.service.StudentService;
-
-import static sspd.sms.conponents.Time.setupTimePicker;
 
 @Controller
 public class StudentController implements Initializable {

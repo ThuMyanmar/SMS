@@ -1,4 +1,4 @@
-package sspd.sms.conponents;
+package sspd.sms.Date;
 
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;

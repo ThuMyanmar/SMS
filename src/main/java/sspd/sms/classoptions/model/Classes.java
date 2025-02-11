@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import sspd.sms.courseoptions.model.Course;
 import sspd.sms.registeroptions.model.Register;
-import sspd.sms.studentoptions.model.StudentSchedule;
+import sspd.sms.studentoptions.model.register.StudentSchedule;
 
 import java.sql.Date;
 import java.util.Set;

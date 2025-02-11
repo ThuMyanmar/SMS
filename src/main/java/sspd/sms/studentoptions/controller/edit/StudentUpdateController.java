@@ -1,4 +1,4 @@
-package sspd.sms.studentoptions.controller;
+package sspd.sms.studentoptions.controller.edit;
 
 import com.jfoenix.controls.JFXCheckBox;
 import javafx.fxml.FXML;
